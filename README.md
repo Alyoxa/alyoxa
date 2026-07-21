@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ALYOXA
 
-## Getting Started
+> Crafting digital experiences that leave a lasting impression.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## About
+
+ALYOXA is a premium digital product studio dedicated to designing, building, and elevating exceptional digital experiences.
+
+We partner with startups, growing businesses, and ambitious founders to transform ideas into products that are beautiful, intuitive, and built for long-term success.
+
+Our work combines strategy, design, technology, and motion to create websites, applications, and brands that people genuinely enjoy using.
+
+---
+
+## Vision
+
+To become one of the world's most respected digital product studios, recognized for timeless design, exceptional engineering, and meaningful digital experiences.
+
+---
+
+## Mission
+
+To help ambitious businesses turn ideas into premium digital products through thoughtful strategy, world-class design, and modern development.
+
+---
+
+## What We Build
+
+- Digital Product Design
+- Premium Websites
+- Web Applications
+- Brand Identity
+- E-commerce Experiences
+- Motion & Interaction
+
+---
+
+## Our Philosophy
+
+We believe digital products should do more than function.
+
+They should create emotion.
+
+Every pixel has a purpose.
+
+Every interaction builds trust.
+
+Every animation should feel intentional.
+
+Simplicity isn't the absence of detail—it's the result of thoughtful decisions.
+
+---
+
+## Core Values
+
+### Purpose Before Pixels
+
+Every decision should solve a real problem.
+
+### Craft Over Trends
+
+We build timeless experiences instead of chasing temporary trends.
+
+### Performance Matters
+
+Beautiful products should also be fast, accessible, and reliable.
+
+### Transparency
+
+Clear communication. Honest collaboration.
+
+### Continuous Improvement
+
+Every project should be better than the last.
+
+### Long-Term Thinking
+
+We're building brands and products that grow with time.
+
+---
+
+## Technology
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- GSAP
+- Lenis
+- Supabase
+- Vercel
+
+---
+
+## Project Status
+
+🚧 Currently in active development.
+
+---
+
+## Repository Structure
+
+```
+docs/
+public/
+src/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design Principles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✓ Simplicity
 
-## Learn More
+✓ Performance
 
-To learn more about Next.js, take a look at the following resources:
+✓ Accessibility
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✓ Scalability
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+✓ Consistency
 
-## Deploy on Vercel
+✓ Attention to Detail
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Future Roadmap
+
+- Premium Website
+- Design System
+- Journal
+- Case Studies
+- Blog
+- Component Library
+- Internal Tools
+- SaaS Products
+
+---
+
+## Contact
+
+Website
+
+https://alyoxa.com
+
+Email
+
+hello@alyoxa.com
+
+---
+
+© 2026 ALYOXA
+
+Crafted with purpose.
