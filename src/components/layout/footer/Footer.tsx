@@ -1,10 +1,25 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import alyoxaFooterLogo from "@/assets/images/logo/alyoxaFooterLogo.png";
-import { Link } from "lucide-react";
+import { initFooterAnimation } from "@/components/animations/footer/footer";
+
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+    const cleanup = initFooterAnimation(footerRef.current);
+    return () => cleanup();
+  }, []);
+
   return (
-    <footer className="relative w-full h-screen  text-[#111111] px-6 sm:px-12 md:px-16 lg:px-20 pt-10  flex flex-col  select-none border-t border-black/10 overflow-hidden">
+    <footer
+      ref={footerRef}
+      className="relative w-full min-h-screen text-[#111111] px-6 sm:px-12 md:px-16 lg:px-20 pt-10 flex flex-col justify-between select-none border-t border-black/10 overflow-hidden"
+    >
       {/* =========================================================
             ARCHITECTURAL BACKGROUND SVG & GRID MATRIX
             ========================================================= */}
@@ -54,7 +69,7 @@ export default function Footer() {
       {/* =========================================================
             NAVIGATION, COORDINATES & INQUIRIES
             ========================================================= */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto ">
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
           {/* Navigation */}
           <div data-footer="navigation" className="md:col-span-4 space-y-3">
@@ -190,28 +205,29 @@ export default function Footer() {
             ========================================================= */}
       <div
         data-footer="wordmark"
-        className="relative left-1/2 z-10 flex w-screen -translate-x-1/2 items-center justify-center overflow-hidden border-y border-black/[0.06] "
+        className="relative left-1/2 z-10 flex w-screen -translate-x-1/2 items-center justify-center overflow-hidden border-y border-black/[0.06] my-auto"
       >
         <Image
           src={alyoxaFooterLogo}
           alt="ALYOXA"
-          className="h-auto w-[92vw] max-w-none select-none object-contain pointer-events-none"
+          className="h-auto w-[92vw] max-w-none select-none object-contain pointer-events-none transition-transform duration-500 hover:scale-[1.01]"
           priority
         />
       </div>
+
       {/* =========================================================
             BOTTOM METADATA
             ========================================================= */}
-<div
-  data-footer="meta"
-  className="relative z-10 w-screen left-1/2 -translate-x-1/2 bg-zinc-900 text-white"
->
-  <div className="mx-auto flex w-full flex-col items-center justify-between gap-2 px-6 py-5 text-[10px] uppercase tracking-[0.2em] text-white/60 sm:flex-row lg:px-10">
-    <div>© 2026 ALYOXA</div>
-    <div className="text-white/70">DIGITAL EXPERIENCE STUDIO</div>
-    <div>BUILT WITH INTENTION.</div>
-  </div>
-</div>
+      <div
+        data-footer="meta"
+        className="relative z-10 w-screen left-1/2 -translate-x-1/2 bg-zinc-900 text-white"
+      >
+        <div className="mx-auto flex w-full flex-col items-center justify-between gap-2 px-6 py-5 text-[10px] uppercase tracking-[0.2em] text-white/60 sm:flex-row lg:px-10">
+          <div>© 2026 ALYOXA</div>
+          <div className="text-white/70">DIGITAL EXPERIENCE STUDIO</div>
+          <div>BUILT WITH INTENTION.</div>
+        </div>
+      </div>
     </footer>
   );
 }

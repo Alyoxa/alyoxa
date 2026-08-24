@@ -1,4 +1,3 @@
-// components/sections/ProjectsSection.tsx
 "use client";
 
 import React, { useRef, useState } from "react";
@@ -9,27 +8,21 @@ import { useGSAP } from "@gsap/react";
 import { projects } from "@/data/projects";
 import { initProjectsAnimation } from "@/components/animations/projects/projects";
 
-
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(1);
 
-  useGSAP(
-    () => {
-      if (!sectionRef.current || !trackRef.current) return;
-      const cleanup = initProjectsAnimation(
-        sectionRef.current,
-        trackRef.current,
-        projects.length,
-        (slide) => setActiveSlide(slide)
-      );
-      return () => {
-        if (cleanup) cleanup();
-      };
-    },
-    { scope: sectionRef }
-  );
+  useGSAP(() => {
+    if (!sectionRef.current || !trackRef.current) return;
+    const cleanup = initProjectsAnimation(
+      sectionRef.current,
+      trackRef.current,
+      projects.length,
+      (slide) => setActiveSlide(slide)
+    );
+    return () => cleanup?.();
+  }, { scope: sectionRef });
 
   return (
     <section
@@ -77,15 +70,24 @@ export default function ProjectsSection() {
               {/* Information */}
               <div className="col-span-1 flex flex-col items-start justify-center gap-4 lg:col-span-4 lg:gap-3">
                 <div className="flex flex-col items-start gap-2">
-                  <span className="rounded-lg bg-zinc-900 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white lg:text-sm">
+                  <span
+                    data-animate="badge"
+                    className="rounded-lg bg-zinc-900 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white lg:text-sm"
+                  >
                     {project.subtitle}
                   </span>
-                  <h3 className="pt-1 text-3xl font-black uppercase text-zinc-900 sm:text-4xl lg:text-5xl xl:text-5 xl">
+                  <h3
+                    data-animate="title"
+                    className="pt-1 text-3xl font-black uppercase text-zinc-900 sm:text-4xl lg:text-5xl"
+                  >
                     {project.title}
                   </h3>
                 </div>
 
-                <p className="max-w-md text-sm leading-relaxed text-zinc-600 sm:text-base lg:py-2">
+                <p
+                  data-animate="desc"
+                  className="max-w-md text-sm leading-relaxed text-zinc-600 sm:text-base lg:py-2"
+                >
                   {project.overview}
                 </p>
 
@@ -94,6 +96,7 @@ export default function ProjectsSection() {
                   {project.service.map((svc, i) => (
                     <span
                       key={i}
+                      data-animate="tag"
                       className="rounded-md bg-zinc-900 px-2.5 py-1 text-xs font-medium text-white"
                     >
                       {svc}
@@ -105,6 +108,7 @@ export default function ProjectsSection() {
                 <div className="pt-4 lg:pt-6">
                   <Link
                     href={project.href}
+                    data-animate="button"
                     className="group inline-flex items-center gap-3 rounded-lg border border-zinc-800 px-8 py-3.5 transition-all duration-300 hover:bg-zinc-900 hover:text-white"
                   >
                     <span className="text-sm font-semibold tracking-wide">
@@ -135,23 +139,40 @@ export default function ProjectsSection() {
         ))}
       </div>
 
-      {/* BOTTOM-RIGHT PROGRESS BAR (Desktop) */}
-      <div className="pointer-events-none fixed bottom-8 right-8 z-30 hidden items-center gap-4 rounded-full border border-zinc-300/60 bg-white/70 px-5 py-2.5 backdrop-blur-md lg:flex">
-        <span className="text-xs font-bold tracking-wider text-zinc-900">
-          0{activeSlide}
-        </span>
-        <div className="h-[2px] w-16 overflow-hidden rounded-full bg-zinc-200">
-          <div
-            className="h-full bg-zinc-900 transition-all duration-300 ease-out"
-            style={{
-              width: `${(activeSlide / projects.length) * 100}%`,
-            }}
-          />
-        </div>
-        <span className="text-xs font-bold tracking-wider text-zinc-400">
-          0{projects.length}
-        </span>
-      </div>
+      {/* BOTTOM-RIGHT PROGRESS BAR */}
+      <div className="pointer-events-none fixed bottom-8 right-8 z-30 hidden items-center gap-4 rounded-full border border-zinc-200/80 bg-white/80 px-6 py-3 shadow-lg shadow-zinc-950/5 backdrop-blur-xl lg:flex">
+  {/* Current Active Slide Counter */}
+  <span className="font-mono text-xs font-semibold tabular-nums tracking-widest text-zinc-900">
+    0{activeSlide}
+  </span>
+
+  {/* ALYOXA Segmented Horizontal Indicator */}
+  <div className="flex items-center gap-1.5">
+    {projects.map((_, index) => {
+      const slideNumber = index + 1;
+      const isPassed = slideNumber <= activeSlide;
+      const isActive = slideNumber === activeSlide;
+
+      return (
+        <div
+          key={index}
+          className={`h-1 rounded-full transition-all duration-500 ease-out ${
+            isActive
+              ? "w-8 bg-zinc-900 shadow-[0_0_12px_rgba(24,24,27,0.3)]"
+              : isPassed
+              ? "w-3 bg-zinc-700"
+              : "w-3 bg-zinc-200"
+          }`}
+        />
+      );
+    })}
+  </div>
+
+  {/* Total Slides Counter */}
+  <span className="font-mono text-xs font-medium tabular-nums tracking-widest text-zinc-400">
+    0{projects.length}
+  </span>
+</div>
     </section>
   );
 }

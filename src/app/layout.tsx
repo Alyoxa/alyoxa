@@ -49,8 +49,8 @@ export default function RootLayout({
   children,
 }: RootLayoutProps) {
   return (
-    <html lang="en" className={satoshi.variable}>
-      <body className="min-h-screen antialiased font-sans">
+    <html lang="en" className={`${satoshi.variable} no-scrollbar`}>
+      <body className="no-scrollbar min-h-screen antialiased">
         {children}
       </body>
     </html>

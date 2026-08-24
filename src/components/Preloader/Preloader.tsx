@@ -11,8 +11,12 @@ import { initializePreloader } from "../animations/preloader/Preloader";
 export default function Preloader({ onComplete }: PreloaderProps) {
   const [showPreloader, setShowPreloader] = useState(true);
 
+
   useEffect(() => {
     const cleanup = initializePreloader(() => {
+      
+  window.dispatchEvent(new Event("preloaderComplete"));
+
       setShowPreloader(false);
       onComplete?.();
     });

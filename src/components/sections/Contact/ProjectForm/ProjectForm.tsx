@@ -1,23 +1,46 @@
 "use client";
 
-import React, { useState } from 'react';
-import { BUDGET_RANGES, PROJECT_TYPES } from './ProjectFormData';
-import ContactFooter from '../ContactFooter';
-
+import React, { useState, useEffect, useRef } from "react";
+import { BUDGET_RANGES, PROJECT_TYPES } from "./ProjectFormData";
+import ContactFooter from "../ContactFooter";
+import { animateStepTransition, animateSuccessState, initProjectFormAnimation } from "@/components/animations/contact/initProjectFormAnimation";
 
 export const ProjectForm: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Form State
   const [formData, setFormData] = useState({
-    projectType: '',
-    companyName: '',
-    clientName: '',
-    clientEmail: '',
-    projectIdea: '',
-    budgetRange: '',
+    projectType: "",
+    companyName: "",
+    clientName: "",
+    clientEmail: "",
+    projectIdea: "",
+    budgetRange: "",
   });
+
+  // Mount Initial Animation
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const cleanup = initProjectFormAnimation(containerRef.current);
+    return () => cleanup();
+  }, []);
+
+  // Trigger Dynamic Step Transitions
+  useEffect(() => {
+    if (!containerRef.current || isSubmitted) return;
+    animateStepTransition(containerRef.current, currentStep, direction);
+  }, [currentStep, isSubmitted]);
+
+  // Trigger Success State
+  useEffect(() => {
+    if (isSubmitted && containerRef.current) {
+      animateSuccessState(containerRef.current);
+    }
+  }, [isSubmitted]);
 
   // Handlers
   const handleSelectType = (type: string) => {
@@ -30,12 +53,14 @@ export const ProjectForm: React.FC = () => {
 
   const handleNext = () => {
     if (currentStep < 5) {
+      setDirection("next");
       setCurrentStep((prev) => prev + 1);
     }
   };
 
   const handlePrev = () => {
     if (currentStep > 1) {
+      setDirection("prev");
       setCurrentStep((prev) => prev - 1);
     }
   };
@@ -49,26 +74,28 @@ export const ProjectForm: React.FC = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.projectType !== '';
+        return formData.projectType !== "";
       case 2:
-        return formData.companyName.trim() !== '';
+        return formData.companyName.trim() !== "";
       case 3:
         return (
-          formData.clientName.trim() !== '' &&
-          formData.clientEmail.trim() !== ''
+          formData.clientName.trim() !== "" &&
+          formData.clientEmail.trim() !== ""
         );
       case 4:
-        return formData.projectIdea.trim() !== '';
+        return formData.projectIdea.trim() !== "";
       case 5:
-        return formData.budgetRange !== '';
+        return formData.budgetRange !== "";
       default:
         return false;
     }
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-[#F9F8F6] text-[#111111] px-6 sm:px-12 md:px-16 lg:px-24 py-12 lg:py-8 flex flex-col justify-between select-none">
-      
+    <section
+      ref={containerRef}
+      className="relative w-full min-h-screen text-[#111111] px-6 sm:px-12 md:px-16 lg:px-24 py-12 lg:py-8 flex flex-col justify-between select-none overflow-hidden"
+    >
       {/* =========================================================
           HEADER & PROGRESS BAR
           ========================================================= */}
@@ -92,9 +119,9 @@ export const ProjectForm: React.FC = () => {
         <div className="w-full h-[1px] bg-black/10 relative overflow-hidden">
           <div
             data-intake="progress-line"
-            className="absolute top-0 left-0 h-full bg-black transition-all duration-500 ease-out"
+            className="absolute top-0 left-0 h-full bg-black transition-all duration-700 ease-out"
             style={{
-              width: isSubmitted ? '100%' : `${(currentStep / 5) * 100}%`,
+              width: isSubmitted ? "100%" : `${(currentStep / 5) * 100}%`,
             }}
           />
         </div>
@@ -106,22 +133,24 @@ export const ProjectForm: React.FC = () => {
       <div className="w-full max-w-3xl mx-auto my-auto py-8 z-20">
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="space-y-12">
-            
             {/* Header intro section */}
             <div data-intake="intro" className="space-y-3 text-center sm:text-left">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl  font-bold tracking-tight text-black uppercase">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black uppercase">
                 START A PROJECT.
               </h2>
-              <p className="text-xs sm:text-sm  text-black/60 max-w-lg">
-                Tell us what you're building, where you're going, and how we can help bring it to life.
+              <p className="text-xs sm:text-sm text-black/60 max-w-lg">
+                Tell us what you're building, where you're going, and how we can
+                help bring it to life.
               </p>
             </div>
 
             {/* =========================================================
                 DYNAMIC STEPS (TARGETABLE FOR ANIMATIONS)
                 ========================================================= */}
-            <div data-intake="step-container" className="min-h-[260px] flex flex-col justify-center">
-              
+            <div
+              data-intake="step-container"
+              className="min-h-[260px] flex flex-col justify-center relative"
+            >
               {/* -----------------------------------------------------
                   STEP 01: PROJECT TYPE
                   ----------------------------------------------------- */}
@@ -130,7 +159,7 @@ export const ProjectForm: React.FC = () => {
                   <label className="block text-xs sm:text-sm font-mono tracking-widest uppercase text-black/50">
                     [ 01 ] WHAT ARE WE BUILDING?
                   </label>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {PROJECT_TYPES.map((type) => {
                       const isSelected = formData.projectType === type;
@@ -139,10 +168,10 @@ export const ProjectForm: React.FC = () => {
                           key={type}
                           type="button"
                           onClick={() => handleSelectType(type)}
-                          className={`px-5 py-4 text-left text-[10px] sm:text-[11px] font-mono tracking-widest uppercase transition-all duration-200 border flex items-center justify-between ${
+                          className={`px-5 py-4 text-left text-[10px] sm:text-[11px] font-mono tracking-widest uppercase transition-all duration-300 border flex items-center justify-between hover:scale-[1.01] active:scale-[0.99] ${
                             isSelected
-                              ? 'border-black bg-black text-white'
-                              : 'border-black/15 bg-transparent text-black/80 hover:border-black/40'
+                              ? "border-black bg-black text-white shadow-md"
+                              : "border-black/15 bg-transparent text-black/80 hover:border-black/40"
                           }`}
                         >
                           <span>{type}</span>
@@ -174,10 +203,13 @@ export const ProjectForm: React.FC = () => {
                       autoFocus
                       value={formData.companyName}
                       onChange={(e) =>
-                        setFormData({ ...formData, companyName: e.target.value })
+                        setFormData({
+                          ...formData,
+                          companyName: e.target.value,
+                        })
                       }
                       placeholder="Type company or project identity..."
-                      className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-lg sm:text-2xl  text-black focus:outline-none transition-colors rounded-none placeholder:text-black/20"
+                      className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-lg sm:text-2xl text-black focus:outline-none transition-colors rounded-none placeholder:text-black/20"
                     />
                   </div>
                 </div>
@@ -202,10 +234,13 @@ export const ProjectForm: React.FC = () => {
                         autoFocus
                         value={formData.clientName}
                         onChange={(e) =>
-                          setFormData({ ...formData, clientName: e.target.value })
+                          setFormData({
+                            ...formData,
+                            clientName: e.target.value,
+                          })
                         }
                         placeholder="First & last name"
-                        className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-base sm:text-xl  text-black focus:outline-none transition-colors rounded-none placeholder:text-black/20"
+                        className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-base sm:text-xl text-black focus:outline-none transition-colors rounded-none placeholder:text-black/20"
                       />
                     </div>
 
@@ -217,10 +252,13 @@ export const ProjectForm: React.FC = () => {
                         type="email"
                         value={formData.clientEmail}
                         onChange={(e) =>
-                          setFormData({ ...formData, clientEmail: e.target.value })
+                          setFormData({
+                            ...formData,
+                            clientEmail: e.target.value,
+                          })
                         }
                         placeholder="name@domain.com"
-                        className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-base sm:text-xl  text-black focus:outline-none transition-colors rounded-none placeholder:text-black/20"
+                        className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-base sm:text-xl text-black focus:outline-none transition-colors rounded-none placeholder:text-black/20"
                       />
                     </div>
                   </div>
@@ -245,10 +283,13 @@ export const ProjectForm: React.FC = () => {
                       autoFocus
                       value={formData.projectIdea}
                       onChange={(e) =>
-                        setFormData({ ...formData, projectIdea: e.target.value })
+                        setFormData({
+                          ...formData,
+                          projectIdea: e.target.value,
+                        })
                       }
                       placeholder="Outline the scope, objectives, timeline, or vision..."
-                      className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-sm sm:text-base  text-black focus:outline-none transition-colors rounded-none resize-none placeholder:text-black/20 leading-relaxed"
+                      className="w-full bg-transparent border-b border-black/20 focus:border-black pb-3 text-sm sm:text-base text-black focus:outline-none transition-colors rounded-none resize-none placeholder:text-black/20 leading-relaxed"
                     />
                   </div>
                 </div>
@@ -271,10 +312,10 @@ export const ProjectForm: React.FC = () => {
                           key={budget}
                           type="button"
                           onClick={() => handleSelectBudget(budget)}
-                          className={`px-4 py-4 text-center text-[10px] sm:text-[11px] font-mono tracking-widest uppercase transition-all duration-200 border ${
+                          className={`px-4 py-4 text-center text-[10px] sm:text-[11px] font-mono tracking-widest uppercase transition-all duration-300 border hover:scale-[1.02] active:scale-[0.98] ${
                             isSelected
-                              ? 'border-black bg-black text-white'
-                              : 'border-black/15 bg-transparent text-black/80 hover:border-black/40'
+                              ? "border-black bg-black text-white shadow-md"
+                              : "border-black/15 bg-transparent text-black/80 hover:border-black/40"
                           }`}
                         >
                           {budget}
@@ -284,21 +325,25 @@ export const ProjectForm: React.FC = () => {
                   </div>
                 </div>
               )}
-
             </div>
 
             {/* =========================================================
                 NAVIGATION & CONTROLS
                 ========================================================= */}
-            <div data-intake="controls" className="pt-6 border-t border-black/10 flex items-center justify-between">
+            <div
+              data-intake="controls"
+              className="pt-6 border-t border-black/10 flex items-center justify-between"
+            >
               <div>
                 {currentStep > 1 && (
                   <button
                     type="button"
                     onClick={handlePrev}
-                    className="text-[10px] font-mono text-black/50 hover:text-black uppercase tracking-widest transition-colors flex items-center gap-2"
+                    className="text-[10px] font-mono text-black/50 hover:text-black uppercase tracking-widest transition-colors flex items-center gap-2 group"
                   >
-                    <span>←</span>
+                    <span className="transition-transform group-hover:-translate-x-1">
+                      ←
+                    </span>
                     <span>PREVIOUS</span>
                   </button>
                 )}
@@ -310,47 +355,54 @@ export const ProjectForm: React.FC = () => {
                     type="button"
                     disabled={!isStepValid()}
                     onClick={handleNext}
-                    className={`px-6 py-3 text-[10px] font-mono tracking-widest uppercase transition-all duration-200 border flex items-center gap-3 ${
+                    className={`px-6 py-3 text-[10px] font-mono tracking-widest uppercase transition-all duration-300 border flex items-center gap-3 group ${
                       isStepValid()
-                        ? 'bg-black text-white border-black hover:bg-black/80 cursor-pointer'
-                        : 'bg-black/5 text-black/30 border-black/10 cursor-not-allowed'
+                        ? "bg-black text-white border-black hover:bg-black/80 cursor-pointer shadow-md"
+                        : "bg-black/5 text-black/30 border-black/10 cursor-not-allowed"
                     }`}
                   >
                     <span>NEXT</span>
-                    <span>→</span>
+                    <span className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
                   </button>
                 ) : (
                   <button
                     type="submit"
                     disabled={!isStepValid()}
-                    className={`px-8 py-4 text-[11px] font-mono tracking-widest uppercase transition-all duration-200 border flex items-center gap-4 ${
+                    className={`px-8 py-4 text-[11px] font-mono tracking-widest uppercase transition-all duration-300 border flex items-center gap-4 group ${
                       isStepValid()
-                        ? 'bg-black text-white border-black hover:bg-black/80 cursor-pointer shadow-md'
-                        : 'bg-black/5 text-black/30 border-black/10 cursor-not-allowed'
+                        ? "bg-black text-white border-black hover:bg-black/80 cursor-pointer shadow-lg"
+                        : "bg-black/5 text-black/30 border-black/10 cursor-not-allowed"
                     }`}
                   >
                     <span>START THE PROJECT</span>
-                    <span>→</span>
+                    <span className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
                   </button>
                 )}
               </div>
             </div>
-
           </form>
         ) : (
           /* =========================================================
-             CONFIRMATION / SUCCESS STATE
-             ========================================================= */
-          <div data-intake="success" className="py-12 space-y-8 text-center sm:text-left">
+              CONFIRMATION / SUCCESS STATE
+              ========================================================= */
+          <div
+            data-intake="success"
+            className="py-12 space-y-8 text-center sm:text-left"
+          >
             <div className="space-y-4">
               <span className="text-[10px] font-mono text-black/40 tracking-widest uppercase block">
                 [ TRANSMISSION COMPLETE ]
               </span>
-              <h2 className="text-4xl sm:text-6xl  font-bold tracking-tight text-black uppercase">
+              <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-black uppercase">
                 PROJECT RECEIVED.
               </h2>
-              <p className="text-xs sm:text-sm  text-black/70 max-w-md leading-relaxed">
-                Thanks for reaching out. We'll review the brief and get back to you soon.
+              <p className="text-xs sm:text-sm text-black/70 max-w-md leading-relaxed">
+                Thanks for reaching out. We'll review the brief and get back to
+                you soon.
               </p>
             </div>
 
@@ -363,7 +415,7 @@ export const ProjectForm: React.FC = () => {
         )}
       </div>
 
-        <ContactFooter/>
+      <ContactFooter />
     </section>
   );
 };

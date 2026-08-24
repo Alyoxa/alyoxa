@@ -1,7 +1,7 @@
 // components/animations/transition/TransitionSection.tsx
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { initTransitionAnimation } from "@/components/animations/TransitionSection/Transition";
 

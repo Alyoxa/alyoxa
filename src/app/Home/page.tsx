@@ -13,6 +13,7 @@ import ContactSection from "@/components/sections/Contact/ContactSection";
 import Footer from "@/components/layout/footer/Footer";
 import Preloader from "@/components/Preloader/Preloader";
 import HeroBanner from "@/components/sections/Hero/Hero";
+import Steps from "@/components/sections/Approach/Steps";
 
 export default function TheHome(){
 
@@ -33,6 +34,7 @@ export default function TheHome(){
         <TransitionSection />
         <ProjectsSection />
         <Approach />
+        <Steps />
         <WhyAlyoxaSection />
         <TestimonialsSection />
         <Services />
