@@ -7,10 +7,71 @@ type RootLayoutProps = {
 };
 
 export const metadata: Metadata = {
-  title: "ALYOXA",
+  metadataBase: new URL("https://alyoxa.com"),
+
+  title: {
+    default: "ALYOXA — Creative Technology Studio",
+    template: "%s | ALYOXA",
+  },
+
   description:
-    "Premium digital products, modern websites, and exceptional experiences.",
+    "ALYOXA is a creative technology studio building high-end digital experiences, websites, brand systems, and interactive products.",
+
+  keywords: [
+    "ALYOXA",
+    "creative technology studio",
+    "digital experience studio",
+    "web design",
+    "web development",
+    "brand systems",
+    "interactive experiences",
+  ],
+
+  alternates: {
+    canonical: "/",
+  },
+
+  icons: {
+    icon: [
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+  },
+
+  openGraph: {
+    title: "ALYOXA — Creative Technology Studio",
+    description:
+      "Creative technology, digital experiences, brand systems, and interactive products.",
+    url: "https://alyoxa.com",
+    siteName: "ALYOXA",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ALYOXA — Creative Technology Studio",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "ALYOXA — Creative Technology Studio",
+    description:
+      "Creative technology, digital experiences, brand systems, and interactive products.",
+    images: ["/opengraph-image.jpg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
+
+
 
 const satoshi = localFont({
   src: [
