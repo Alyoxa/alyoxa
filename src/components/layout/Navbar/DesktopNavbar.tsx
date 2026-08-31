@@ -29,83 +29,93 @@ export default function DesktopNavbar() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
+  
     const ctx = gsap.context(() => {
-      // 1. Initial Hidden State
-      gsap.set(fullNavRef.current, {
-        y: -100,
-        opacity: 0,
+      // 1. Initial States (Hide pill completely with display: "none")
+      gsap.set(fullNavRef.current, { y: -100, opacity: 0 });
+      gsap.set(burgerPillRef.current, { 
+        y: -30, 
+        opacity: 0, 
+        display: "none", 
+        pointerEvents: "none" 
       });
-
-      let scrollTriggerInstance: ScrollTrigger | null = null;
-
-      // 2. Entrance Sequence
+  
+      // 2. Sequential Scroll Trigger
+      const st = ScrollTrigger.create({
+        start: "top -80px",
+        onEnter: () => {
+          const tl = gsap.timeline({ defaults: { overwrite: "auto" } });
+  
+          // Step A: Hide full navbar completely first
+          tl.to(fullNavRef.current, {
+            y: -30,
+            opacity: 0,
+            duration: 0.2,
+            ease: "power2.in",
+            onComplete: () => {
+              gsap.set(fullNavRef.current, { pointerEvents: "none" });
+            }
+          })
+          // Step B: Set pill display active, then drop it in cleanly
+          .set(burgerPillRef.current, { display: "flex", pointerEvents: "auto" })
+          .to(burgerPillRef.current, {
+            y: 0,
+            opacity: 1,
+            duration: 0.25,
+            ease: "power2.out",
+          });
+        },
+        onLeaveBack: () => {
+          setIsMenuOpen(false);
+          const tl = gsap.timeline({ defaults: { overwrite: "auto" } });
+  
+          // Step A: Hide burger pill quickly first so it disappears before full nav drops
+          tl.to(burgerPillRef.current, {
+            y: -20,
+            opacity: 0,
+            duration: 0.15,
+            ease: "power2.in",
+            onComplete: () => {
+              gsap.set(burgerPillRef.current, { display: "none", pointerEvents: "none" });
+            }
+          })
+          // Step B: Bring main navbar back into place
+          .set(fullNavRef.current, { pointerEvents: "auto" })
+          .to(fullNavRef.current, {
+            y: 0,
+            opacity: 1,
+            duration: 0.3,
+            ease: "power3.out",
+          });
+        },
+      });
+  
+      // 3. Entrance Sequence
       const playEntrance = () => {
         gsap.to(fullNavRef.current, {
           y: 0,
           opacity: 1,
           duration: 1,
           ease: "power4.out",
-          onComplete: () => {
-            // Initialize ScrollTrigger morph after entrance finishes
-            scrollTriggerInstance = ScrollTrigger.create({
-              start: "top -80px",
-              onEnter: () => {
-                gsap.to(fullNavRef.current, {
-                  y: -100,
-                  opacity: 0,
-                  duration: 0.35,
-                  ease: "power3.inOut",
-                });
-                gsap.to(burgerPillRef.current, {
-                  y: 0,
-                  scale: 1,
-                  opacity: 1,
-                  pointerEvents: "auto",
-                  duration: 0.45,
-                  ease: "back.out(1.7)",
-                });
-              },
-              onLeaveBack: () => {
-                setIsMenuOpen(false);
-                gsap.to(fullNavRef.current, {
-                  y: 0,
-                  opacity: 1,
-                  duration: 0.35,
-                  ease: "power3.out",
-                });
-                gsap.to(burgerPillRef.current, {
-                  y: -50,
-                  scale: 0.8,
-                  opacity: 0,
-                  pointerEvents: "none",
-                  duration: 0.3,
-                  ease: "power2.in",
-                });
-              },
-            });
-          },
         });
       };
-
-      // 3. Event Listener with immediate execution safety check
+  
       const handleComplete = () => playEntrance();
       window.addEventListener("preloaderComplete", handleComplete);
-
-      // Fallback timer if event missed execution window
+  
       const fallback = setTimeout(() => {
         if (gsap.getProperty(fullNavRef.current, "opacity") === 0) {
           playEntrance();
         }
       }, 2500);
-
+  
       return () => {
         window.removeEventListener("preloaderComplete", handleComplete);
         clearTimeout(fallback);
-        if (scrollTriggerInstance) scrollTriggerInstance.kill();
+        st.kill();
       };
     }, containerRef);
-
+  
     return () => ctx.revert();
   }, []);
 
