@@ -112,7 +112,7 @@ export default function Footer() {
             <ul className="flex flex-col space-y-2 text-sm sm:text-base tracking-wider uppercase font-medium text-black/80">
               <li>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/alyoxa/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 hover:text-black transition-colors"
@@ -133,7 +133,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/aka_alyoxa?obrf=NnB3Zmp6ZDg5MmU2"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 hover:text-black transition-colors"
@@ -153,7 +153,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/share/19dhgEmPs2/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 hover:text-black transition-colors"
@@ -173,30 +173,43 @@ export default function Footer() {
           </div>
 
           {/* Email */}
-          <div data-footer="email" className="md:col-span-3 space-y-3">
-            <span className="inline-flex w-fit items-center rounded-lg bg-zinc-900 px-3 py-1.5 text-[12px] font-medium uppercase tracking-normal text-white">
-              DIRECT INQUIRIES
-            </span>
-            <a
-              href="mailto:hello@alyoxa.com"
-              className="group inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-black hover:text-black/60 transition-colors tracking-tight"
-            >
-              <span className="underline underline-offset-4 decoration-black/30 group-hover:decoration-black transition-colors">
-                hello@alyoxa.com
-              </span>
-              <svg
-                className="w-5 h-5 stroke-current fill-none transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                />
-              </svg>
-            </a>
-          </div>
+<div data-footer="email" className="md:col-span-3 space-y-3">
+  <span className="inline-flex w-fit items-center rounded-lg bg-zinc-900 px-3 py-1.5 text-[12px] font-medium uppercase tracking-normal text-white">
+    DIRECT INQUIRIES
+  </span>
+
+  <div className="flex flex-col items-start gap-3">
+    <a
+      href="mailto:hello@alyoxa.com"
+      className="group inline-flex items-center gap-2 text-lg sm:text-xl font-medium text-black hover:text-black/60 transition-colors tracking-tight"
+    >
+      <span className="underline underline-offset-4 decoration-black/30 group-hover:decoration-black transition-colors">
+        hello@alyoxa.com
+      </span>
+      <svg
+        className="w-5 h-5 stroke-current fill-none transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+        />
+      </svg>
+    </a>
+
+<a
+  href="https://wa.me/447440779802"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-base sm:text-lg font-medium tracking-tight text-zinc-600 transition-colors hover:text-black"
+>
+  +44 7440 779802
+</a>
+  </div>
+</div>
+```
         </div>
       </div>
 

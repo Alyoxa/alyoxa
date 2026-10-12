@@ -29,23 +29,23 @@ export default function DesktopNavbar() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  
+
     const ctx = gsap.context(() => {
       // 1. Initial States (Hide pill completely with display: "none")
       gsap.set(fullNavRef.current, { y: -100, opacity: 0 });
-      gsap.set(burgerPillRef.current, { 
-        y: -30, 
-        opacity: 0, 
-        display: "none", 
-        pointerEvents: "none" 
+      gsap.set(burgerPillRef.current, {
+        y: -30,
+        opacity: 0,
+        display: "none",
+        pointerEvents: "none"
       });
-  
+
       // 2. Sequential Scroll Trigger
       const st = ScrollTrigger.create({
         start: "top -80px",
         onEnter: () => {
           const tl = gsap.timeline({ defaults: { overwrite: "auto" } });
-  
+
           // Step A: Hide full navbar completely first
           tl.to(fullNavRef.current, {
             y: -30,
@@ -56,19 +56,19 @@ export default function DesktopNavbar() {
               gsap.set(fullNavRef.current, { pointerEvents: "none" });
             }
           })
-          // Step B: Set pill display active, then drop it in cleanly
-          .set(burgerPillRef.current, { display: "flex", pointerEvents: "auto" })
-          .to(burgerPillRef.current, {
-            y: 0,
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-          });
+            // Step B: Set pill display active, then drop it in cleanly
+            .set(burgerPillRef.current, { display: "flex", pointerEvents: "auto" })
+            .to(burgerPillRef.current, {
+              y: 0,
+              opacity: 1,
+              duration: 0.25,
+              ease: "power2.out",
+            });
         },
         onLeaveBack: () => {
           setIsMenuOpen(false);
           const tl = gsap.timeline({ defaults: { overwrite: "auto" } });
-  
+
           // Step A: Hide burger pill quickly first so it disappears before full nav drops
           tl.to(burgerPillRef.current, {
             y: -20,
@@ -79,17 +79,17 @@ export default function DesktopNavbar() {
               gsap.set(burgerPillRef.current, { display: "none", pointerEvents: "none" });
             }
           })
-          // Step B: Bring main navbar back into place
-          .set(fullNavRef.current, { pointerEvents: "auto" })
-          .to(fullNavRef.current, {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            ease: "power3.out",
-          });
+            // Step B: Bring main navbar back into place
+            .set(fullNavRef.current, { pointerEvents: "auto" })
+            .to(fullNavRef.current, {
+              y: 0,
+              opacity: 1,
+              duration: 0.3,
+              ease: "power3.out",
+            });
         },
       });
-  
+
       // 3. Entrance Sequence
       const playEntrance = () => {
         gsap.to(fullNavRef.current, {
@@ -99,23 +99,23 @@ export default function DesktopNavbar() {
           ease: "power4.out",
         });
       };
-  
+
       const handleComplete = () => playEntrance();
       window.addEventListener("preloaderComplete", handleComplete);
-  
+
       const fallback = setTimeout(() => {
         if (gsap.getProperty(fullNavRef.current, "opacity") === 0) {
           playEntrance();
         }
       }, 2500);
-  
+
       return () => {
         window.removeEventListener("preloaderComplete", handleComplete);
         clearTimeout(fallback);
         st.kill();
       };
     }, containerRef);
-  
+
     return () => ctx.revert();
   }, []);
 
@@ -182,9 +182,21 @@ export default function DesktopNavbar() {
             </ul>
           </nav>
 
+
           <div>
-            <AlyoxaTrademarkButton text="START A PROJECT" variant="dark" />
+            <AlyoxaTrademarkButton
+              text="+44 7440 779802"
+              variant="dark"
+              onClick={() => {
+                window.open(
+                  "https://wa.me/447440779802",
+                  "_blank",
+                  "noopener,noreferrer"
+                );
+              }}
+            />
           </div>
+
         </div>
 
         <div className="absolute top-6 left-1/2 -translate-x-1/2 z-50">
@@ -201,14 +213,12 @@ export default function DesktopNavbar() {
             </span>
             <div className="flex flex-col gap-1 w-3.5">
               <span
-                className={`h-[1.5px] w-full bg-white transition-transform duration-300 ${
-                  isMenuOpen ? "rotate-45 translate-y-[2.5px]" : ""
-                }`}
+                className={`h-[1.5px] w-full bg-white transition-transform duration-300 ${isMenuOpen ? "rotate-45 translate-y-[2.5px]" : ""
+                  }`}
               />
               <span
-                className={`h-[1.5px] w-full bg-white transition-transform duration-300 ${
-                  isMenuOpen ? "-rotate-45 -translate-y-[2.5px]" : ""
-                }`}
+                className={`h-[1.5px] w-full bg-white transition-transform duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-[2.5px]" : ""
+                  }`}
               />
             </div>
           </button>
@@ -236,13 +246,22 @@ export default function DesktopNavbar() {
           </ul>
         </nav>
 
+
         <div className="mt-12">
           <AlyoxaTrademarkButton
-            text="START A PROJECT"
+            text="+44 7440 779802"
             variant="light"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => {
+              setIsMenuOpen(false);
+              window.open(
+                "https://wa.me/447440779802",
+                "_blank",
+                "noopener,noreferrer"
+              );
+            }}
           />
         </div>
+
       </div>
     </div>
   );

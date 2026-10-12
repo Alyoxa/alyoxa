@@ -31,10 +31,10 @@ export default function TransitionSection() {
         </svg>
       </div>
 
-      <div
-        data-transition="sticky"
-        className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden px-6 sm:px-12 md:px-20"
-      >
+    <div
+  data-transition="sticky"
+  className="relative flex h-screen w-full items-center justify-center overflow-hidden px-6 sm:px-12 md:px-20"
+>
         {/* Section 01 */}
         <div
           data-transition="block"

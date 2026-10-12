@@ -10,6 +10,9 @@ export const ProjectForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [direction, setDirection] = useState<"next" | "prev">("next");
 
+  const [isSending, setIsSending] = useState(false);
+const [submitError, setSubmitError] = useState("");
+
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Form State
@@ -65,10 +68,42 @@ export const ProjectForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!isStepValid() || isSending) return;
+
+  setIsSending(true);
+  setSubmitError("");
+
+  try {
+    const response = await fetch("/api/project-inquiry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(
+        result.error || "Unable to send your project inquiry."
+      );
+    }
+
     setIsSubmitted(true);
-  };
+  } catch (error) {
+    setSubmitError(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+  } finally {
+    setIsSending(false);
+  }
+};
 
   // Validation per step
   const isStepValid = () => {
@@ -376,12 +411,20 @@ export const ProjectForm: React.FC = () => {
                         : "bg-black/5 text-black/30 border-black/10 cursor-not-allowed"
                     }`}
                   >
-                    <span>START THE PROJECT</span>
+                    <span>
+  {isSending ? "SENDING..." : "START THE PROJECT"}
+</span>
                     <span className="transition-transform group-hover:translate-x-1">
                       →
                     </span>
                   </button>
+                  
                 )}
+                {submitError && (
+  <p role="alert" className="text-sm text-red-600">
+    {submitError}
+  </p>
+)}
               </div>
             </div>
           </form>

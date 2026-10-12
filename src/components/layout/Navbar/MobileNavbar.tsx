@@ -106,13 +106,22 @@ export default function MobileNavbar() {
           </ul>
         </nav>
 
-        <div className="mt-10">
-          <AlyoxaTrademarkButton
-            text="START A PROJECT"
-            variant="light"
-            onClick={() => setIsMenuOpen(false)}
-          />
-        </div>
+
+<div className="mt-10">
+  <AlyoxaTrademarkButton
+    text="+44 7440 779802"
+    variant="light"
+    onClick={() => {
+      setIsMenuOpen(false);
+      window.open(
+        "https://wa.me/447440779802",
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }}
+  />
+</div>
+
       </div>
     </div>
   );

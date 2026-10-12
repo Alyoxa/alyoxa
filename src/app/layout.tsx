@@ -40,22 +40,22 @@ export const metadata: Metadata = {
     ],
   },
 
-  openGraph: {
-    title: "ALYOXA — Creative Technology Studio",
-    description:
-      "Creative technology, digital experiences, brand systems, and interactive products.",
-    url: "https://alyoxa.com",
-    siteName: "ALYOXA",
-    type: "website",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "ALYOXA — Creative Technology Studio",
-      },
-    ],
-  },
+openGraph: {
+  title: "ALYOXA — Creative Technology Studio",
+  description:
+    "Creative technology, digital experiences, brand systems, and interactive products.",
+  url: "https://alyoxa.com",
+  siteName: "ALYOXA",
+  type: "website",
+  images: [
+    {
+      url: "/opengraph-image-social.png",
+      width: 1024,
+      height: 1024,
+      alt: "ALYOXA — Creative Technology Studio",
+    },
+  ],
+},
 
   twitter: {
     card: "summary_large_image",
