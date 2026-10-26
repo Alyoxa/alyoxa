@@ -9,25 +9,40 @@ export function initializeHeroScroll(): () => void {
   if (typeof window === "undefined") return () => {};
 
   const ctx = gsap.context(() => {
-    const section = document.querySelector('[data-hero="section"]');
-    const visual = document.querySelector('[data-hero="visual"]');
-    const heading = document.querySelector('[data-hero="heading-highlight"]')?.closest("h1");
-    const badge = document.querySelector('[data-hero="badge"]');
-    const actions = document.querySelector('[data-hero="actions"]');
+    const section = document.querySelector<HTMLElement>(
+      '[data-hero="section"]'
+    );
 
-    if (!section || !visual) return;
+    if (!section) return;
 
-    // Master Scroll Trigger
+    const visual = section.querySelector<HTMLElement>(
+      '[data-hero="visual"]'
+    );
+
+    const heading = section
+      .querySelector('[data-hero="heading-highlight"]')
+      ?.closest("h1");
+
+    const badge = section.querySelector<HTMLElement>(
+      '[data-hero="badge"]'
+    );
+
+    const actions = section.querySelector<HTMLElement>(
+      '[data-hero="actions"]'
+    );
+
+    if (!visual) return;
+
     const scrollTl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top top",
         end: "bottom top",
-        scrub: 1, // Smooth physics lag on scroll
+        scrub: 1,
       },
     });
 
-    // 01. Push 3D Spline Canvas deeper into Z-space
+    // 01. Spline visual
     scrollTl.to(
       visual,
       {
@@ -39,7 +54,7 @@ export function initializeHeroScroll(): () => void {
       0
     );
 
-    // 02. Parallax headline lift + blur out
+    // 02. Headline
     if (heading) {
       scrollTl.to(
         heading,
@@ -54,7 +69,7 @@ export function initializeHeroScroll(): () => void {
       );
     }
 
-    // 03. Collapse Badge & CTA Buttons
+    // 03. Badge
     if (badge) {
       scrollTl.to(
         badge,
@@ -67,6 +82,7 @@ export function initializeHeroScroll(): () => void {
       );
     }
 
+    // 04. CTA buttons
     if (actions) {
       scrollTl.to(
         actions,
@@ -79,9 +95,6 @@ export function initializeHeroScroll(): () => void {
       );
     }
   });
-
-  // Force ScrollTrigger to calculate layout after initial render
-  ScrollTrigger.refresh();
 
   return () => ctx.revert();
 }

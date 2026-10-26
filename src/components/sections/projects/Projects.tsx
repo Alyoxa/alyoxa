@@ -58,11 +58,12 @@ export default function ProjectsSection() {
                 <div className="relative w-full max-w-[550px] lg:max-w-[650px]">
                   <Image
                     src={project.desktopImage}
-                    alt={`${project.title} Desktop`}
+                    alt={`${project.title} website design and desktop experience by ALYOXA`}
                     width={650}
                     height={650}
                     priority={index === 0}
                     className="h-auto w-full object-contain drop-shadow-2xl"
+                    
                   />
                 </div>
               </div>
@@ -127,7 +128,7 @@ export default function ProjectsSection() {
                 <div className="relative w-full max-w-[180px] sm:max-w-[220px] lg:max-w-[240px]">
                   <Image
                     src={project.mobileImage}
-                    alt={`${project.title} Mobile`}
+                    alt={`${project.title} mobile website design by ALYOXA`}
                     width={240}
                     height={240}
                     className="h-auto w-full object-contain drop-shadow-xl"

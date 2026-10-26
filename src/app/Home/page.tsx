@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
+
 import Navbar from "@/components/layout/Navbar/NavBar";
 import WhyAlyoxaSection from "@/components/sections/whyalyoxa/WhyAlyoxaSection";
 import Approach from "@/components/sections/Approach/Approach";
@@ -19,12 +20,13 @@ export default function TheHome(){
 
     const [isPreloading, setIsPreloading] = useState(true);
 
+const handlePreloaderComplete = useCallback(() => {
+  setIsPreloading(false);
+}, []);
+
     return(
     <section className="min-h-screen">
-      <Preloader
-        onComplete={() => setIsPreloading(false)}
-      />
-
+     <Preloader onComplete={handlePreloaderComplete} />
       <Navbar />
 
       <HeroBanner
