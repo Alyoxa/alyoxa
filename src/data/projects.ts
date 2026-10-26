@@ -1,11 +1,11 @@
-import headedDesktopImage from "../assets/images/projects/headedthere/headedthere-desktop.png";
-import headedMobileImage from "../assets/images/projects/headedthere/headedthere-mobile.png";
-import logoDesktopImage from "../assets/images/projects/logowebagency/logowebagency-desktop.png";
-import logoMobileImage from "../assets/images/projects/logowebagency/logowebagency-mobile.png";
-import mformaddyDesktopImage from "../assets/images/projects/mformaddy/mformaddy-desktop.png";
-import mformaddyMobileImage from "../assets/images/projects/mformaddy/mformaddy-mobile.png";
-import maddyDesktopImage from "../assets/images/projects/maddy/maddy-desktop.png";
-import maddyMobileImage from "../assets/images/projects/maddy/maddy-mobile.png";
+import headedDesktopImage from "../assets/images/projects/headedthere/headedthere-desktop.webp";
+import headedMobileImage from "../assets/images/projects/headedthere/headedthere-mobile.webp";
+import logoDesktopImage from "../assets/images/projects/logowebagency/logowebagency-desktop.webp";
+import logoMobileImage from "../assets/images/projects/logowebagency/logowebagency-mobile.webp";
+import mformaddyDesktopImage from "../assets/images/projects/mformaddy/mformaddy-desktop.webp";
+import mformaddyMobileImage from "../assets/images/projects/mformaddy/mformaddy-mobile.webp";
+import maddyDesktopImage from "../assets/images/projects/maddy/maddy-desktop.webp";
+import maddyMobileImage from "../assets/images/projects/maddy/maddy-mobile.webp";
 
 export const projects = [
   {
