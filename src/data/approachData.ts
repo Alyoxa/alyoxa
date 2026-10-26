@@ -1,6 +1,6 @@
-import discoverimage from "../assets/images/ourapproach/design/discoverimage.png";
-import designimage from "../assets/images/ourapproach/design/designimage.png";
-import developimage from "../assets/images/ourapproach/design/developimage.png";
+import discoverimage from "../assets/images/ourapproach/design/discoverimage.webp";
+import designimage from "../assets/images/ourapproach/design/designimage.webp";
+import developimage from "../assets/images/ourapproach/design/developimage.webp";
 import refineimage from "../assets/images/ourapproach/design/refineimage.png";
 
 
