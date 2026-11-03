@@ -42,17 +42,22 @@ export function initializeHeroScroll(): () => void {
       },
     });
 
-    // 01. Spline visual
-    scrollTl.to(
-      visual,
-      {
-        scale: 0.7,
-        y: 150,
-        opacity: 0.1,
-        ease: "none",
-      },
-      0
-    );
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // 01. Hero visual — transform-only parallax
+    if (!reduceMotion) {
+      scrollTl.to(
+        visual,
+        {
+          scale: 0.7,
+          y: 150,
+          ease: "none",
+        },
+        0
+      );
+    }
 
     // 02. Headline
     if (heading) {

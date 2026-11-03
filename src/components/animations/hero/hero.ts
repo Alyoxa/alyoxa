@@ -195,6 +195,21 @@ export function initializeHero(
         },
         "-=1.5"
       );
+
+    const sculpture = document.querySelector('[data-hero="sculpture"]');
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (sculpture && !reduceMotion) {
+      gsap.to(sculpture, {
+        y: 12,
+        duration: 3.4,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+    }
   });
 
   return () => ctx.revert();
