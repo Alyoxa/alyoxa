@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import { whyAlyoxaData } from "@/data/WhyAlyoxaData";
 import WhyCard from "./WhyCard";
 import { initializeWhyAlyoxaAnimation } from "@/components/animations/whyalyoxa/whyAlyoxa";
@@ -9,16 +10,23 @@ export default function WhyAlyoxaSection() {
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    const cleanup = initializeWhyAlyoxaAnimation(containerRef.current);
-    return () => cleanup();
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Revert the pinned timeline (including its spacer) below the breakpoint.
+    const media = gsap.matchMedia();
+    media.add("(min-width: 768px)", () => {
+      return initializeWhyAlyoxaAnimation(container);
+    });
+
+    return () => media.revert();
   }, []);
 
   return (
     <section 
       ref={containerRef} 
       data-why="section"
-      className="relative flex flex-col justify-center min-h-screen overflow-hidden py-12 md:py-0"
+      className="relative hidden md:flex flex-col justify-center min-h-screen overflow-hidden py-12 md:py-0"
     >
       {/* LEFT CARDS */}
       <div 

@@ -2,13 +2,16 @@
 
 import React, { useRef, useEffect, useId } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
-interface AlyoxaTrademarkButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type AlyoxaTrademarkButtonProps = {
   text: string;
   variant?: "dark" | "light";
   className?: string;
-}
+} & (
+  | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never })
+  | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
+);
 
 export function AlyoxaTrademarkButton({
   text,
@@ -17,7 +20,7 @@ export function AlyoxaTrademarkButton({
   ...props
 }: AlyoxaTrademarkButtonProps) {
   const filterId = useId().replace(/:/g, "");
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const buttonRef = useRef<HTMLElement | null>(null);
   const glowRef = useRef<HTMLDivElement | null>(null);
   const fillRef = useRef<HTMLDivElement | null>(null);
   const borderBeamRef = useRef<HTMLDivElement | null>(null);
@@ -202,6 +205,34 @@ export function AlyoxaTrademarkButton({
     };
   }, []);
 
+  const renderControl = (children: React.ReactNode) => {
+    const controlProps = {
+      style: {
+        filter: `url(#alyoxa-melt-${filterId})`,
+        transformStyle: "preserve-3d" as const,
+      },
+      className: `group relative inline-flex items-center justify-center overflow-hidden rounded-xl border px-8 py-4 text-xs font-black uppercase tracking-[0.2em] transition-colors duration-300 hover:cursor-pointer ${
+        isDark
+          ? "border-neutral-800 bg-neutral-950 text-white shadow-2xl hover:border-neutral-500 hover:text-black"
+          : "border-neutral-300 bg-neutral-100 text-neutral-950 shadow-lg hover:border-neutral-900 hover:text-white"
+      } ${className}`,
+    };
+
+    if (props.href !== undefined) {
+      return (
+        <Link {...controlProps} {...props} ref={(node) => { buttonRef.current = node; }}>
+          {children}
+        </Link>
+      );
+    }
+
+    return (
+      <button {...controlProps} {...props} ref={(node) => { buttonRef.current = node; }}>
+        {children}
+      </button>
+    );
+  };
+
   return (
     <>
       {/* SVG Displacement Filter Engine */}
@@ -228,19 +259,7 @@ export function AlyoxaTrademarkButton({
       </svg>
 
       <div className="[perspective:1000px] inline-block">
-        <button
-          ref={buttonRef}
-          style={{
-            filter: `url(#alyoxa-melt-${filterId})`,
-            transformStyle: "preserve-3d",
-          }}
-          className={`group relative inline-flex items-center justify-center overflow-hidden rounded-xl border px-8 py-4 text-xs font-black uppercase tracking-[0.2em] transition-colors duration-300 hover:cursor-pointer ${
-            isDark
-              ? "border-neutral-800 bg-neutral-950 text-white shadow-2xl hover:border-neutral-500 hover:text-black"
-              : "border-neutral-300 bg-neutral-100 text-neutral-950 shadow-lg hover:border-neutral-900 hover:text-white"
-          } ${className}`}
-          {...props}
-        >
+        {renderControl(<>
           {/* Dynamic Interactive Liquid Radial Fill */}
           <div
             ref={fillRef}
@@ -297,7 +316,7 @@ export function AlyoxaTrademarkButton({
               ))}
             </span>
           </span>
-        </button>
+        </>)}
       </div>
     </>
   );

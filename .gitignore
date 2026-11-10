@@ -13,6 +13,15 @@
 # testing
 /coverage
 
+# Local audit and temporary verification artifacts
+.audit/
+ALYOXA-AUDIT.md
+/hero-check.mjs
+/why-check.mjs
+/hero-mobile.png
+/.hero-browser/
+/.why-browser/
+
 # next.js
 /.next/
 /out/

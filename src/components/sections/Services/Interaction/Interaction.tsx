@@ -1,3 +1,4 @@
+"use client";
 import { initInteractionAnimation } from "@/components/animations/services/initInteractionAnimation";
 import React, { useEffect, useRef } from "react";
 

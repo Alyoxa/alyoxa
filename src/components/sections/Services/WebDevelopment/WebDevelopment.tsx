@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import { initWebDevelopmentAnimation } from "@/components/animations/services/initWebDevelopmentAnimation";
 

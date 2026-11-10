@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import alyoxaFooterLogo from "@/assets/images/logo/alyoxaFooterLogo.png";
 import { initFooterAnimation } from "@/components/animations/footer/footer";
 
@@ -77,30 +78,30 @@ export default function Footer() {
               NAVIGATION
             </span>
             <nav className="flex flex-col space-y-2 text-sm sm:text-base tracking-wider uppercase font-medium text-black/80">
-              <a
-                href="#work"
+              <Link
+                href="/#projects"
                 className="hover:text-black hover:translate-x-1 transition-all duration-200 w-fit"
               >
                 WORK
-              </a>
-              <a
-                href="#services"
+              </Link>
+              <Link
+                href="/services"
                 className="hover:text-black hover:translate-x-1 transition-all duration-200 w-fit"
               >
                 SERVICES
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                href="/about"
                 className="hover:text-black hover:translate-x-1 transition-all duration-200 w-fit"
               >
                 ABOUT
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/contact"
                 className="hover:text-black hover:translate-x-1 transition-all duration-200 w-fit"
               >
                 CONTACT
-              </a>
+              </Link>
             </nav>
           </div>
 

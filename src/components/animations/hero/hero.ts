@@ -13,7 +13,7 @@ export function initializeHero(
     const headingMain = document.querySelectorAll('[data-hero="heading-main"]');
     const headingHighlight = document.querySelector<HTMLElement>('[data-hero="heading-highlight"]');
     const visual = document.querySelector('[data-hero="visual"]');
-    const actions = document.querySelectorAll('[data-hero="actions"] > *');
+    const actions = document.querySelectorAll('[data-hero="actions"] > div');
 
     if (!headingHighlight) return;
 

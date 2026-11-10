@@ -1,3 +1,5 @@
+"use client";
+
 import { initBrandSystemsAnimation } from "@/components/animations/services/initBrandSystemsAnimation";
 import React, { useEffect, useRef } from "react";
 

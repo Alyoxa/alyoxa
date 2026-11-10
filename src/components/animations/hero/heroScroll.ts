@@ -8,7 +8,9 @@ if (typeof window !== "undefined") {
 export function initializeHeroScroll(): () => void {
   if (typeof window === "undefined") return () => {};
 
-  const ctx = gsap.context(() => {
+  const media = gsap.matchMedia();
+  media.add({ mobile: "(max-width: 767px)", desktop: "(min-width: 768px)" }, (context) => {
+    const isMobile = Boolean(context.conditions?.mobile);
     const section = document.querySelector<HTMLElement>(
       '[data-hero="section"]'
     );
@@ -47,7 +49,9 @@ export function initializeHeroScroll(): () => void {
     ).matches;
 
     // 01. Hero visual — transform-only parallax
-    if (!reduceMotion) {
+    // Keep mobile's sculpture in frame and avoid competing with its entrance
+    // transform. The existing float still runs on the inner sculpture.
+    if (!reduceMotion && !isMobile) {
       scrollTl.to(
         visual,
         {
@@ -64,10 +68,10 @@ export function initializeHeroScroll(): () => void {
       scrollTl.to(
         heading,
         {
-          y: -100,
-          scale: 0.9,
+          y: isMobile ? -32 : -100,
+          scale: isMobile ? 1 : 0.9,
           opacity: 0,
-          filter: "blur(12px)",
+          filter: isMobile ? "blur(0px)" : "blur(12px)",
           ease: "none",
         },
         0
@@ -79,7 +83,7 @@ export function initializeHeroScroll(): () => void {
       scrollTl.to(
         badge,
         {
-          y: -60,
+          y: isMobile ? -20 : -60,
           opacity: 0,
           ease: "none",
         },
@@ -88,7 +92,8 @@ export function initializeHeroScroll(): () => void {
     }
 
     // 04. CTA buttons
-    if (actions) {
+    // Mobile CTAs stay readable and tappable while the hero leaves the viewport.
+    if (actions && !isMobile) {
       scrollTl.to(
         actions,
         {
@@ -101,5 +106,5 @@ export function initializeHeroScroll(): () => void {
     }
   });
 
-  return () => ctx.revert();
+  return () => media.revert();
 }

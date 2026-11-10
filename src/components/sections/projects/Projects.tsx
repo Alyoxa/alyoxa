@@ -27,6 +27,7 @@ export default function ProjectsSection() {
   return (
     <section
       ref={sectionRef}
+      id="projects"
       className="relative z-10 w-full overflow-hidden"
     >
       {/* HORIZONTAL TRACK */}
