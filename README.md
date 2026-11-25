@@ -30,7 +30,7 @@ The client email is set as Reply-To. Company and budget are optional.
 ## Content before launch
 
 - Work examples are labelled concepts. Replace `src/app/work/projects.ts` with real projects.
-- Testimonials are labelled samples. Replace `src/components/sections/Testimonials/testimonialsData.ts` with approved quotes.
+- Supplied client testimonials are in `src/components/sections/Testimonials/testimonialsData.ts`. Add case-study links when those pages are ready.
 - Contact numbers are WhatsApp links in `src/lib/studioContact.ts`.
 - The supplied legal documents are stored under `src/app/(legal)/`.
 
