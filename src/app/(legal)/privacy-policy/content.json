@@ -1,0 +1,328 @@
+{
+  "title": "Privacy Policy",
+  "updated": "November 25, 2026",
+  "updatedISO": "2026-11-25",
+  "intro": [
+    "At ALYOXA, we respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect information when you visit our website, communicate with us, or engage our services."
+  ],
+  "sections": [
+    {
+      "id": "about-alyoxa",
+      "title": "1. About ALYOXA",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA is a creative technology studio providing digital design, website development, brand experiences, product design, and technology solutions to clients internationally."
+        },
+        {
+          "kind": "paragraph",
+          "text": "This Privacy Policy applies to information collected through alyoxa.com, our communication channels, advertising forms, and related services."
+        }
+      ]
+    },
+    {
+      "id": "information-we-collect",
+      "title": "2. Information We Collect",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Depending on your interactions with ALYOXA, we may collect the following information:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Name and contact details.",
+            "Email address and telephone number.",
+            "Company name and business information.",
+            "Project requirements, budgets, and inquiry details.",
+            "Information voluntarily provided through contact forms, email, social media, or advertising lead forms.",
+            "Technical information, including IP address, browser type, device information, and website usage data.",
+            "Billing and transaction information where applicable."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "We collect information necessary to respond to inquiries, deliver our services, and operate our business."
+        }
+      ]
+    },
+    {
+      "id": "how-we-use-your-information",
+      "title": "3. How We Use Your Information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We may use your information to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Respond to inquiries and project requests.",
+            "Prepare proposals, quotations, and service agreements.",
+            "Provide, manage, and improve our services.",
+            "Communicate regarding ongoing projects and support.",
+            "Process payments and maintain business records.",
+            "Understand website performance and visitor interactions.",
+            "Deliver relevant marketing communications where permitted.",
+            "Maintain website security and prevent fraudulent activity.",
+            "Comply with applicable legal and regulatory obligations."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legal-basis-for-processing",
+      "title": "4. Legal Basis for Processing",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Where applicable data protection laws require a legal basis, we process personal information based on one or more of the following:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Your consent.",
+            "Performance of a contract or steps taken before entering into a contract.",
+            "Our legitimate business interests, where these are not overridden by your rights.",
+            "Compliance with legal obligations."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Where processing relies on consent, you may withdraw that consent at any time."
+        }
+      ]
+    },
+    {
+      "id": "cookies-and-tracking-technologies",
+      "title": "5. Cookies and Tracking Technologies",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Our website may use cookies and similar technologies to support website functionality, improve performance, understand visitor behaviour, and measure marketing effectiveness."
+        },
+        {
+          "kind": "paragraph",
+          "text": "These technologies may include:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Essential cookies required for website functionality.",
+            "Analytics cookies used to understand website performance.",
+            "Preference cookies that remember user settings.",
+            "Advertising and marketing technologies, where enabled."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Where required by applicable law, non-essential cookies and tracking technologies will be subject to your consent."
+        },
+        {
+          "kind": "paragraph",
+          "text": "You may manage cookies through your browser settings or available website consent controls."
+        }
+      ]
+    },
+    {
+      "id": "advertising-and-social-media",
+      "title": "6. Advertising and Social Media",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA may promote its services through third-party platforms, including Meta, Instagram, Facebook, LinkedIn, and other advertising channels."
+        },
+        {
+          "kind": "paragraph",
+          "text": "When you submit an inquiry through an advertising form, we may receive the information you provide to respond to your request and discuss potential services."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Third-party platforms may process information under their own privacy policies. We encourage you to review those policies when interacting with their services."
+        }
+      ]
+    },
+    {
+      "id": "sharing-your-information",
+      "title": "7. Sharing Your Information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We do not sell or rent your personal information."
+        },
+        {
+          "kind": "paragraph",
+          "text": "We may share information with trusted third parties where reasonably necessary to operate our business, including:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Website hosting and infrastructure providers.",
+            "Email and communication service providers.",
+            "Analytics and advertising platforms.",
+            "Payment processing providers.",
+            "Authorized contractors and service partners.",
+            "Professional advisers and regulatory authorities where required."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Information is shared for legitimate purposes and subject to appropriate confidentiality and data protection safeguards."
+        }
+      ]
+    },
+    {
+      "id": "international-data-transfers",
+      "title": "8. International Data Transfers",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "As ALYOXA works with clients internationally, personal information may be processed in countries other than your country of residence."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Where applicable, we use appropriate safeguards for international transfers in accordance with relevant data protection requirements."
+        }
+      ]
+    },
+    {
+      "id": "data-retention",
+      "title": "9. Data Retention",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We retain personal information only for as long as reasonably necessary to fulfil the purposes described in this Privacy Policy."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Retention periods may depend on project requirements, contractual obligations, legal requirements, accounting records, and legitimate business needs."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Information that is no longer required will be securely deleted or anonymized where appropriate."
+        }
+      ]
+    },
+    {
+      "id": "data-security",
+      "title": "10. Data Security",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We take reasonable technical and organizational measures to protect personal information against unauthorized access, misuse, alteration, disclosure, or loss."
+        },
+        {
+          "kind": "paragraph",
+          "text": "However, no method of electronic transmission or storage can guarantee absolute security."
+        }
+      ]
+    },
+    {
+      "id": "your-privacy-rights",
+      "title": "11. Your Privacy Rights",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Depending on your location and applicable laws, you may have the right to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Access personal information we hold about you.",
+            "Request correction of inaccurate information.",
+            "Request deletion of your personal information.",
+            "Restrict or object to certain processing activities.",
+            "Request a portable copy of your information.",
+            "Withdraw previously provided consent.",
+            "Opt out of marketing communications.",
+            "Submit a complaint to an applicable data protection authority."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "To exercise your rights, please contact us at hello@alyoxa.com."
+        },
+        {
+          "kind": "paragraph",
+          "text": "We may request reasonable identity verification before processing your request."
+        }
+      ]
+    },
+    {
+      "id": "third-party-websites",
+      "title": "12. Third-Party Websites",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Our website may contain links to external websites, platforms, or services."
+        },
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA is not responsible for the privacy practices, security, or content of third-party websites. We encourage you to review their respective privacy policies."
+        }
+      ]
+    },
+    {
+      "id": "children-s-privacy",
+      "title": "13. Children's Privacy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Our services are intended for businesses, organizations, and individuals seeking professional creative and technology services."
+        },
+        {
+          "kind": "paragraph",
+          "text": "We do not knowingly collect personal information from children under the age of 13. Where applicable laws establish a higher age threshold, we respect those requirements."
+        },
+        {
+          "kind": "paragraph",
+          "text": "If we become aware that information has been collected unlawfully from a child, we will take appropriate steps to remove it."
+        }
+      ]
+    },
+    {
+      "id": "changes-to-this-privacy-policy",
+      "title": "14. Changes to This Privacy Policy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We may update this Privacy Policy periodically to reflect changes in our services, technology, business practices, or legal obligations."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The latest version will be published on this page with an updated revision date."
+        }
+      ]
+    },
+    {
+      "id": "contact-us",
+      "title": "15. Contact Us",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "For questions, concerns, or requests regarding your personal information or this Privacy Policy, please contact:"
+        },
+        {
+          "kind": "paragraph",
+          "text": "**ALYOXA® — Creative Technology Studio**"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Email: hello@alyoxa.com"
+        },
+        {
+          "kind": "paragraph",
+          "text": "United Kingdom: +44 7440 779802"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Pakistan: +92 340 6995234"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Website: https://alyoxa.com"
+        }
+      ]
+    }
+  ]
+}

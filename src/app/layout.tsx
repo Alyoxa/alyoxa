@@ -1,123 +1,74 @@
+
 import type { Metadata } from "next";
+import { pageMetadata, siteUrl } from "@/lib/seo";
+import { SiteStructuredData } from "@/components/seo/StructuredData";
 import localFont from "next/font/local";
+import { INTRO_BOOTSTRAP } from "@/components/motion/Preloader/introState";
 import "./globals.css";
-
-type RootLayoutProps = {
-  children: React.ReactNode;
-};
-
-export const metadata: Metadata = {
-  metadataBase: new URL("https://alyoxa.com"),
-
-  title: {
-    default: "ALYOXA — Creative Technology Studio",
-    template: "%s | ALYOXA",
-  },
-
-  description:
-    "ALYOXA is a creative technology studio building high-end digital experiences, websites, brand systems, and interactive products.",
-
-  keywords: [
-    "ALYOXA",
-    "creative technology studio",
-    "digital experience studio",
-    "web design",
-    "web development",
-    "brand systems",
-    "interactive experiences",
-  ],
-
-  alternates: {
-    canonical: "/",
-  },
-
-  icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-        type: "image/x-icon",
-        sizes: "16x16 32x32 48x48 64x64 96x96 256x256",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-        sizes: "any",
-      },
-    ],
-  },
-
-openGraph: {
-  title: "ALYOXA — Creative Technology Studio",
-  description:
-    "Creative technology, digital experiences, brand systems, and interactive products.",
-  url: "https://alyoxa.com",
-  siteName: "ALYOXA",
-  type: "website",
-  images: [
-    {
-      url: "/opengraph-image-social.png",
-      width: 1024,
-      height: 1024,
-      alt: "ALYOXA — Creative Technology Studio",
-    },
-  ],
-},
-
-  twitter: {
-    card: "summary_large_image",
-    title: "ALYOXA — Creative Technology Studio",
-    description:
-      "Creative technology, digital experiences, brand systems, and interactive products.",
-    images: ["/opengraph-image.jpg"],
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
-
 
 const satoshi = localFont({
   src: [
     {
-      path: "../assets/fonts/Satoshi-Light.woff2",
+      path: "../../public/fonts/Satoshi-Light.woff2",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../assets/fonts/Satoshi-Regular.woff2",
+      path: "../../public/fonts/Satoshi-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../assets/fonts/Satoshi-Medium.woff2",
+      path: "../../public/fonts/Satoshi-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../assets/fonts/Satoshi-Bold.woff2",
+      path: "../../public/fonts/Satoshi-Bold.woff2",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../assets/fonts/Satoshi-Black.woff2",
+      path: "../../public/fonts/Satoshi-Black.woff2",
       weight: "900",
       style: "normal",
     },
   ],
   variable: "--font-satoshi",
   display: "swap",
+  preload: true,
 });
 
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: { default: "ALYOXA | Creative Technology Studio", template: "%s | ALYOXA" },
+  description: pageMetadata("/").description,
+  applicationName: "ALYOXA",
+  publisher: "ALYOXA",
+  creator: "ALYOXA",
+  authors: [{name:"ALYOXA",url:siteUrl}],
+  icons: {icon:[{url:"/images/logo-icon.svg",type:"image/svg+xml"}]},
+  openGraph: pageMetadata("/").openGraph,
+  twitter: pageMetadata("/").twitter,
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION?.trim()?{google:process.env.GOOGLE_SITE_VERIFICATION.trim()}:{}),
+    ...(process.env.BING_SITE_VERIFICATION?.trim()?{other:{"msvalidate.01":process.env.BING_SITE_VERIFICATION.trim()}}:{}),
+  },
+};
 
 export default function RootLayout({
   children,
-}: RootLayoutProps) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" className={`${satoshi.variable} no-scrollbar`}>
-      <body className="no-scrollbar min-h-screen antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script id="alyoxa-intro-bootstrap" dangerouslySetInnerHTML={{ __html: INTRO_BOOTSTRAP }} />
+        <noscript><style>{`[data-motion-pending] { visibility: visible !important; animation: none !important; }`}</style></noscript>
+      </head>
+      <body className={`${satoshi.variable} antialiased`}>
+        <SiteStructuredData />
         {children}
       </body>
     </html>
