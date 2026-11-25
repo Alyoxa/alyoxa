@@ -16,31 +16,6 @@
 .services-page__index a > :last-child { margin-left: auto; color: #987050; }
 .services-page__index a:hover { background: #f6f2ee; }
 .services-page a:focus-visible { outline: 2px solid #b78b67; outline-offset: 5px; }
-.service-chapter { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: start; gap: clamp(40px,8vw,140px); padding-block: clamp(72px,8vw,140px); border-bottom: 1px solid #ddd; scroll-margin-top: 120px; }
-.service-chapter__visual { position: sticky; top: 140px; }
-.service-chapter__art { position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 1; border-radius: 16px; background: #161819; }
-.service-chapter__art::before { content: ''; position: absolute; inset: -6%; background: var(--service-art) center / cover; transform: translateY(var(--service-image-y,0px)) scale(1.08); filter: grayscale(.5) sepia(.25); z-index: -2; }
-.service-chapter__art::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#0001,#0009); }
-.service-chapter--brand { --service-art: url('/images/hero/tecton.webp'); }
-.service-chapter--digital { --service-art: url('/images/hero/aetherform.webp'); }
-.service-chapter__art > span { position: absolute; bottom: 3%; left: 6%; color: #fff; font-size: clamp(100px,14vw,250px); line-height: 1; letter-spacing: -.08em; font-weight: 300; opacity: .85; }
-.service-chapter__visual-caption { display: flex; justify-content: space-between; gap: 20px; padding-top: 16px; color: #777; font: 9px/1.5 monospace; letter-spacing: .08em; }
-.service-chapter--product .service-chapter__art { background: radial-gradient(ellipse at 70% 0%,#b48c65,#272724 50%,#111); }
-.service-chapter--product .service-chapter__art i { position: absolute; top: 15%; left: 20%; width: 55%; height: 45%; border: 1px solid #f3c8a6aa; background: linear-gradient(135deg,#fff4,#fff0 50%,#c28e5544); transform: rotate(-24deg) skew(10deg,8deg); translate: 0 var(--service-image-y,0px); }
-.service-chapter--product .service-chapter__art i:nth-child(2) { margin: 35px 0 0 25px; }
-.service-chapter--product .service-chapter__art i:nth-child(3) { margin: 70px 0 0 50px; }
-.service-chapter--technology .service-chapter__art i:first-child { position: absolute; top: 18%; left: 10%; width: 110%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 28% 10%,#cfaa83,#313433 40%,#101213 70%); box-shadow: -10px -18px 45px #dca87866; border: 1px solid #d8ac81; translate: 0 var(--service-image-y,0px); }
-.service-chapter--technology .service-chapter__art i:nth-child(2) { position: absolute; inset: 2% -30% 28%; border-radius: 50%; border: 1px solid #d8ac8166; transform: rotate(-30deg); }
-.service-chapter h2 { margin: 0; font-weight: 400; font-size: clamp(40px,4.5vw,82px); line-height: 1.04; letter-spacing: -.055em; }
-.service-chapter__phrase { font-size: clamp(24px,2.3vw,38px); line-height: 1.2; margin: 18px 0 26px; color: #987050; letter-spacing: -.03em; }
-.service-chapter__description { font-size: 18px; line-height: 1.7; color: #626262; margin: 0; }
-.service-chapter__deliverables { margin-top: 36px; }
-.service-chapter__deliverables h3 { margin: 0 0 14px; font: 10px/1.5 monospace; letter-spacing: .1em; }
-.service-chapter__deliverables ul { list-style: none; padding: 0; margin: 0; }
-.service-chapter__deliverables li { display: flex; gap: 16px; padding: 15px 0; border-top: 1px solid #e2e2e2; font-size: 16px; }
-.service-chapter__deliverables li > span { color: #987050; }
-.service-chapter__outcome { padding-left: 18px; border-left: 1px solid #b78b67; margin: 30px 0; font-size: 17px; line-height: 1.5; }
-.service-chapter__outcome > span { display: block; font: 9px/1.5 monospace; letter-spacing: .1em; color: #987050; margin-bottom: 8px; }
 .services-page h2 { font-weight: 400; }
 .services-page__collaboration { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,8vw,140px); padding-block: clamp(80px,8vw,140px); }
 .services-page__collaboration h2,.services-page__work h2 { margin: 0; font-size: clamp(36px,4vw,72px); line-height: 1.1; letter-spacing: -.05em; }
@@ -52,15 +27,12 @@
 .services-page__collaboration li p { margin: 0; color: #626262; font-size: 16px; line-height: 1.6; }
 .services-page__work { border-top: 1px solid #ddd; padding-block: 72px; text-align: center; }
 .services-page__work h2 { margin-bottom: 32px; }
-@media(max-width:1000px),(max-height:759px) { .service-chapter__visual { position: relative; top: auto; } }
 @media(max-width:800px) {
  .services-page__hero > .services-page__eyebrow { flex-direction: column; gap: 8px; }
- .services-page__hero-bottom,.service-chapter,.services-page__collaboration { grid-template-columns: 1fr; gap: 36px; }
+ .services-page__hero-bottom,.services-page__collaboration { grid-template-columns: 1fr; gap: 36px; }
  .services-page__index { grid-template-columns: 1fr 1fr; margin-top: 40px; }
  .services-page__index a:nth-child(2) { border-right: 0; }
  .services-page__index a:nth-child(3) { padding-left: 0; }
  .services-page__index a:nth-child(-n+2) { border-bottom: 1px solid #ddd; }
- .service-chapter__art { aspect-ratio: 1.35; }
- .service-chapter__art > span { font-size: 140px; }
 }
-@media(max-width:400px) { .services-page__index a { font-size: 12px; gap: 8px; padding-right: 8px; } .service-chapter__description { font-size: 16px; } }
+@media(max-width:400px) { .services-page__index a { font-size: 12px; gap: 8px; padding-right: 8px; } }
