@@ -18,9 +18,9 @@ const navLinks = [
   { label: "About", id: "about", number: "05", detail: "The studio" },
 ];
 const sectionIds = ["home", ...navLinks.map((link) => link.id), "testimonials", "contact"];
-const sectionNames: Record<string, string> = { testimonials: "Client perspectives", home: "The studio", work: "Work", services: "Services", approach: "Approach", about: "About", contact: "Let’s talk" };
+const sectionNames: Record<string, string> = { insights: "Insights", testimonials: "Client perspectives", home: "The studio", work: "Work", services: "Services", approach: "Approach", about: "About", contact: "Let’s talk" };
 
-export default function Navbar({ page = "home" }: { page?: "home" | "about" | "services" | "work" | "approach" | "contact" }) {
+export default function Navbar({ page = "home" }: { page?: "home" | "about" | "services" | "work" | "approach" | "contact" | "insights" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [compact, setCompact] = useState(false);
   const [activeSection, setActiveSection] = useState<string>(page);

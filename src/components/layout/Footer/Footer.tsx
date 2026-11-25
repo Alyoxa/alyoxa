@@ -31,10 +31,10 @@ export default function Footer({ contactIndex = "06", showCta = true }: { contac
         <a className="studio-footer__email" href="mailto:hello@alyoxa.com">hello@alyoxa.com</a>
         <nav className="studio-footer__nav" aria-label="Footer navigation"><Link href="/work">Work</Link><Link href="/services">Services</Link><Link href="/approach">Approach</Link><Link href="/about">About</Link></nav>
         <div className="studio-footer__phones" aria-label="Studio phone contacts">
-          {[studioContact.pk,studioContact.uk].map(phone=><div className="studio-footer__phone" key={phone.code}><span className="studio-footer__country">{phone.code} <span>{phone.label} / WhatsApp</span></span><a className="studio-footer__number" href={phone.href} target="_blank" rel="noopener noreferrer" aria-label={`Chat with Alyoxa on WhatsApp in ${phone.label} (opens in a new tab)`}>{phone.display}</a></div>)}
+          {[studioContact.pk,studioContact.uk].map(phone=><div className="studio-footer__phone" key={phone.code}><span className="studio-footer__country">{phone.code} <span>{phone.label} / WhatsApp</span></span><a className="studio-footer__number" href={phone.href} target="_blank" rel="noopener noreferrer" aria-label={`${phone.display}: chat with Alyoxa on WhatsApp in ${phone.label} (opens in a new tab)`}>{phone.display}</a></div>)}
         </div>
       </div>
-      <div className="studio-footer__legal-row"><small>© {new Date().getUTCFullYear()} ALYOXA. All rights reserved.</small><span className="studio-footer__signoff">Independent thinking. Collective ambition.</span><nav aria-label="Legal"><Link href="/privacy-policy">Privacy Policy</Link><Link href="/terms-and-conditions">Terms &amp; Conditions</Link></nav></div>
+      <div className="studio-footer__legal-row"><small>© {new Date().getUTCFullYear()} ALYOXA. All rights reserved.</small><span className="studio-footer__signoff">Independent thinking. Collective ambition.</span><nav aria-label="Insights and legal"><Link href="/insights">Insights</Link><Link href="/privacy-policy">Privacy Policy</Link><Link href="/terms-and-conditions">Terms &amp; Conditions</Link></nav></div>
     </div>
   </footer>;
 }

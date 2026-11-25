@@ -35,6 +35,12 @@
     "description": "Start a conversation with ALYOXA about your website, brand, or digital product. Share your goals in a short project brief or contact the studio directly.",
     "type": "ContactPage"
   },
+  "/insights": {
+    "name": "Insights",
+    "title": "Web Design, Branding & Development Insights | ALYOXA",
+    "description": "Practical guides from ALYOXA on choosing a web design agency, planning a website, brand identity, digital experiences, and preparing for a successful launch.",
+    "type": "CollectionPage"
+  },
   "/privacy-policy": {
     "name": "Privacy Policy",
     "title": "Privacy Policy | ALYOXA",

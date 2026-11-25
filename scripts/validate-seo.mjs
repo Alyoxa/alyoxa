@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { readFile,writeFile } from "node:fs/promises";
-const pages=JSON.parse(await readFile(new URL("../src/lib/seo-pages.json",import.meta.url),"utf8"));
+import { writeFile } from "node:fs/promises";
+import { seoRouteData as pages, insightPosts } from "./seo-route-data.mjs";
 const base=process.env.SEO_TEST_BASE_URL||"http://127.0.0.1:3107";
 const preview=process.env.SEO_EXPECT_NOINDEX==="true";
 const origin="https://alyoxa.com";
@@ -39,6 +39,20 @@ for(const [path,page] of Object.entries(pages)){
  if(path!=="/"){const breadcrumb=nodes.find(node=>node["@type"]==="BreadcrumbList");assert.equal(breadcrumb.itemListElement.at(-1).item,canonical);}
  if(path==="/services")assert.equal(nodes.filter(node=>node["@type"]==="Service").length,4);
  if(path==="/work"){const concepts=nodes.filter(node=>node["@type"]==="CreativeWork");assert.equal(concepts.length,6);assert(concepts.every(node=>node.creativeWorkStatus==="Concept"&&node.name.includes("Concept")));for(const concept of concepts)assert(html.includes(`id="${new URL(concept.url).hash.slice(1)}"`));}
+ if(path==="/insights"){
+  const blog=nodes.find(node=>node["@type"]==="Blog");assert.equal(blog.blogPost.length,insightPosts.length);
+ }
+ if(path.startsWith("/insights/")){
+  const post=insightPosts.find(post=>path===`/insights/${post.slug}`);assert(post,path);
+  const article=nodes.find(node=>node["@type"]==="BlogPosting");assert(article,path);
+  assert.equal(article.headline,post.title);assert.equal(article.author["@type"],"Organization");assert.equal(article.author.name,"ALYOXA");
+  assert.equal(article.datePublished,`${post.date}T00:00:00+05:00`);assert.equal(article.dateModified,article.datePublished);
+  assert.deepEqual(meta("og:type"),["article"]);assert.deepEqual(meta("article:published_time"),[article.datePublished]);
+  assert(article.wordCount>=450,"Substantive editorial content");
+  for(const section of post.sections){assert(html.includes(`id="${section.id}"`));for(const paragraph of section.paragraphs)assert(html.includes(paragraph.replaceAll("&","&amp;").replaceAll("'","&#x27;").replaceAll('"',"&quot;")),`SSR content missing: ${path}`);}
+  assert.equal((html.match(/<table\b/g)||[]).length,post.sections.filter(section=>section.table).length);
+  const breadcrumb=nodes.find(node=>node["@type"]==="BreadcrumbList");assert.equal(breadcrumb.itemListElement.length,3);assert.equal(breadcrumb.itemListElement[1].item,origin+"/insights");
+ }
  const images=[...html.matchAll(/<img\b[^>]*>/g)].map(match=>attrs(match[0]));assert(images.every(image=>"alt" in image),path);
  const anchors=[...html.matchAll(/<a\b[^>]*>/g)].map(match=>attrs(match[0])).filter(anchor=>anchor.href?.startsWith("/")||anchor.href?.startsWith("#"));
  report.links.push(...anchors.map(anchor=>({source:path,href:anchor.href})));
@@ -50,6 +64,7 @@ for(const link of report.links){const url=new URL(link.href,new URL(link.source,
 const sitemapResponse=await fetch(base+"/sitemap.xml");assert.equal(sitemapResponse.status,200);const sitemap=await sitemapResponse.text();const urls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>decode(match[1]));assert.deepEqual(urls,preview?[]:expectedPaths.map(path=>new URL(path,origin).href));
 const robots=await(await fetch(base+"/robots.txt")).text();assert(robots.includes("User-Agent: *")&&robots.includes("Disallow: /api/"));assert(!robots.includes("Disallow: /\n"));if(!preview)assert(robots.includes(origin+"/sitemap.xml"));
 const missing=await fetch(base+"/not-a-real-alyoxa-route");assert.equal(missing.status,404);assert((await missing.text()).includes('content="noindex'));
+const missingArticle=await fetch(base+"/insights/not-a-real-article");assert.equal(missingArticle.status,404);assert((await missingArticle.text()).includes('content="noindex'));
 const legacy=await fetch(base+"/Home",{redirect:"manual"});assert.equal(legacy.status,308);
 const api=await fetch(base+"/api/project-inquiry",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});assert.equal(api.status,400);assert(api.headers.get("x-robots-tag")?.includes("noindex"));
 const image=await fetch(base+"/opengraph-image.png");assert.equal(image.status,200);assert(image.headers.get("content-type")?.startsWith("image/png"));

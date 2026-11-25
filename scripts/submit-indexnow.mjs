@@ -1,5 +1,4 @@
-import { readFile } from "node:fs/promises";
-const pages=JSON.parse(await readFile(new URL("../src/lib/seo-pages.json",import.meta.url),"utf8"));
+import { seoRouteData as pages } from "./seo-route-data.mjs";
 const host="alyoxa.com",origin=`https://${host}`;
 const urls=Object.keys(pages).map(path=>new URL(path,origin).href);
 if(!process.argv.includes("--submit")){

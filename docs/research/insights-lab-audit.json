@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-25",
+  "url": "/insights/custom-website-vs-template",
+  "environment": "Local production server, default mobile Lighthouse preset; no animation or script bypass",
+  "version": "13.6.0",
+  "scores": {
+    "performance": 99,
+    "accessibility": 96,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "lcpMs": 1059.7903,
+  "cls": 0,
+  "tbtMs": 105,
+  "note": "Single lab navigation result, not production field metrics or INP certification. Inherited footer contrast findings remain; phone accessible-name mismatch corrected after this run without a visible change."
+}

@@ -2,6 +2,7 @@ import { absoluteUrl, seoPages, siteUrl, type PublicPath } from "@/lib/seo";
 import { studioContact } from "@/lib/studioContact";
 import { serviceDisciplines } from "@/lib/serviceDisciplines";
 import { workProjects } from "@/app/work/projects";
+import { insights, insightPath, insightWordCount } from "@/lib/insights";
 const organizationId=absoluteUrl("/#organization");
 const websiteId=absoluteUrl("/#website");
 function JsonLd({id,graph}:{id:string;graph:Record<string,unknown>[]}) {
@@ -17,7 +18,8 @@ export function PageStructuredData({path}:{path:PublicPath}){
  if(path!=="/"){
   const breadcrumbId=`${url}#breadcrumb`;
   graph[0].breadcrumb={"@id":breadcrumbId};
-  graph.push({"@type":"BreadcrumbList","@id":breadcrumbId,itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:siteUrl},{"@type":"ListItem",position:2,name:page.name,item:url}]});
+  const isArticle=path.startsWith("/insights/");
+  graph.push({"@type":"BreadcrumbList","@id":breadcrumbId,itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:siteUrl},...(isArticle?[{"@type":"ListItem",position:2,name:"Insights",item:absoluteUrl("/insights")}]:[]),{"@type":"ListItem",position:isArticle?3:2,name:page.name,item:url}]});
  }
  if(path==="/services"){
   const services=serviceDisciplines.map(service=>({"@type":"Service","@id":`${url}#${service.id}`,name:service.title,serviceType:service.title,url:`${url}#${service.id}`,description:service.description,provider:{"@id":organizationId},areaServed:{"@type":"Place",name:"Worldwide"}}));
@@ -28,6 +30,16 @@ export function PageStructuredData({path}:{path:PublicPath}){
   const concepts=workProjects.map(project=>({"@type":"CreativeWork","@id":`${url}#concept-${project.id}`,url:`${url}#concept-${project.id}`,name:`${project.name} - Concept project`,genre:"Illustrative concept exploration",creativeWorkStatus:"Concept",image:absoluteUrl(project.image),creator:{"@id":organizationId},isPartOf:{"@id":pageId}}));
   graph.push(...concepts,{"@type":"ItemList","@id":`${url}#portfolio`,name:"ALYOXA concept portfolio",itemListElement:concepts.map((concept,index)=>({"@type":"ListItem",position:index+1,item:{"@id":concept["@id"]}}))});
   graph[0].mainEntity={"@id":`${url}#portfolio`};
+ }
+ if(path==="/insights"){
+  graph.push({"@type":"Blog","@id":`${url}#journal`,name:"ALYOXA Insights",url,description:page.description,publisher:{"@id":organizationId},blogPost:insights.map(post=>({"@id":`${absoluteUrl(insightPath(post.slug))}#article`}))});
+  graph[0].mainEntity={"@id":`${url}#journal`};
+ }
+ const post=insights.find(item=>insightPath(item.slug)===path);
+ if(post){
+  const articleId=`${url}#article`;
+  graph[0].mainEntity={"@id":articleId};
+  graph.push({"@type":"BlogPosting","@id":articleId,url,headline:post.title,description:post.description,datePublished:`${post.date}T00:00:00+05:00`,dateModified:`${post.date}T00:00:00+05:00`,inLanguage:"en",articleSection:post.category,wordCount:insightWordCount(post),author:{"@type":"Organization","@id":organizationId,name:"ALYOXA",url:absoluteUrl("/about")},publisher:{"@id":organizationId},mainEntityOfPage:{"@id":pageId},isPartOf:{"@type":"Blog","@id":`${absoluteUrl("/insights")}#journal`,name:"ALYOXA Insights",url:absoluteUrl("/insights")},image:absoluteUrl("/opengraph-image.png")});
  }
  return <JsonLd id="alyoxa-page-schema" graph={graph}/>;
 }
