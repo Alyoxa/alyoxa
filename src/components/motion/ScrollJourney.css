@@ -1,0 +1,18 @@
+.hero__headline { translate: 0 var(--hero-scroll-title,0px); }
+.work__project-image { translate: 0 var(--work-media-y,0px); }
+.work__glass { translate: 0 var(--journey-glass-y,0px); }
+.about .about__artwork { translate: 0 calc(var(--about-enter-y,0px) + var(--journey-about-y,0px)); }
+.studio-footer__cta h2 { translate: 0 var(--finale-rise,0px); }
+.approach__layer { translate: 0 var(--process-layer-y,0px); }
+.approach[data-process-step="discovery"] .approach__step--discovery .approach__number,
+.approach[data-process-step="strategy"] .approach__step--strategy .approach__number,
+.approach[data-process-step="design"] .approach__step--design .approach__number,
+.approach[data-process-step="growth"] .approach__step--growth .approach__number { color: #a5724b; }
+.approach[data-process-step="discovery"] .approach__step--discovery .approach__node,
+.approach[data-process-step="strategy"] .approach__step--strategy .approach__node,
+.approach[data-process-step="design"] .approach__step--design .approach__node,
+.approach[data-process-step="growth"] .approach__step--growth .approach__node { background: #d5a47c; border-color: #a36e45; box-shadow: 0 0 0 5px #d5a47c18; }
+@media (prefers-reduced-motion: no-preference) {
+  .approach[data-process-step] .approach__number { transition: color .4s; }
+  .approach[data-process-step] .approach__node { transition: background-color .4s,border-color .4s,box-shadow .4s; }
+}

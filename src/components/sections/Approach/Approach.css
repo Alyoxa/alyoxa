@@ -1,0 +1,105 @@
+.approach { position: relative; isolation: isolate; overflow: hidden; background: #fff; color: #080808; scroll-margin-top: 24px; }
+.approach *, .approach *::before, .approach *::after { box-sizing: border-box; }
+.approach__container { max-width: 1920px; margin: auto; padding: clamp(72px,7vw,130px) clamp(20px,4.1vw,80px) 48px; }
+.approach__intro { position: relative; z-index: 2; display: grid; grid-template-columns: 51% 49%; pointer-events: none; }
+.approach__eyebrow { display: flex; align-items: center; gap: 13px; margin: 0 0 28px; font: 700 13px/1.4 monospace; letter-spacing: .14em; }
+.approach__eyebrow > span { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.approach__heading { margin: 0; padding-left: 12px; font-size: clamp(52px,4.55vw,88px); font-weight: 400; line-height: .89; letter-spacing: -.065em; text-transform: uppercase; }
+.approach__heading > span { display: block; }
+.approach__heading > em { display: block; width: max-content; margin-left: .55em; font-family: Georgia,'Times New Roman',serif; font-weight: 400; font-size: 1.08em; line-height: 1.03; letter-spacing: -.075em; }
+.approach__description { align-self: start; margin-top: 56px; padding: 0 0 0 clamp(28px,2.8vw,54px); border-left: 1px solid #222; }
+.approach__description p { max-width: 490px; margin: 0 0 22px; font-size: clamp(18px,1.32vw,25px); line-height: 1.35; letter-spacing: -.02em; }
+.approach__description > span { font: 10px/1.5 monospace; letter-spacing: .08em; color: #777; }
+.approach__intro-cross { position: absolute; top: 55px; left: 45%; }
+.approach__stage { position: relative; height: clamp(480px,33vw,635px); margin-top: -28px; }
+.approach__orbit { position: absolute; inset: 7% -2% auto; width: 104%; height: 95%; pointer-events: none; }
+.approach__sculpture { position: absolute; z-index: 1; width: 55%; height: 108%; left: 23%; top: -8%; overflow: visible; pointer-events: none; }
+.approach__cross { position: absolute; color: #333; }
+.approach__cross--left { top: 44%; left: 1%; }
+.approach__cross--right { top: 44%; right: 7%; }
+.approach__steps { position: relative; z-index: 2; list-style: none; margin: 0; padding: 0; height: 100%; }
+.approach__step { position: absolute; display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 14px; width: 25%; }
+.approach__step--discovery { top: 23%; left: 9%; }
+.approach__step--strategy { top: 2%; right: 0; width: 24%; }
+.approach__step--design { top: 68%; right: 0; width: 24%; }
+.approach__step--growth { top: 73%; left: 6.5%; }
+.approach__number { font: italic 30px/1 Georgia,'Times New Roman',serif; letter-spacing: -.06em; }
+.approach__node { position: absolute; top: 31px; left: -29px; width: 15px; height: 15px; border: 1.5px solid #111; border-radius: 50%; background: #fff; }
+.approach__step h3 { margin: 5px 0 15px; font: 700 clamp(12px,.97vw,18px)/1.35 monospace; letter-spacing: .09em; text-transform: uppercase; }
+.approach__step-copy > p { max-width: 280px; margin: 0; font-size: clamp(15px,.99vw,19px); line-height: 1.35; letter-spacing: -.015em; }
+.approach__deliverable { display: block; max-width: 260px; margin-top: 13px; font-size: 12px; line-height: 1.45; color: #777; }
+.approach__footer { position: relative; display: flex; align-items: center; gap: clamp(20px,2.6vw,50px); margin-top: 30px; }
+.approach__footer > p { display: flex; align-items: center; gap: 20px; margin: 0; font: 11px/1.5 monospace; letter-spacing: .1em; text-transform: uppercase; }
+.approach__rings { position: relative; width: 35px; height: 22px; flex-shrink: 0; }
+.approach__rings::before, .approach__rings::after { content: ''; position: absolute; top: 0; left: 0; width: 22px; height: 22px; border: 1px solid #111; border-radius: 50%; }
+.approach__rings::after { left: 12px; }
+.approach__rule { flex: 1; min-width: 24px; height: 1px; background: #999; }
+.approach__footer a { display: inline-flex; align-items: center; justify-content: center; gap: 16px; font-size: 15px; text-decoration: none; }
+.approach__work-link { min-height: 52px; padding: 14px 28px; border-radius: 100px; background: #080808; color: #fff; white-space: nowrap; }
+.approach__contact-link { min-height: 44px; color: #111; }
+.approach__footer a:focus-visible { outline: 2px solid #995d32; outline-offset: 5px; }
+@media (hover: hover) {
+  .approach__work-link:hover { background: #333; }
+  .approach__contact-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+}
+@media (max-width: 1250px) {
+  .approach__footer { flex-wrap: wrap; gap: 24px; }
+  .approach__contact-link { margin-left: auto; }
+  .approach__step { gap: 10px; }
+  .approach__step h3 { letter-spacing: .04em; }
+}
+@media (max-width: 1100px) {
+  .approach__heading { font-size: 5.1vw; }
+  .approach__description { margin-top: 44px; }
+  .approach__intro-cross { display: none; }
+  .approach__stage { height: auto; margin-top: 24px; padding-top: min(55vw,500px); }
+  .approach__sculpture { width: 76%; height: min(58vw,530px); left: 12%; top: 0; }
+  .approach__orbit { top: 3%; left: -7%; width: 114%; height: min(53vw,480px); }
+  .approach__cross--left { top: 22%; left: 5%; }
+  .approach__cross--right { top: 8%; right: 9%; }
+  .approach__steps { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 48px; height: auto; margin-top: 28px; }
+  .approach__step { position: relative; inset: auto; width: auto; grid-template-columns: 36px minmax(0,1fr); gap: 14px; padding-top: 20px; border-top: 1px solid #ccc; }
+  .approach__step h3 { font-size: 14px; margin-top: 3px; }
+  .approach__step-copy > p { font-size: 16px; max-width: 340px; line-height: 1.5; }
+  .approach__deliverable { max-width: none; }
+  .approach__node { width: 9px; height: 9px; top: -5px; left: 0; border-width: 1px; }
+  .approach__footer { margin-top: 48px; }
+}
+@media (max-width: 600px) {
+  .approach__container { padding-top: 64px; padding-bottom: 40px; }
+  .approach__intro { display: block; }
+  .approach__eyebrow { font-size: 12px; }
+  .approach__heading { padding-left: 0; font-size: clamp(40px,10.7vw,64px); }
+  .approach__heading > em { margin-left: .2em; font-size: 1.03em; }
+  .approach__description { max-width: 400px; margin-top: 30px; padding-left: 20px; }
+  .approach__description p { font-size: 17px; margin-bottom: 16px; }
+  .approach__description > span { font-size: 9px; }
+  .approach__stage { margin-top: 24px; padding-top: 75vw; }
+  .approach__sculpture { width: 110%; height: 79vw; left: -5%; }
+  .approach__orbit { top: 1%; height: 72vw; }
+  .approach__cross--left { top: 12%; left: 0; }
+  .approach__cross--right { top: 3%; right: 2%; }
+  .approach__steps { grid-template-columns: 1fr; gap: 0; margin-top: 20px; padding-left: 12px; }
+  .approach__step { border-top: 0; border-left: 1px solid #ccc; padding: 0 0 32px 22px; gap: 12px; grid-template-columns: 33px minmax(0,1fr); }
+  .approach__step:last-child { padding-bottom: 0; border-left-color: transparent; }
+  .approach__node { left: -5px; top: 7px; }
+  .approach__number { font-size: 27px; }
+  .approach__step h3 { font-size: 13px; margin: 4px 0 12px; letter-spacing: .04em; }
+  .approach__step-copy > p { font-size: 16px; }
+  .approach__deliverable { font-size: 12px; margin-top: 10px; }
+  .approach__footer { align-items: stretch; gap: 20px; }
+  .approach__footer > p { width: 100%; font-size: 10px; letter-spacing: .04em; gap: 13px; }
+  .approach__rule { flex: none; width: 100%; }
+  .approach__work-link { width: 100%; }
+  .approach__contact-link { margin: 0 auto; font-size: 14px !important; }
+}
+/* Keep the editorial geometry intact while ScrollTrigger animates SVG layers. */
+.approach__layer { transform-box: view-box; }
+@media (prefers-reduced-motion: no-preference) {
+  .approach__work-link { transition: background-color .3s, box-shadow .3s; }
+  .approach__footer a > svg { transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .approach__footer a:hover > svg { transform: translate(3px,-3px); }
+  .approach__work-link:hover { box-shadow: 0 8px 24px #0002; }
+}

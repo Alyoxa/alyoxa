@@ -1,0 +1,40 @@
+/* The hero's fine rule, warm index, and Satoshi label, shared site-wide. */
+.section-eyebrow.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  max-width: 100%;
+  margin: 0 0 28px;
+  padding: 0;
+  color: #080808;
+  font-family: var(--font-satoshi), Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-eyebrow.section-eyebrow > span {
+  width: auto; height: auto; margin: 0; padding: 0; border-radius: 0; background: none;
+}
+.section-eyebrow.section-eyebrow > .section-eyebrow__rule {
+  display: block; width: 28px; height: 1px; flex: 0 0 28px; background: #b6a18c;
+}
+.section-eyebrow.section-eyebrow > .section-eyebrow__index {
+  flex-shrink: 0; color: #8c7966; font-size: 9px; font-weight: 600; letter-spacing: .08em;
+}
+.section-eyebrow.section-eyebrow > .section-eyebrow__divider {
+  width: 1px; height: 12px; flex: 0 0 1px; background: #d9d4ce;
+}
+.section-eyebrow.section-eyebrow > .section-eyebrow__label { min-width: 0; }
+.section-eyebrow.hero__eyebrow { margin-bottom: 0; }
+.section-eyebrow.studio-footer__eyebrow { margin-bottom: 46px; }
+@media (max-width: 600px) {
+  .section-eyebrow.section-eyebrow { gap: 8px; font-size: 9px; letter-spacing: .1em; }
+  .section-eyebrow.section-eyebrow > .section-eyebrow__rule { width: 20px; flex-basis: 20px; }
+  .section-eyebrow.section-eyebrow > .section-eyebrow__index { font-size: 9px; letter-spacing: .04em; }
+  .section-eyebrow.section-eyebrow > .section-eyebrow__label { white-space: normal; text-align: left; }
+  .section-eyebrow.studio-footer__eyebrow { margin-bottom: 32px; }
+}

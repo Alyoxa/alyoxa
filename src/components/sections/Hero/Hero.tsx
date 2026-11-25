@@ -1,224 +1,109 @@
-
 "use client";
 
-import Image from "next/image";
-import { AlyoxaTrademarkButton } from "@/components/ui/Button";
-import { initializeHero } from "@/components/animations/hero/hero";
-import { initializeHeroScroll } from "@/components/animations/hero/heroScroll";
+import { useRef } from "react";
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Link from "next/link";
+import Image from "next/image";
+import { LuArrowUpRight, LuArrowDown } from "react-icons/lu";
+import { animateHero } from "./HeroAnimations";
+import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
+import BrandButton from "@/components/ui/BrandButton/BrandButton";
+import "./Hero.css";
 
-interface HeroBannerProps {
-  isPreloading: boolean;
+gsap.registerPlugin(useGSAP);
+
+const projects = [
+    { id: "lacuna", name: "LACUNA®", type: "BRAND + WEB", image: "/images/hero/lacuna.webp" },
+    { id: "aetherform", name: "AETHERFORM®", type: "PRODUCT + WEB", image: "/images/hero/aetherform.webp" },
+    { id: "tecton", name: "TECTON®", type: "DIGITAL EXPERIENCE", image: "/images/hero/tecton.webp" },
+] as const;
+
+function Headline({ overlay = false }: { overlay?: boolean }) {
+    const TitleTag = overlay ? "div" : "h1";
+    return (
+        <div className={`hero__headline${overlay ? " hero__headline--white" : ""}`} aria-hidden={overlay || undefined}>
+            <TitleTag id={overlay ? undefined : "hero-title"} className="hero__title" aria-label={overlay ? undefined : "We build brands that feel real."}>
+                <span className="hero__title-line hero__title-line--one">WE BUILD</span>
+                <span className="hero__title-line hero__title-line--two">BRANDS</span>
+                <span className="hero__title-line hero__title-line--three">THAT FEEL</span>
+                <span className="hero__title-line hero__title-line--four">REAL.</span>
+            </TitleTag>
+        </div>
+    );
 }
 
-export default function HeroBanner({ isPreloading }: HeroBannerProps) {
-  useGSAP(
-    () => {
-      const cleanupHero = initializeHero({
-        play: !isPreloading,
-      });
+export default function Hero() {
+    const heroRef = useRef<HTMLElement>(null);
 
-      if (isPreloading) {
-        return cleanupHero;
-      }
+    useGSAP(() => {
+        const root = heroRef.current;
+        if (!root) return;
 
-      const cleanupScroll = initializeHeroScroll();
+        return animateHero(root);
+    }, { scope: heroRef });
 
-      return () => {
-        cleanupHero();
-        cleanupScroll();
-      };
-    },
-    {
-      dependencies: [isPreloading],
-      revertOnUpdate: true,
-    }
-  );
+    return (
+        <section data-motion-pending ref={heroRef} className="hero" id="home" aria-labelledby="hero-title">
+            <div className="hero__container">
+                <div className="hero__top">
+                    <SectionEyebrow className="hero__eyebrow" index="01" category="Studio">Creative technology studio</SectionEyebrow>
+                    <span className="hero__studio-note">Independent minds.<br />Extraordinary possibilities.</span>
+                </div>
 
-  return (
-    <section
-      data-hero="section"
-      className="
-        relative
-        w-full
-        min-h-[100svh]
-        md:h-screen
-        overflow-hidden
-        flex
-        items-center
-        justify-center
-        bg-[#fcf7f1]
-        px-4
-        md:px-6
-        max-md:h-auto
-        max-md:px-5
-        max-md:pt-28
-        max-md:pb-14
-      "
-    >
-      {/* Architectural Sculpture */}
-      <div
-        data-hero="visual"
-        className="
-          absolute inset-0
-          w-full h-full
-          pointer-events-none
-          opacity-[0.12]
-          md:opacity-40
-          transition-opacity duration-500
-        "
-      >
-        <div
-          data-hero="sculpture"
-          className="
-            relative h-full w-full
-            scale-[0.82]
-            md:scale-80
-            origin-center
-            will-change-transform
-            max-md:scale-[0.96]
-            max-md:opacity-30
-          "
-        >
-          <Image
-            src="/images/alyoxa-hero-sculpture.png"
-            alt=""
-            fill
-            sizes="(max-width: 767px) 96vw, 80vw"
-            priority
-            className="object-contain object-center select-none"
-          />
-        </div>
-      </div>
+                <div className="hero__composition">
+                    <div className="hero__decorations" aria-hidden="true">
+                        <svg className="hero__orbit" viewBox="0 0 1600 700" preserveAspectRatio="none" fill="none">
+                            <path
+                                className="hero__orbit-base"
+                                d="M80 440 C-20 270 470 120 850 145 C1250 170 1660 330 1510 490 C1280 710 390 680 80 440Z"
+                                stroke="currentColor"
+                                strokeWidth="0.8"
+                            />
+                            <path
+                                className="hero__orbit-trace"
+                                d="M80 440 C-20 270 470 120 850 145 C1250 170 1660 330 1510 490 C1280 710 390 680 80 440Z"
+                                stroke="#B6A18C"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                            />
+                        </svg>
+                        <span className="hero__cross hero__cross--one" />
+                        <span className="hero__cross hero__cross--two" />
+                        <span className="hero__cross hero__cross--three" />
+                    </div>
 
-      {/* Hero Content */}
-      <div
-        className="
-          relative z-10
-          w-full
-          flex flex-col
-          justify-center items-center
-          pointer-events-none
-          [perspective:1000px]
-          pt-0
-          md:pt-0
-        "
-      >
-        <div
-          className="
-            flex w-full max-w-[1400px]
-            flex-col items-center justify-center
-            px-0
-            md:px-6
-            lg:px-10
-            max-md:px-0
-          "
-        >
-          {/* Badge */}
-          <div
-            data-hero="badge"
-            className="
-              pointer-events-auto relative overflow-hidden
-              rounded-lg border border-zinc-800
-              bg-zinc-900
-              px-3.5 py-1.5
-              text-[10px] font-medium uppercase
-              text-white shadow-2xl
-              md:px-7 md:py-1.5 md:text-sm
-              max-md:px-3.5 max-md:py-1.5 max-md:text-[10px]
-            "
-          >
-            <div
-              data-hero="badge-flare"
-              className="
-                absolute inset-0 -translate-x-full
-                bg-gradient-to-r
-                from-transparent via-white/25 to-transparent
-                pointer-events-none
-              "
-            />
+                    <div className="hero__projects">
+                        {projects.map((project) => (
+                            <Link href="#work" key={project.id} className={`hero__project hero__project--${project.id}`} aria-label={`Explore ${project.name} and our selected work`}>
+                                <div className="hero__project-media"><Image src={project.image} alt={`${project.name} creative direction`} fill sizes={project.id === "lacuna" ? "(max-width: 700px) 85vw, 40vw" : "(max-width: 700px) 45vw, 22vw"} preload={project.id === "lacuna"} /></div>
+                                <div className="hero__project-shade" />
+                                <div className="hero__project-info">
+                                    <span className="hero__project-name">{project.name}</span>
+                                    <span className="hero__project-type">{project.type}</span>
+                                    <LuArrowUpRight size={18} aria-hidden="true" />
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
 
-            <span
-              data-hero="badge-text"
-              className="relative z-10 block select-none tracking-wider"
-            >
-              PREMIUM DIGITAL STUDIO
-            </span>
-          </div>
+                    <Headline />
+                    {/* The white copy is clipped to the same geometric outline as the LACUNA artwork. */}
+                    <div className="hero__headline-mask" aria-hidden="true"><Headline overlay /></div>
 
-          {/* Main Headline */}
-          <h1
-            className="
-              mt-6
-              md:mt-6
-              w-full max-w-[1400px]
-              text-center font-bold
-              text-zinc-800
-              text-[clamp(2.15rem,9.4vw,3.5rem)]
-              leading-[1.03]
-              tracking-[-0.055em]
-              md:text-[clamp(3rem,8vw,7.5rem)]
-              md:leading-[0.9]
-              md:tracking-[-0.045em]
-              max-md:mt-5
-              max-md:text-[clamp(2.125rem,10.8vw,4.5rem)]
-              max-md:leading-[1.02]
-              max-md:tracking-[-0.045em]
-              select-none
-            "
-          >
-            <span data-hero="heading-main">
-              <span className="block md:inline max-md:block">WE DESIGN </span>
-            </span>
+                    <span className="hero__glass" aria-hidden="true" />
+                    <span className="hero__copper" aria-hidden="true" />
 
-            <span
-              data-hero="heading-highlight"
-              className="block md:inline-block max-md:block text-zinc-600 italic"
-            >
-              WEBSITES
-            </span>
-
-            <span data-hero="heading-main">
-              <span className="block md:inline max-md:block"> THAT PEOPLE</span>
-              <span className="block md:inline max-md:block"> REMEMBER.</span>
-            </span>
-          </h1>
-        </div>
-
-        {/* CTA Buttons */}
-        <div
-          data-hero="actions"
-          className="
-            mt-9
-            md:mt-8
-            flex w-full flex-col
-            items-center justify-center
-            gap-3
-            pointer-events-auto
-            scale-100
-            md:flex-row
-            md:gap-5
-            lg:gap-8
-            max-md:mt-7
-            max-md:flex-col
-            max-md:gap-3
-            max-md:[&>div]:w-full
-            max-md:[&>div]:max-w-64
-            max-md:[&_a]:w-full
-          "
-        >
-          <AlyoxaTrademarkButton
-            href="/contact"
-            text="START A PROJECT"
-            variant="light"
-          />
-          <AlyoxaTrademarkButton
-            href="/about"
-            text="WHO WE ARE"
-            variant="dark"
-          />
-        </div>
-      </div>
-    </section>
-  );
+                    <div className="hero__content">
+                        <p className="hero__description">Distinctive by design.<br />We turn ambitious ideas into brands and digital experiences people <em>feel.</em></p>
+                        <div className="hero__actions">
+                            <BrandButton href="#work" className="hero__primary-cta" label="Explore work" />
+                            <BrandButton href="#contact" className="hero__contact" variant="text" label="Have an idea?" />
+                        </div>
+                    </div>
+                </div>
+                <div className="hero__bottom"><span>Strategy. Design. Technology.</span><Link href="#work"><span>Scroll to discover</span><LuArrowDown size={17} aria-hidden="true" /></Link><span>Built to leave an impression.</span></div>
+            </div>
+        </section>
+    );
 }

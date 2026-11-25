@@ -1,0 +1,7 @@
+.inner-hero-line { display:block; }
+.inner-hero-ink { display:block; transform-origin:0 100%; }
+.inner-page-heading { translate:0 var(--inner-title-y,0px); }
+.portfolio-card__visual > img { translate:0 var(--portfolio-image-y,0px); scale:1.05; }
+@media(prefers-reduced-motion:reduce) { .inner-page-heading { translate:none; } }
+
+.process-journey__sculpture > * { translate:0 var(--sculpture-enter-y,0px); }

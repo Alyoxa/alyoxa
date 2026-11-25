@@ -1,156 +1,40 @@
 # ALYOXA
 
-> Crafting digital experiences that leave a lasting impression.
+Creative technology studio website built with Next.js App Router, Satoshi, and GSAP.
 
----
+## Development
 
-## About
+Use Node.js 24 (`.nvmrc`), then run `npm ci` and `npm run dev`.
+Run `npm run build` to verify the production build.
 
-ALYOXA is a premium digital product studio dedicated to designing, building, and elevating exceptional digital experiences.
+## Existing Netlify deployment
 
-We partner with startups, growing businesses, and ambitious founders to transform ideas into products that are beautiful, intuitive, and built for long-term success.
+This app stays at the repository root. `netlify.toml` sets the build command to
+`npm run build`, the publish directory to `.next`, and Node.js to 24.
+Netlify's current Next.js adapter handles API routes and image optimisation.
+Keep the existing Netlify site and domain connected to this GitHub repository.
+A merge to the connected production branch can deploy the new site automatically.
+Use a preview first; this branch does not change the production branch.
 
-Our work combines strategy, design, technology, and motion to create websites, applications, and brands that people genuinely enjoy using.
+### Enquiry email
 
----
+`POST /api/project-inquiry` sends to `hello@alyoxa.com` via Resend's REST API.
+The existing Netlify variables must be named `RESEND_API_KEY` and `RESEND_FROM`.
+Their scopes must include Functions and their values must apply to the intended
+production/preview context. The sender must belong to a verified Resend domain.
+Never commit the API key or prefix it with `NEXT_PUBLIC_`.
+For local sending, copy `.env.example` to `.env.local` and fill the values privately.
+Failed sends preserve the brief. Identical retry payloads use an idempotency key.
+The client email is set as Reply-To. Company and budget are optional.
 
-## Vision
+## Content before launch
 
-To become one of the world's most respected digital product studios, recognized for timeless design, exceptional engineering, and meaningful digital experiences.
+- Work examples are labelled concepts. Replace `src/app/work/projects.ts` with real projects.
+- Testimonials are labelled samples. Replace `src/components/sections/Testimonials/testimonialsData.ts` with approved quotes.
+- Contact numbers are WhatsApp links in `src/lib/studioContact.ts`.
+- The supplied legal documents are stored under `src/app/(legal)/`.
 
----
+## Compatibility
 
-## Mission
-
-To help ambitious businesses turn ideas into premium digital products through thoughtful strategy, world-class design, and modern development.
-
----
-
-## What We Build
-
-- Digital Product Design
-- Premium Websites
-- Web Applications
-- Brand Identity
-- E-commerce Experiences
-- Motion & Interaction
-
----
-
-## Our Philosophy
-
-We believe digital products should do more than function.
-
-They should create emotion.
-
-Every pixel has a purpose.
-
-Every interaction builds trust.
-
-Every animation should feel intentional.
-
-Simplicity isn't the absence of detail—it's the result of thoughtful decisions.
-
----
-
-## Core Values
-
-### Purpose Before Pixels
-
-Every decision should solve a real problem.
-
-### Craft Over Trends
-
-We build timeless experiences instead of chasing temporary trends.
-
-### Performance Matters
-
-Beautiful products should also be fast, accessible, and reliable.
-
-### Transparency
-
-Clear communication. Honest collaboration.
-
-### Continuous Improvement
-
-Every project should be better than the last.
-
-### Long-Term Thinking
-
-We're building brands and products that grow with time.
-
----
-
-## Technology
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- GSAP
-- Lenis
-- Supabase
-- Vercel
-
----
-
-## Project Status
-
-🚧 Currently in active development.
-
----
-
-## Repository Structure
-
-```
-docs/
-public/
-src/
-```
-
----
-
-## Design Principles
-
-✓ Simplicity
-
-✓ Performance
-
-✓ Accessibility
-
-✓ Scalability
-
-✓ Consistency
-
-✓ Attention to Detail
-
----
-
-## Future Roadmap
-
-- Premium Website
-- Design System
-- Journal
-- Case Studies
-- Blog
-- Component Library
-- Internal Tools
-- SaaS Products
-
----
-
-## Contact
-
-Website
-
-https://alyoxa.com
-
-Email
-
-hello@alyoxa.com
-
----
-
-© 2026 ALYOXA
-
-Crafted with purpose.
+`/Home` redirects permanently to `/`. The sitemap includes all new public pages.
+Existing public social images and brand assets are retained in the deployment branch.

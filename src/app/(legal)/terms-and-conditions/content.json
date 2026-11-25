@@ -1,0 +1,486 @@
+{
+  "title": "Terms & Conditions",
+  "updated": "November 25, 2026",
+  "updatedISO": "2026-11-25",
+  "intro": [
+    "Welcome to ALYOXA. These Terms & Conditions govern your use of our website and establish the general terms under which we provide creative, digital, and technology services.",
+    "By accessing our website or engaging our services, you agree to the applicable provisions of these Terms & Conditions."
+  ],
+  "sections": [
+    {
+      "id": "about-alyoxa",
+      "title": "1. About ALYOXA",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA is a creative technology studio combining strategy, design, and engineering to create digital experiences, brands, websites, and technology solutions."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Our services may include:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Brand identity and digital design.",
+            "Custom website design and development.",
+            "Landing pages and e-commerce solutions.",
+            "Website redesign and optimization.",
+            "Interactive digital experiences.",
+            "Product design and development.",
+            "Creative technology and software solutions.",
+            "Hosting, deployment, and maintenance.",
+            "Search engine optimization and performance improvements."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "The specific scope of each engagement will be established through an agreed proposal, quotation, or service agreement."
+        }
+      ]
+    },
+    {
+      "id": "website-use",
+      "title": "2. Website Use",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "You agree to use our website lawfully and responsibly."
+        },
+        {
+          "kind": "paragraph",
+          "text": "You must not:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Engage in unlawful, fraudulent, or harmful activities.",
+            "Attempt to gain unauthorized access to our systems.",
+            "Introduce malicious software or interfere with website functionality.",
+            "Misrepresent your identity or affiliation.",
+            "Copy or exploit protected website content without authorization.",
+            "Use our website in a manner that infringes the rights of others."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "We reserve the right to restrict access where necessary to protect our website, business, or users."
+        }
+      ]
+    },
+    {
+      "id": "project-agreements",
+      "title": "3. Project Agreements",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "All client projects are subject to an agreed scope of work."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Before a project begins, the relevant agreement may establish:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Project objectives and deliverables.",
+            "Design and development requirements.",
+            "Estimated timelines.",
+            "Pricing and payment schedules.",
+            "Revision allowances.",
+            "Client responsibilities.",
+            "Ownership and licensing arrangements.",
+            "Post-launch support requirements."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Where a signed project agreement conflicts with these general terms, the project agreement will take precedence for that engagement, subject to applicable law."
+        }
+      ]
+    },
+    {
+      "id": "pricing-and-payments",
+      "title": "4. Pricing and Payments",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Project pricing is determined by the scope, complexity, requirements, and estimated resources involved."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Advertised starting prices represent entry-level service packages and do not constitute fixed quotations for every project."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Unless otherwise agreed:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "A deposit may be required before work begins.",
+            "Payments must be made according to the agreed schedule.",
+            "Additional work outside the agreed scope may incur additional charges.",
+            "Third-party subscriptions, licenses, hosting, and other external costs may be charged separately.",
+            "Final delivery or ownership transfer may be subject to receipt of outstanding payments."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "All applicable fees, currencies, and payment conditions will be communicated through the relevant project agreement."
+        }
+      ]
+    },
+    {
+      "id": "client-responsibilities",
+      "title": "5. Client Responsibilities",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Clients are responsible for:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Providing accurate project requirements and relevant information.",
+            "Supplying required content, assets, and access permissions.",
+            "Providing timely feedback and approvals.",
+            "Ensuring supplied materials do not infringe third-party rights.",
+            "Meeting agreed payment obligations.",
+            "Maintaining the confidentiality of account credentials."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Delays in receiving required materials, feedback, or approvals may affect project timelines."
+        }
+      ]
+    },
+    {
+      "id": "revisions-and-scope-changes",
+      "title": "6. Revisions and Scope Changes",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Revisions are provided according to the agreed project scope."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Requests that introduce additional functionality, substantial design changes, new deliverables, or changes to previously approved work may be treated as additional services."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Any associated changes to pricing or timelines will be communicated before additional work proceeds."
+        }
+      ]
+    },
+    {
+      "id": "project-timelines",
+      "title": "7. Project Timelines",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Project timelines are estimates based on the agreed scope and information available at the beginning of an engagement."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Timelines may be affected by:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Changes to project requirements.",
+            "Delayed client feedback or approvals.",
+            "Third-party service interruptions.",
+            "Technical limitations or unforeseen complexities.",
+            "Circumstances outside our reasonable control."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA will make reasonable efforts to communicate significant delays and revised delivery expectations."
+        }
+      ]
+    },
+    {
+      "id": "intellectual-property",
+      "title": "8. Intellectual Property",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "All original content, branding, visual assets, design elements, and materials displayed on the ALYOXA website are owned by ALYOXA or used with appropriate authorization, unless otherwise stated."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Ownership of commissioned project deliverables will be governed by the relevant project agreement."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Unless otherwise agreed in writing:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Client-provided materials remain the property of their respective owners.",
+            "Ownership of agreed custom deliverables may transfer upon full payment.",
+            "ALYOXA retains ownership of its pre-existing tools, frameworks, reusable components, methodologies, and proprietary processes.",
+            "Third-party software, fonts, libraries, and assets remain subject to their respective licenses.",
+            "Unused concepts, rejected designs, and preliminary materials remain with ALYOXA unless otherwise agreed."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "portfolio-and-promotional-use",
+      "title": "9. Portfolio and Promotional Use",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Subject to the project agreement, confidentiality obligations, and any required permissions, ALYOXA may showcase completed projects within its portfolio, website, social media, and promotional materials."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Confidential information, private business data, and unpublished client materials will not be disclosed without appropriate authorization."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Clients requiring confidential or white-label arrangements should establish these requirements within their project agreement."
+        }
+      ]
+    },
+    {
+      "id": "third-party-services",
+      "title": "10. Third-Party Services",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Projects may involve third-party platforms, software, hosting providers, payment gateways, APIs, plugins, or other external services."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Such services are subject to their own terms, privacy policies, pricing, availability, and technical limitations."
+        },
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA is not responsible for third-party service changes, outages, discontinued features, or pricing adjustments beyond its reasonable control."
+        }
+      ]
+    },
+    {
+      "id": "hosting-maintenance-and-support",
+      "title": "11. Hosting, Maintenance, and Support",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Hosting, maintenance, updates, security monitoring, and ongoing technical support are included only where explicitly agreed."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Unless covered by an active support agreement, additional work requested after project completion may be quoted separately."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Clients are responsible for maintaining required subscriptions, domain renewals, hosting accounts, and third-party licenses unless these responsibilities are assigned to ALYOXA under a separate agreement."
+        }
+      ]
+    },
+    {
+      "id": "cancellations-and-refunds",
+      "title": "12. Cancellations and Refunds",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Cancellation and refund arrangements are governed by the relevant project agreement and applicable law."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Where a project is cancelled after work has commenced, charges may apply for:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Work already completed.",
+            "Resources reasonably allocated to the project.",
+            "Approved expenses.",
+            "Non-recoverable third-party costs."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Any refundable amount will be assessed according to the work completed, payments received, contractual terms, and applicable statutory rights."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Nothing in these terms limits any mandatory cancellation or refund rights available under applicable law."
+        }
+      ]
+    },
+    {
+      "id": "confidentiality",
+      "title": "13. Confidentiality",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA respects the confidentiality of client information and project materials."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Both parties are expected to protect confidential information received during an engagement and use it only for authorized purposes."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Confidentiality obligations do not prevent disclosures required by law or disclosures expressly authorized by the relevant party."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Additional confidentiality requirements may be established through a separate non-disclosure agreement."
+        }
+      ]
+    },
+    {
+      "id": "performance-and-results",
+      "title": "14. Performance and Results",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA aims to deliver professional, high-quality solutions aligned with agreed project objectives."
+        },
+        {
+          "kind": "paragraph",
+          "text": "However, we do not guarantee specific commercial outcomes, including:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Search engine rankings.",
+            "Sales or revenue increases.",
+            "Conversion rates.",
+            "Advertising performance.",
+            "Website traffic.",
+            "Social media growth."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Business outcomes depend on multiple factors, including market conditions, client operations, marketing activities, and third-party platforms."
+        }
+      ]
+    },
+    {
+      "id": "limitation-of-liability",
+      "title": "15. Limitation of Liability",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "To the extent permitted by applicable law, ALYOXA will not be liable for indirect or consequential losses arising from website use, third-party service interruptions, or circumstances outside its reasonable control."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Any project-specific liability limitations will be established through the relevant service agreement."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Nothing in these terms excludes or restricts liability where doing so would be unlawful, including liability for fraud or other matters that cannot legally be excluded."
+        }
+      ]
+    },
+    {
+      "id": "force-majeure",
+      "title": "16. Force Majeure",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Neither party will be responsible for delays or failures to perform obligations caused by circumstances beyond its reasonable control."
+        },
+        {
+          "kind": "paragraph",
+          "text": "These may include natural disasters, infrastructure failures, internet disruptions, government restrictions, or other unforeseen events."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Affected parties should communicate such circumstances and take reasonable steps to minimize disruption."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "17. Privacy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "The collection and processing of personal information are governed by our Privacy Policy, available at:"
+        },
+        {
+          "kind": "paragraph",
+          "text": "https://alyoxa.com/privacy-policy"
+        }
+      ]
+    },
+    {
+      "id": "governing-law-and-dispute-resolution",
+      "title": "18. Governing Law and Dispute Resolution",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "The governing law and jurisdiction applicable to a client engagement may be specified in the relevant project agreement."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Where a dispute arises, both parties are encouraged to seek a reasonable resolution through good-faith communication before pursuing formal proceedings."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Nothing in these terms removes mandatory legal protections available under applicable law."
+        }
+      ]
+    },
+    {
+      "id": "changes-to-these-terms",
+      "title": "19. Changes to These Terms",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "ALYOXA may update these Terms & Conditions to reflect changes in its services, business practices, or legal obligations."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Updated terms will be published on this page with a revised date."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Changes will not automatically override existing signed project agreements."
+        }
+      ]
+    },
+    {
+      "id": "contact-information",
+      "title": "20. Contact Information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "For questions regarding these Terms & Conditions, project agreements, or our services, please contact:"
+        },
+        {
+          "kind": "paragraph",
+          "text": "**ALYOXA® — Creative Technology Studio**"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Email: hello@alyoxa.com"
+        },
+        {
+          "kind": "paragraph",
+          "text": "United Kingdom: +44 7440 779802"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Pakistan: +92 340 6995234"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Website: https://alyoxa.com"
+        }
+      ]
+    }
+  ]
+}

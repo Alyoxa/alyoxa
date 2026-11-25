@@ -1,0 +1,9 @@
+[build]
+  base = "."
+  command = "npm run build"
+  publish = ".next"
+
+# Netlify automatically applies its current Next.js/OpenNext adapter.
+# Keep RESEND_API_KEY and RESEND_FROM in the Netlify UI, scoped to Functions.
+[build.environment]
+  NODE_VERSION = "24"
