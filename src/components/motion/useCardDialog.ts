@@ -81,7 +81,7 @@ export function useCardDialog({ dialogRef, scrollRef, source, surface, onClose }
         borderColor: frame.borderColor, boxShadow: frame.boxShadow,
       });
       dialog.append(ghost);
-      source.style.visibility = "hidden";
+      source.style.setProperty("visibility", "hidden");
     }
 
     const viewport = () => {
@@ -98,7 +98,7 @@ export function useCardDialog({ dialogRef, scrollRef, source, surface, onClose }
       focusClose();
       dialog.dataset.cardPhase = "open";
     };
-    const restoreSource = () => { if (source) source.style.visibility = previousVisibility; };
+    const restoreSource = () => { if (source) source.style.setProperty("visibility", previousVisibility); };
     const finishClose = () => {
       if (phase === "closed") return;
       phase = "closed";

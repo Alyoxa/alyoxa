@@ -1,5 +1,7 @@
 
 import type { Metadata } from "next";
+import { pageMetadata, siteUrl } from "@/lib/seo";
+import { SiteStructuredData } from "@/components/seo/StructuredData";
 import localFont from "next/font/local";
 import { INTRO_BOOTSTRAP } from "@/components/motion/Preloader/introState";
 import "./globals.css";
@@ -38,25 +40,19 @@ const satoshi = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://alyoxa.com"),
-  title: {
-    default: "ALYOXA® — Creative Technology Studio",
-    template: "%s | ALYOXA®",
-  },
-  description:
-    "ALYOXA is a creative technology studio building distinctive websites, digital experiences, and innovative technology solutions.",
+  metadataBase: new URL(siteUrl),
+  title: { default: "ALYOXA | Creative Technology Studio", template: "%s | ALYOXA" },
+  description: pageMetadata("/").description,
   applicationName: "ALYOXA",
-  openGraph: {
-    type: "website",
-    siteName: "ALYOXA",
-    title: "ALYOXA® — Creative Technology Studio",
-    description:
-      "Distinctive websites, digital experiences, and innovative technology solutions.",
-    url: "https://alyoxa.com",
-  },
-  robots: {
-    index: true,
-    follow: true,
+  publisher: "ALYOXA",
+  creator: "ALYOXA",
+  authors: [{name:"ALYOXA",url:siteUrl}],
+  icons: {icon:[{url:"/images/logo-icon.svg",type:"image/svg+xml"}]},
+  openGraph: pageMetadata("/").openGraph,
+  twitter: pageMetadata("/").twitter,
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION?.trim()?{google:process.env.GOOGLE_SITE_VERIFICATION.trim()}:{}),
+    ...(process.env.BING_SITE_VERIFICATION?.trim()?{other:{"msvalidate.01":process.env.BING_SITE_VERIFICATION.trim()}}:{}),
   },
 };
 
@@ -72,6 +68,7 @@ export default function RootLayout({
         <noscript><style>{`[data-motion-pending] { visibility: visible !important; animation: none !important; }`}</style></noscript>
       </head>
       <body className={`${satoshi.variable} antialiased`}>
+        <SiteStructuredData />
         {children}
       </body>
     </html>

@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-25",
+  "environment": "Local Next.js production server, default Lighthouse mobile/desktop navigation presets; approved intro enabled, no audit-only bypass",
+  "routesValidated": 8,
+  "productionAndPreviewIndexingValidated": true,
+  "fieldCoreWebVitalsAvailable": false,
+  "mobile": {
+    "lighthouseVersion": "13.6.0",
+    "fetchTime": "2026-11-25T08:26:59.676Z",
+    "scores": {
+      "performance": 74,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcpMs": 4720.563399999999,
+    "cls": 0,
+    "tbtMs": 326.5,
+    "remainingAccessibilityAudits": [
+      "color-contrast"
+    ]
+  },
+  "desktop": {
+    "lighthouseVersion": "13.6.0",
+    "fetchTime": "2026-11-25T08:28:02.764Z",
+    "scores": {
+      "performance": 96,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcpMs": 972.6681499999999,
+    "cls": 0,
+    "tbtMs": 111.68534999999997,
+    "remainingAccessibilityAudits": [
+      "color-contrast"
+    ]
+  }
+}

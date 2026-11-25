@@ -1,0 +1,52 @@
+{
+  "/": {
+    "name": "Home",
+    "title": "Creative Technology Studio & Web Design | ALYOXA",
+    "description": "ALYOXA is an independent creative technology studio for custom web design, brand identity, digital experiences, and product design for international clients.",
+    "type": "WebPage"
+  },
+  "/work": {
+    "name": "Work",
+    "title": "Web Design & Brand Concept Portfolio | ALYOXA",
+    "description": "Explore ALYOXA concept projects in creative web design, brand identity, digital experiences, and product design. Illustrative explorations, clearly labelled.",
+    "type": "CollectionPage"
+  },
+  "/services": {
+    "name": "Services",
+    "title": "Web Design, Development & Brand Identity Services | ALYOXA",
+    "description": "Discover custom website development, brand identity, interactive digital experiences, product design, and creative technology services from ALYOXA.",
+    "type": "WebPage"
+  },
+  "/approach": {
+    "name": "Approach",
+    "title": "Our Design & Development Process | ALYOXA",
+    "description": "See how ALYOXA connects discovery, strategy, design, development, and launch through a collaborative process for brands, websites, and digital products.",
+    "type": "WebPage"
+  },
+  "/about": {
+    "name": "About",
+    "title": "About Our Creative Technology Studio | ALYOXA",
+    "description": "Meet ALYOXA, an independent creative technology studio connecting brand strategy, considered design, and web development for ambitious international brands.",
+    "type": "AboutPage"
+  },
+  "/contact": {
+    "name": "Contact",
+    "title": "Start a Web Design or Digital Project | ALYOXA",
+    "description": "Start a conversation with ALYOXA about your website, brand, or digital product. Share your goals in a short project brief or contact the studio directly.",
+    "type": "ContactPage"
+  },
+  "/privacy-policy": {
+    "name": "Privacy Policy",
+    "title": "Privacy Policy | ALYOXA",
+    "description": "Read how ALYOXA collects, uses, shares, and protects personal information, and how to contact the studio about your privacy rights and requests.",
+    "type": "WebPage",
+    "lastModified": "2026-11-25"
+  },
+  "/terms-and-conditions": {
+    "name": "Terms & Conditions",
+    "title": "Terms & Conditions | ALYOXA",
+    "description": "Read the general terms for using the ALYOXA website and working with the studio, including project agreements, payments, ownership, and responsibilities.",
+    "type": "WebPage",
+    "lastModified": "2026-11-25"
+  }
+}

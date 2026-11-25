@@ -189,7 +189,7 @@ export default function Work() {
         </div>
 
         <div className="work__footer">
-          <div className="work__filters" aria-label="Project categories">
+          <div className="work__filters" role="group" aria-label="Project categories">
             {categories.map((category) => (
               <button
                 key={category}

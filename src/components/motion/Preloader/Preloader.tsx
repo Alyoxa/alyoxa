@@ -46,8 +46,6 @@ export default function Preloader() {
     let opening = false;
     let refreshFrame = 0;
     let assetDeadline = 0;
-    let drawing: gsap.core.Timeline;
-    let exit: gsap.core.Timeline;
 
     const layout = () => {
       const bounds = root.getBoundingClientRect();
@@ -83,13 +81,13 @@ export default function Preloader() {
       const length = path.getTotalLength();
       gsap.set(path, { strokeDasharray: length, strokeDashoffset: length, fillOpacity: 0, strokeOpacity: 1 });
     });
-    drawing = gsap.timeline({ onComplete: () => { drawn = true; startExit(); } });
+    const drawing = gsap.timeline({ onComplete: () => { drawn = true; startExit(); } });
     drawing.to(paths, { strokeDashoffset: 0, duration: .95, stagger: .055, ease: "power2.inOut" }, .08)
       .to(paths, { fillOpacity: 1, strokeOpacity: 0, duration: .28, stagger: .025, ease: "power2.out" }, .82)
       .from(q(".brand-preloader__word"), { opacity: 0, y: 10, duration: .6, ease: "power3.out" }, .35)
       .from(q(".brand-preloader__line"), { scaleX: 0, duration: .65, ease: "power2.inOut" }, .45)
       .call(() => window.dispatchEvent(new Event(INTRO_START)), [], .6);
-    exit = gsap.timeline({ paused: true, onComplete: () => finish() });
+    const exit = gsap.timeline({ paused: true, onComplete: () => finish() });
     exit.to(q(".brand-preloader__mark"), { opacity: 0, duration: .22 }, 0)
       .to(q(".brand-preloader__word, .brand-preloader__line"), { opacity: 0, y: -8, duration: .25 }, 0)
       .to(centre, { opacity: 1, duration: .2 }, 0)

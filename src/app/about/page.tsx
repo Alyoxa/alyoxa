@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { PageStructuredData } from "@/components/seo/StructuredData";
 import "@/components/ui/InnerPageHeading/InnerPageHeading.css";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar/Navbar";
@@ -7,12 +8,7 @@ import BrandButton from "@/components/ui/BrandButton/BrandButton";
 import StudioMotion from "./StudioMotion";
 import "./about-page.css";
 
-export const metadata: Metadata = {
-  title: "About the studio",
-  description: "Meet Alyoxa: an independent creative studio connecting strategy, design, and technology to build brands and digital experiences with purpose.",
-  alternates: { canonical: "/about" },
-  openGraph: { title: "About the studio | ALYOXA", description: "Independent thinking. Collective ambition. Discover the thinking behind Alyoxa.", url: "/about" },
-};
+export const metadata = pageMetadata("/about");
 
 const principles = [
   { number: "01", title: "Start with purpose.", text: "Before we make anything, we ask what it needs to do. Understanding your business, your audience, and your ambition gives the creative work a clear direction." },
@@ -29,7 +25,7 @@ const expertise = [
 export default function AboutPage() {
   return <div className="studio-page" id="alyoxa-site">
     <Navbar page="about" />
-    <main data-motion-pending id="main-content">
+    <PageStructuredData path="/about"/><main data-motion-pending id="main-content">
       <header className="studio-page__hero studio-page__wrap">
         <p className="studio-page__kicker" data-studio-reveal><span>THE STUDIO</span><span>Independent thinking. Collective ambition.</span></p>
         <h1 className="inner-page-heading" data-studio-reveal><span className="inner-hero-line"><span className="inner-hero-ink">Good ideas deserve</span></span><span className="inner-hero-line"><span className="inner-hero-ink">to become <em>real.</em></span></span></h1>

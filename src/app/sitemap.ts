@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { absoluteUrl, isIndexableDeployment, seoPages } from "@/lib/seo";
 export default function sitemap():MetadataRoute.Sitemap {
- return ["/","/work","/services","/approach","/about","/contact","/privacy-policy","/terms-and-conditions"].map(path=>({url:`https://alyoxa.com${path==="/"?"":path}`,lastModified:new Date(),changeFrequency:path.includes("policy")||path.includes("conditions")?"yearly" as const:"monthly" as const,priority:path==="/"?1:.7}));
+ if(!isIndexableDeployment())return [];
+ return Object.entries(seoPages).map(([path,page])=>({url:absoluteUrl(path),...("lastModified" in page?{lastModified:page.lastModified as string}:{})}));
 }

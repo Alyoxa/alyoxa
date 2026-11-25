@@ -75,7 +75,7 @@ export default function Hero() {
 
                     <div className="hero__projects">
                         {projects.map((project) => (
-                            <Link href="#work" key={project.id} className={`hero__project hero__project--${project.id}`} aria-label={`Explore ${project.name} and our selected work`}>
+                            <Link href="#work" key={project.id} className={`hero__project hero__project--${project.id}`} aria-label={`${project.name} ${project.type}: explore our selected work`}>
                                 <div className="hero__project-media"><Image src={project.image} alt={`${project.name} creative direction`} fill sizes={project.id === "lacuna" ? "(max-width: 700px) 85vw, 40vw" : "(max-width: 700px) 45vw, 22vw"} preload={project.id === "lacuna"} /></div>
                                 <div className="hero__project-shade" />
                                 <div className="hero__project-info">

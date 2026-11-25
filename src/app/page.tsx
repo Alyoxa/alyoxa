@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo";
+import { PageStructuredData } from "@/components/seo/StructuredData";
 
 import Navbar from "@/components/layout/Navbar/Navbar";
 import Hero from "@/components/sections/Hero/Hero";
@@ -10,9 +12,12 @@ import Footer from "@/components/layout/Footer/Footer";
 import ScrollJourney from "@/components/motion/ScrollJourney";
 import Preloader from "@/components/motion/Preloader/Preloader";
 
+export const metadata = pageMetadata("/");
+
 export default function Home() {
   return (
     <>
+      <PageStructuredData path="/" />
       <Preloader />
       <div id="alyoxa-site">
       <Navbar />

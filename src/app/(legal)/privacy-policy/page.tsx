@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { PageStructuredData } from "@/components/seo/StructuredData";
 import LegalDocument from "../LegalDocument";
 import content from "./content.json";
-export const metadata: Metadata = { title: "Privacy Policy", description: "How Alyoxa collects, uses, and protects personal information.", alternates: {canonical:"/privacy-policy"}, robots: {index:true,follow:true} };
-export default function PrivacyPolicy() { return <LegalDocument document={content}/>; }
+export const metadata = pageMetadata("/privacy-policy");
+export default function PrivacyPolicy() { return <><PageStructuredData path="/privacy-policy"/><LegalDocument document={content}/></>; }

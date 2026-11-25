@@ -38,3 +38,7 @@ The client email is set as Reply-To. Company and budget are optional.
 
 `/Home` redirects permanently to `/`. The sitemap includes all new public pages.
 Existing public social images and brand assets are retained in the deployment branch.
+
+## SEO and search readiness
+
+See [the SEO implementation report](docs/seo-implementation.md) for validation, measured limitations, and owner deployment/submission steps. Run `npm run seo:check` against a local production server (default port 3107). `npm run seo:indexnow` is a dry run; it never submits without `--submit` and valid production ownership. Optional verification variables are documented in `.env.example`.
