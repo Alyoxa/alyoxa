@@ -1,0 +1,13 @@
+.home-ribbon-page { position:relative; isolation:isolate; background:#fff; }
+.continuous-ribbons { position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none; user-select:none; }
+.continuous-ribbons__flow { position:absolute; width:calc(100% + 120px); height:calc(100% + 240px); top:-120px; left:-60px; display:block; }
+.home-ribbon-page > main,.home-ribbon-page > .studio-footer { position:relative; z-index:1; }
+/* Let the same page-wide ribbon pass behind the expanded header. */
+.home-ribbon-page .island-nav:not(.is-compact) .island-nav__shell { background-color:transparent; }
+.home-ribbon-page > main > :is(.hero,.work,.services,.approach,.about),
+.home-ribbon-page > .studio-footer { background-color:transparent; }
+.home-ribbon-page > main > .testimonials { background-color:rgb(247 245 241 / 65%); }
+/* The homepage owns the pattern; the Approach scene no longer repeats a local copy. */
+.home-ribbon-page .approach__ribbons { display:none; }
+@media(max-width:700px) { .continuous-ribbons__flow { width:calc(100% + 180px); left:-90px; opacity:.85; } }
+@media print { .continuous-ribbons { display:none; } }

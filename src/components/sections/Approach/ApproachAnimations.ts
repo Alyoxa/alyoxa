@@ -4,7 +4,7 @@ import { createApproachScrollStory } from "./ApproachScrollStory";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/** Scroll controls the sculpture; text reveals independently to stay readable. */
+/** The original brand mark draws on as the process enters; copy stays independent. */
 export function animateApproach(root: HTMLElement) {
   const media = gsap.matchMedia();
   media.add({
@@ -33,31 +33,35 @@ export function animateApproach(root: HTMLElement) {
 
     const sculpture = q(".approach__sculpture")[0];
     const stage = q(".approach__stage")[0];
-    // The assembly happens before the desktop reading hold.
-    // Small screens retain natural scrolling above the text timeline.
+    // Timed drawing stays legible even when the visitor stops scrolling.
     const assembly = gsap.timeline({
-      defaults: { ease: "power2.out" },
+      defaults: { ease: "power3.out" },
       scrollTrigger: {
-        trigger: desktop ? stage : sculpture,
-        start: "top 95%", end: desktop ? "top 18%" : "bottom 65%",
-        scrub: desktop ? .85 : .45,
-        invalidateOnRefresh: true,
+        trigger: sculpture, start: "top 78%", toggleActions: "play none none none",
       },
     });
-    const layers = [
-      { selector: ".approach__layer--back", x: 75, y: 65, turn: 8 },
-      { selector: ".approach__layer--base", x: -45, y: 90, turn: -6 },
-      { selector: ".approach__layer--middle", x: 45, y: -45, turn: 5 },
-      { selector: ".approach__layer--front", x: -65, y: -75, turn: -7 },
-    ];
-    layers.forEach((layer, index) => {
-      assembly.fromTo(q(layer.selector), {
-        x: layer.x * (desktop ? 1 : .55), y: layer.y * (desktop ? 1 : .55),
-        rotation: layer.turn, scale: .94, opacity: .15, svgOrigin: "400 305",
-      }, { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: .65 }, index * .09);
+    const paths = Array.from(root.querySelectorAll<SVGPathElement>(".approach__brand-path"));
+    paths.forEach(path => {
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length, fillOpacity: 0 });
     });
-    assembly.from(q(".approach__sphere"), { opacity: 0, y: -32, scale: .3, svgOrigin: "541 529", duration: .35, ease: "back.out(1.5)" }, .65)
-      .from(q(".approach__cross"), { opacity: 0, rotation: -90, scale: .5, duration: .45, stagger: .1 }, .25);
+    assembly.to(paths, { strokeDashoffset: 0, duration: 1.45, stagger: .1, ease: "power2.inOut" }, .05)
+      .fromTo(q(".approach__brand-half--left"), { x: -9, y: 5, rotation: -7, svgOrigin: "40.49 29.5" }, { x: 0, y: 0, rotation: 0, duration: 1.6, ease: "power3.inOut" }, .15)
+      .fromTo(q(".approach__brand-half--right"), { x: 9, y: 5, rotation: 7, svgOrigin: "40.49 29.5" }, { x: 0, y: 0, rotation: 0, duration: 1.6, ease: "power3.inOut" }, .25)
+      .to(paths, { fillOpacity: 1, strokeOpacity: 0, duration: .8, stagger: .05 }, 1.05)
+      .fromTo(q(".approach__brand-shine"), { x: 0, opacity: 0 }, { x: 140, opacity: 1, duration: 1.7, ease: "power2.inOut" }, 1.8)
+      .to(q(".approach__brand-shine"), { opacity: 0, duration: .3 }, 3.25)
+      .from(q(".approach__brand-shadow"), { scaleX: .6, opacity: 0, svgOrigin: "400 491", duration: 1.2 }, .65)
+      .from(q(".approach__centre-caption > *"), { opacity: 0, y: 10, duration: .7, stagger: .1 }, 1.25);
+    const linePaths = Array.from(root.querySelectorAll<SVGPathElement>(".approach__connectors path"));
+    linePaths.forEach(path => {
+      const length = path.getTotalLength();
+      assembly.fromTo(path, { strokeDasharray: length, strokeDashoffset: length }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" }, .7);
+    });
+    assembly.from(q(".approach__connectors circle"), { opacity: 0, duration: 1 }, 1.3);
+    gsap.fromTo(q(".approach__ribbon--one"), { yPercent: 3 }, { yPercent: -5, ease: "none", scrollTrigger: { trigger: stage, start: "top bottom", end: "bottom top", scrub: 1.2 } });
+    gsap.fromTo(q(".approach__ribbon--two"), { yPercent: -3 }, { yPercent: 5, ease: "none", scrollTrigger: { trigger: stage, start: "top bottom", end: "bottom top", scrub: 1.2 } });
+    timedReveals.push(assembly);
 
     // After assembly, the whole sculpture drifts subtly as the section leaves.
     // The wrapper owns this parallax, so it cannot overwrite the sheet transforms.
@@ -75,16 +79,17 @@ export function animateApproach(root: HTMLElement) {
         defaults: { ease: "power3.out" },
         scrollTrigger: { trigger: step, start: "top 88%", toggleActions: "play none none none" },
       });
-      reveal.from(step.querySelector(".approach__node"), { scale: 0, duration: .5, ease: "back.out(1.8)" })
+      reveal.fromTo(step, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .85 })
+        .from(step.querySelector(".approach__node"), { scale: 0, duration: .5, ease: "back.out(1.8)" }, .15)
         .from(step.querySelector(".approach__number"), { opacity: 0, y: 20, duration: .7 }, .05)
-        .from(step.querySelectorAll("h3, .approach__step-copy > p, .approach__deliverable"), { opacity: 0, y: 18, duration: .75, stagger: .1 }, .12);
+        .from(step.querySelectorAll("h3, .approach__step-details > p, .approach__deliverable"), { opacity: 0, y: 18, duration: .75, stagger: .1 }, .12);
       timedReveals.push(reveal);
       // Each node receives a quiet copper accent as its stage crosses the reading line.
       if (!context.conditions?.cinematic) gsap.fromTo(step.querySelector(".approach__node"), {
         backgroundColor: "#ffffff", borderColor: "#111111",
       }, {
         backgroundColor: "#d5a47c", borderColor: "#a36e45", duration: .3,
-        scrollTrigger: { trigger: step, start: "top 65%", toggleActions: "play none none reverse" },
+        scrollTrigger: { trigger: step, start: "top 65%", toggleActions: "play none none reverse", onEnter: () => root.setAttribute("data-process-step", step.dataset.process ?? "discovery"), onEnterBack: () => root.setAttribute("data-process-step", step.dataset.process ?? "discovery") },
       });
     });
 

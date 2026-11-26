@@ -1,7 +1,7 @@
 import gsap from "gsap";
 
 export function createApproachScrollStory(root: HTMLElement, stage: HTMLElement) {
-  const layers = Array.from(root.querySelectorAll<SVGGElement>(".approach__layer"));
+  const mark = root.querySelector(".approach__brand-icon");
   const ids = ["discovery", "strategy", "design", "growth"];
   gsap.set(root, { attr: { "data-process-step": ids[0] } });
   const story = gsap.timeline({ scrollTrigger: {
@@ -10,9 +10,9 @@ export function createApproachScrollStory(root: HTMLElement, stage: HTMLElement)
   } });
   ids.forEach((id, index) => {
     story.set(root, { attr: { "data-process-step": id } }, index);
-    layers.forEach((layer, layerIndex) => story.to(layer, {
-      "--process-layer-y": `${(layerIndex - index) * 4}px`, duration: .65, ease: "power2.inOut",
-    }, index));
+    if (mark) story.to(mark, {
+      "--process-mark-turn": `${[0, -2, 2, 0][index]}deg`, duration: .65, ease: "power2.inOut",
+    }, index);
   });
   story.to({}, { duration: .6 });
   return story;

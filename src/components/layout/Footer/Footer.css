@@ -36,14 +36,22 @@
   .studio-footer__eyebrow { margin-bottom: 32px; font-size: 11px; }
   .studio-footer__cta h2 { font-size: clamp(34px,8.4vw,50px); }
   .studio-footer__talk { margin-top: 32px; }
-  .studio-footer__main-row { gap: 24px 12px; }
-  .studio-footer__email { font-size: 16px; }
-  .studio-footer__nav { grid-column: 1 / -1; }
-  .studio-footer__nav { gap: 20px; }
-  .studio-footer__nav a { font-size: 13px; }
-  .studio-footer__legal-row { align-items: start; flex-direction: column; gap: 16px; }
-  .studio-footer__legal-row nav { flex-wrap: wrap; gap: 20px; }
+  .studio-footer__bottom { padding-inline: 24px; text-align: center; }
+  .studio-footer__main-row { display: flex; flex-direction: column; align-items: center; gap: 28px; padding-block: 32px 24px; }
+  .studio-footer__email { font-size: 18px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .studio-footer__phones { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 22px; width: 100%; padding: 0; }
+  .studio-footer__phone { justify-items: center; gap: 4px; }
+  .studio-footer__country { font-size: 10px; line-height: 1.7; }
+  .studio-footer__country > span { display: block; margin-left: 0; margin-top: 3px; }
+  .studio-footer__number { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; font-size: 16px; }
+  .studio-footer__nav { width: 100%; justify-content: center; gap: 8px 24px; }
+  .studio-footer__nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; font-size: 14px; }
+  .studio-footer__legal-row { align-items: center; justify-content: center; flex-direction: column; gap: 12px; padding-top: 24px; padding-bottom: max(28px,env(safe-area-inset-bottom)); }
+  .studio-footer__legal-row small { width: 100%; font-size: 11px; line-height: 1.7; }
+  .studio-footer__legal-row nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 4px 18px; }
+  .studio-footer__legal-row nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; font-size: 11px; }
 }
+@media (min-width: 440px) and (max-width: 600px) { .studio-footer__phones { grid-template-columns: 1fr 1fr; gap: 18px; } }
 .studio-footer__cta h2 > span { display: block; }
 .studio-footer__talk {
   --footer-magnet-x: 0;

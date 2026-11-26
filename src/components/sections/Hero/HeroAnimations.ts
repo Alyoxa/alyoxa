@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 function syncHeadlineMask(root: HTMLElement) {
   const card = root.querySelector<HTMLElement>(".hero__project--lacuna");
   const mask = root.querySelector<HTMLElement>(".hero__headline-mask");
-  if (!card || !mask) return () => {};
+  if (!card || !mask) return { update: () => {}, cleanup: () => {} };
   const previousClip = mask.style.clipPath;
   const update = () => {
     const width = card.offsetWidth;
@@ -27,11 +27,11 @@ function syncHeadlineMask(root: HTMLElement) {
   const observer = new ResizeObserver(update);
   observer.observe(root);
   observer.observe(card);
-  return () => { observer.disconnect(); mask.style.clipPath = previousClip; };
+  return { update, cleanup: () => { observer.disconnect(); mask.style.clipPath = previousClip; } };
 }
 
 export function animateHero(root: HTMLElement) {
-  const removeMaskSync = syncHeadlineMask(root);
+  const maskSync = syncHeadlineMask(root);
   const media = gsap.matchMedia();
   media.add({
     motion: "(prefers-reduced-motion: no-preference)",
@@ -44,7 +44,7 @@ export function animateHero(root: HTMLElement) {
     const cards = q(".hero__project") as HTMLElement[];
     const mask = q(".hero__headline-mask")[0];
     const waitingForIntro = document.documentElement.dataset.alyoxaIntro === "pending";
-    const intro = gsap.timeline({ defaults: { ease: "power3.out" }, paused: waitingForIntro, delay: waitingForIntro ? 0 : .08 });
+    const intro = gsap.timeline({ defaults: { ease: "power3.out" }, paused: waitingForIntro, delay: waitingForIntro ? 0 : .08, onUpdate: maskSync.update, onComplete: maskSync.update });
     intro.from(q(".hero__eyebrow, .hero__studio-note"), { opacity: 0, y: 12, duration: .7 }, 0)
       .from(q(".hero__cross"), { opacity: 0, scale: .3, rotation: -90, duration: 1, stagger: .12 }, .15);
     // Both copies share each tween so the overlapping typography never separates.
@@ -57,18 +57,37 @@ export function animateHero(root: HTMLElement) {
       }, .2 + index * .14);
     });
     cards.forEach((card, index) => {
-      const frame = index === 0 ? [card, mask].filter(Boolean) : [card];
-      intro.from(frame, { opacity: 0, duration: 1.05 }, .35 + index * .16)
-        .from(card.querySelector(".hero__project-media"), { scale: 1.22, duration: 1.8 }, .35 + index * .16)
-        .from(card.querySelector(".hero__project-info"), { opacity: 0, y: 16, duration: .7 }, .9 + index * .16);
+      const finalRotation = Number(gsap.getProperty(card, "rotation"));
+      const finalSkewX = Number(gsap.getProperty(card, "skewX"));
+      const finalSkewY = Number(gsap.getProperty(card, "skewY"));
+      const mobile = root.clientWidth <= 700;
+      const deckWidth = () => Math.min(root.clientWidth * (mobile ? .64 : .27), 360);
+      const deckHeight = () => deckWidth() * .7;
+      const deckX = () => root.clientWidth * (mobile ? .53 : .59) - card.offsetLeft - card.offsetWidth / 2;
+      const deckY = () => root.clientHeight * (mobile ? .48 : .43) - card.offsetTop - card.offsetHeight / 2;
+      const turn = [-9, 3, 12][index];
+      const direction = index % 2 === 0 ? -1 : 1;
+      intro.fromTo(card, {
+        x: () => deckX() + index * 8, y: () => deckY() + index * 7,
+        scaleX: () => deckWidth() / card.offsetWidth,
+        scaleY: () => deckHeight() / card.offsetHeight,
+        rotation: turn, skewX: 0, skewY: 0, opacity: 0,
+      }, { opacity: 1, duration: .35 }, .15 + index * .07)
+        // A short two-beat shuffle, followed by a measured deal to each CSS frame.
+        .to(card, { x: () => deckX() + direction * deckWidth() * .23, y: () => deckY() - 18 + index * 12, rotation: turn + direction * 9, duration: .38, ease: "power2.inOut" }, .5 + index * .045)
+        .to(card, { x: () => deckX() - direction * 12, y: () => deckY() + index * 6, rotation: turn * .6, duration: .36, ease: "power2.inOut" }, .88 + index * .045)
+        .to(card, { x: 0, y: 0, scaleX: 1, scaleY: 1, rotation: finalRotation, skewX: finalSkewX, skewY: finalSkewY, duration: 1.35, ease: "power3.inOut" }, 1.22 + index * .12)
+        .from(card.querySelector(".hero__project-media"), { scale: 1.12, duration: 2.3 }, .2)
+        .from(card.querySelector(".hero__project-info"), { opacity: 0, y: 12, duration: .65 }, 1.75 + index * .12);
     });
+    if (mask) intro.from(mask, { opacity: 0, duration: .5 }, 1.65);
     intro.from(q(".hero__glass"), { opacity: 0, scale: .75, duration: 1.1 }, 1)
       .from(q(".hero__copper"), { opacity: 0, scale: .3, duration: 1.1, ease: "back.out(1.6)" }, 1.1)
       .from(q(".hero__description"), { opacity: 0, y: 18, duration: .85 }, 1)
       .from(q(".hero__actions > *"), { opacity: 0, y: 16, duration: .75, stagger: .12 }, 1.2)
       .from(q(".hero__bottom > *"), { opacity: 0, y: 12, duration: .8, stagger: .08 }, 1.45);
 
-    const startIntro = () => { if (intro.paused()) intro.play(0); };
+    const startIntro = () => { if (intro.paused() && document.documentElement.dataset.alyoxaIntro === "ready") intro.play(0); };
     const introState = new MutationObserver(() => {
       if (document.documentElement.dataset.alyoxaIntro === "pending") intro.pause(0);
     });
@@ -141,5 +160,5 @@ export function animateHero(root: HTMLElement) {
     };
   });
   root.removeAttribute("data-motion-pending");
-  return () => { media.revert(); removeMaskSync(); };
+  return () => { media.revert(); maskSync.cleanup(); };
 }

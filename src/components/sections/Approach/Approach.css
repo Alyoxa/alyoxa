@@ -95,6 +95,8 @@
 }
 /* Keep the editorial geometry intact while ScrollTrigger animates SVG layers. */
 .approach__layer { transform-box: view-box; }
+.approach__brand-icon { rotate:var(--process-mark-turn,0deg); transform-origin:50% 50%; }
+.approach__brand-half { transform-box:view-box; }
 @media (prefers-reduced-motion: no-preference) {
   .approach__work-link { transition: background-color .3s, box-shadow .3s; }
   .approach__footer a > svg { transition: transform .4s cubic-bezier(.2,.7,.2,1); }

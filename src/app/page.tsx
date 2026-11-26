@@ -11,6 +11,7 @@ import Testimonials from "@/components/sections/Testimonials/Testimonials";
 import Footer from "@/components/layout/Footer/Footer";
 import ScrollJourney from "@/components/motion/ScrollJourney";
 import Preloader from "@/components/motion/Preloader/Preloader";
+import ContinuousRibbons from "@/components/motion/ContinuousRibbons";
 
 export const metadata = pageMetadata("/");
 
@@ -19,7 +20,8 @@ export default function Home() {
     <>
       <PageStructuredData path="/" />
       <Preloader />
-      <div id="alyoxa-site">
+      <div id="alyoxa-site" className="home-ribbon-page">
+      <ContinuousRibbons />
       <Navbar />
       <main id="main-content">
         <Hero />
