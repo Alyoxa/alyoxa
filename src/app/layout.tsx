@@ -4,6 +4,7 @@ import { pageMetadata, siteUrl } from "@/lib/seo";
 import { SiteStructuredData } from "@/components/seo/StructuredData";
 import localFont from "next/font/local";
 import { INTRO_BOOTSTRAP } from "@/components/motion/Preloader/introState";
+import PageTransition from "@/components/motion/PageTransition";
 import "./globals.css";
 
 const satoshi = localFont({
@@ -70,6 +71,7 @@ export default function RootLayout({
       <body className={`${satoshi.variable} antialiased`}>
         <SiteStructuredData />
         {children}
+        <PageTransition />
       </body>
     </html>
   );

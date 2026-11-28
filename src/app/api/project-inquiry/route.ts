@@ -15,7 +15,7 @@ export async function POST(request:Request) {
  const projectType=body.projectType;
  if(!Array.isArray(projectType)||!projectType.length||projectType.length>5||projectType.some(item=>typeof item!=="string"||!allowed.includes(item)))return fail("Choose a service, or select Not sure yet.",400);
  const clientName=field("clientName",80,true),clientEmail=field("clientEmail",254,true),projectIdea=field("projectIdea",1200,true),companyName=field("companyName",100),budgetRange=field("budgetRange",100),timing=field("timing",80);
- if(!clientName||/[\r\n]/.test(clientName)||!clientEmail||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientEmail)||!projectIdea||projectIdea.length<20||companyName===null||budgetRange===null||timing===null)return fail("Please check your name, email, and project details.",400);
+ if(!clientName||/[\r\n]/.test(clientName)||!clientEmail||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientEmail)||!projectIdea||projectIdea.length<10||companyName===null||budgetRange===null||timing===null)return fail("Please check your name, email, and project details.",400);
  const apiKey=process.env.RESEND_API_KEY,from=process.env.RESEND_FROM;
  if(!apiKey||!from){console.error("Project inquiry email service is not configured.");return fail("Email is temporarily unavailable. Your brief is saved. Please try again or email hello@alyoxa.com.",503);}
  const fields=[["Project type",[...new Set(projectType)].join(" / ")],["Company / brand",companyName||"Not provided"],["Client name",clientName],["Client email",clientEmail],["Budget range",budgetRange||"Let's discuss"],["Timing",timing||"Exploring options"],["Project idea",projectIdea]];

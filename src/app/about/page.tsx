@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer/Footer";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
 import StudioMotion from "./StudioMotion";
 import "./about-page.css";
+import AlyoxaMark from "@/components/ui/AlyoxaMark/AlyoxaMark";
 
 export const metadata = pageMetadata("/about");
 
@@ -47,7 +48,7 @@ export default function AboutPage() {
         <div className="studio-page__expertise-intro"><div data-studio-reveal><p className="studio-page__kicker">CONNECTED DISCIPLINES</p><h2 id="studio-expertise">One partner.<br /><em>A wider perspective.</em></h2><p className="studio-page__support">From the first question to the final detail, we connect the disciplines your idea needs.</p><BrandButton href="/services" variant="text" label="Explore our services" /><p className="studio-page__stack-note"><span aria-hidden="true">&#8595;</span> FOUR DISCIPLINES. ONE CONNECTED VISION.</p></div></div>
         <div className="studio-page__card-stack">{expertise.map((item, index) => <article className={`discipline-card discipline-card--${index + 1}`} key={item.title}>
           <div className="discipline-card__surface">
-            <div className="discipline-card__art" aria-hidden="true"><i /><i /><i /></div>
+            <div className="discipline-card__art" aria-hidden="true"><i /><i /><i /></div><AlyoxaMark className="brand-seal" />
             <div className="discipline-card__meta"><span>0{index + 1} / 04</span><span>ALYOXA / EXPERTISE</span></div>
             <div className="discipline-card__copy"><h3>{item.title}</h3><p>{item.text}</p></div>
             <span className="discipline-card__signature" aria-hidden="true">{["Define the difference.", "Make every moment matter.", "Clarity in every interaction.", "Bring possibility to life."][index]}</span>

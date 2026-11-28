@@ -10,6 +10,7 @@ import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
 import { useCardDialog } from "@/components/motion/useCardDialog";
+import AlyoxaMark from "@/components/ui/AlyoxaMark/AlyoxaMark";
 
 gsap.registerPlugin(useGSAP);
 
@@ -136,7 +137,7 @@ export default function Services() {
         <div className="services__cards">
           {services.map((service) => <button type="button" key={service.id} className={`services__card services__card--${service.id}`} onClick={(event) => { setSourceCard(event.currentTarget); setSelectedService(service); }} aria-haspopup="dialog" aria-label={`Explore ${service.title}`}>
             <ServiceArtwork kind={service.id} />
-            <span className="services__card-sheen" aria-hidden="true" />
+            <span className="services__card-sheen" aria-hidden="true" /><AlyoxaMark className="brand-seal brand-seal--top" />
             <div className="services__card-content"><span className="services__number">{service.number}</span><h3>{service.lines[0]}<br />{service.lines[1]}<sup>®</sup></h3><span className="services__card-bottom"><ArrowUpRight size={26} strokeWidth={1.3} aria-hidden="true" /><span>Explore service</span></span></div>
           </button>)}
         </div>

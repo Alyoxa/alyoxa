@@ -7,14 +7,14 @@
 .testimonial__surface { position:relative; display:flex; flex-direction:column; min-height:460px; padding:clamp(26px,3vw,54px); border:1px solid #ded7cf; border-radius:16px; background:#fffdfa; box-shadow:0 14px 35px #4b311a08; transform-origin:50% 0; transform:translateY(var(--quote-y,0px)) rotate(var(--quote-turn,0deg)) scale(var(--quote-scale,1)); }
 .testimonial:nth-child(3n + 2) .testimonial__surface { background:#eee5da; border-color:#d8c7b5; }
 .testimonial:nth-child(3n) .testimonial__surface { background:#242320; border-color:#38352f; color:#f8f3eb; }
-.testimonial__meta { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font:9px/1.5 monospace; letter-spacing:.08em; text-transform:uppercase; }
+.testimonial__meta { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font:600 11px/1.5 var(--font-satoshi),Arial,sans-serif; letter-spacing:.1em; text-transform:uppercase; }
 .testimonial__meta > :first-child { color:#a27955; }
 .testimonial__meta > :last-child { opacity:.55; }
-.testimonial__mark { display:block; height:54px; margin-top:20px; color:#b68b64; font:88px/1 Georgia,'Times New Roman',serif; }
+.testimonial__mark { display:block; height:54px; margin-top:20px; color:#b68b64; font:88px/1 var(--font-satoshi),Arial,sans-serif; }
 .testimonial blockquote { margin:0 0 36px; flex:1; }
 .testimonial blockquote p { margin:0; font-size:clamp(20px,1.65vw,28px); line-height:1.4; letter-spacing:-.025em; }
 .testimonial figcaption { display:flex; align-items:center; gap:14px; padding-top:24px; border-top:1px solid #b09d8838; }
-.testimonial__avatar { display:grid; place-items:center; width:40px; height:40px; flex-shrink:0; border:1px solid #b09d8855; border-radius:50%; color:#a27955; font:10px monospace; }
+.testimonial__avatar { display:grid; place-items:center; width:40px; height:40px; flex-shrink:0; border:1px solid #b09d8855; border-radius:50%; color:#a27955; font:600 11px var(--font-satoshi),Arial,sans-serif; letter-spacing:.06em; }
 .testimonial__person { display:grid; gap:5px; font-size:14px; }
 .testimonial__person > :last-child { font-size:11px; opacity:.6; }
 .testimonial figcaption a { margin-left:auto; color:inherit; text-decoration:none; font-size:11px; }
@@ -43,12 +43,12 @@
 @media(max-width:600px) {
  .testimonial__surface { min-height:420px; padding:26px; }
  .testimonial blockquote p { font-size:20px; }
- .testimonial__meta { font-size:8px; }
- .testimonials__eyebrow.section-eyebrow { font-size:8px; gap:6px; letter-spacing:.04em; }
+ .testimonial__meta { font-size:10px; }
+ .testimonials__eyebrow.section-eyebrow { font-size:10px; gap:6px; letter-spacing:.04em; }
 }
 @media(prefers-reduced-motion:reduce) { .testimonial { position:relative; top:auto; margin-bottom:28px; } }
 
 .testimonial__project { margin-bottom:18px; }
-.testimonial__project > span { display:block; font:8px/1.6 monospace; letter-spacing:.06em; text-transform:uppercase; opacity:.55; margin-bottom:8px; }
+.testimonial__project > span { display:block; font:600 11px/1.5 var(--font-satoshi),Arial,sans-serif; letter-spacing:.1em; text-transform:uppercase; opacity:.6; margin-bottom:8px; }
 .testimonial__project h3 { font-size:22px; font-weight:500; line-height:1.1; letter-spacing:-.035em; margin:0; }
 @media(prefers-reduced-motion:reduce) { .testimonials__stack::after { display:none; } }

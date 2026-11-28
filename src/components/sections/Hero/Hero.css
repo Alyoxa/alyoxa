@@ -24,11 +24,11 @@
 .hero__top { position: absolute; z-index: 15; inset: 28px var(--gutter) auto; display: flex; justify-content: space-between; align-items: start; gap: 24px; pointer-events: none; }
 .hero__studio-note { font-size: 11px; line-height: 1.5; letter-spacing: .02em; text-align: right; color: #78736d; }
 .hero__headline { position: absolute; z-index: 5; top: 17%; left: var(--gutter); width: 70%; pointer-events: none; }
-.hero__title { margin: 0; font-size: var(--hero-type-size); font-weight: 400; line-height: .86; letter-spacing: -.075em; color: var(--ink); }
+.hero__title { margin: 0; font-size: var(--hero-type-size); font-weight: 400; line-height: .86; letter-spacing: -.04em; color: var(--ink); }
 .hero__title-line { display: block; width: max-content; padding: 0 .08em .035em 0; white-space: nowrap; }
 .hero__title-line--two { margin-left: 9%; }
 .hero__title-line--three { margin-left: 20%; }
-.hero__title-line--four { margin-left: 47%; font-weight: 400; font-style: oblique 12deg; letter-spacing: -.08em; }
+.hero__title-line--four { margin-left: 47%; font-weight: 400; font-style: italic; letter-spacing: -.045em; }
 .hero__headline-mask { position: absolute; z-index: 7; inset: 0; pointer-events: none; clip-path: polygon(42.52% 10%,76% 10%,73.48% 62%,40% 62%); }
 .hero__headline-mask .hero__title { color: #fff; }
 .hero__projects { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
@@ -50,6 +50,17 @@
 .hero__primary-cta { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 0 27px; border-radius: 100px; background: #111; color: #fff; font-size: 14px; text-decoration: none; }
 .hero__contact { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: #111; font-size: 13px; text-decoration: none; }
 .hero__decorations { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
+/* Living champagne ribbons (HeroRibbons.tsx): back layer under the orbit, a front veil over the cards' lower edges.
+   Both fade at the top (no hard edge under the header) and the bottom (handing over to the page-wide ribbon). */
+.hero-ribbons { position: absolute; z-index: 0; inset: 0; pointer-events: none; -webkit-mask-image: linear-gradient(#0000, #000 14%, #000 68%, #0000 97%); mask-image: linear-gradient(#0000, #000 14%, #000 68%, #0000 97%); }
+.hero-ribbons--front { z-index: 4; }
+.hero-ribbons__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; will-change: transform; }
+.hero-ribbons__svg[data-layout="mobile"] { display: none; }
+/* The sphere travels the orbit (HeroAnimations.ts). Without JS or with reduced motion, it rests where it always did. */
+.hero__copper-orbit { position: absolute; z-index: 8; inset: 0; pointer-events: none; }
+.hero__copper-orbit.is-orbiting { inset: auto; top: 0; left: 0; width: 0; height: 0; will-change: transform; }
+.hero__copper-orbit.is-orbiting .hero__copper { top: 0; left: 0; }
+.hero__copper::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: #2b170c; opacity: var(--shade, 0); }
 .hero__orbit { position: absolute; top: 19%; left: 0; width: 100%; height: 68%; overflow: visible; color: #19191930; }
 .hero__orbit-trace { opacity: 0; }
 .hero__cross { position: absolute; width: 22px; height: 22px; color: #1116; }
@@ -59,7 +70,6 @@
 .hero__cross--one { top: 8%; left: 38%; }
 .hero__cross--two { top: 43%; right: 4%; }
 .hero__cross--three { top: 73%; left: 3%; }
-.hero__glass { position: absolute; z-index: 8; top: 60%; left: 38%; width: clamp(60px,5.5vw,104px); aspect-ratio: 1.15; border: 1px solid #ffffff70; border-radius: 7px; background: linear-gradient(110deg,#ffffff30,#ffffff90,#ffffff25); backdrop-filter: blur(13px); -webkit-backdrop-filter: blur(13px); transform: rotate(8deg); pointer-events: none; }
 .hero__copper { position: absolute; z-index: 8; top: 85%; left: 49%; width: clamp(18px,1.5vw,28px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 34% 25%,#fff0d9,#daa477 24%,#975734 48%,#422316 73%,#d69a6c); box-shadow: 0 2px 4px #0002; pointer-events: none; }
 .hero__bottom { position: absolute; z-index: 10; inset: auto var(--gutter) 22px; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: #77716b; }
 .hero__bottom > a { display: inline-flex; align-items: center; gap: 14px; min-height: 36px; color: #111; text-decoration: none; }
@@ -86,7 +96,6 @@
   .hero__project--tecton { top: 59%; left: 5%; width: 27%; height: 23%; }
   .hero__content { top: 71%; left: 43%; width: 51%; }
   .hero__description { font-size: 17px; }
-  .hero__glass { top: 58%; left: 38%; }
   .hero__copper { top: 87%; left: 35%; }
   .hero__bottom > span:last-child { display: none; }
 }
@@ -102,6 +111,8 @@
   .hero__title-line--three { margin-left: 3%; }
   .hero__title-line--four { margin-left: 39%; }
   .hero__headline-mask { display: none; }
+  .hero-ribbons__svg[data-layout="desktop"] { display: none; }
+  .hero-ribbons__svg[data-layout="mobile"] { display: block; }
   .hero__project--tecton { top: 58%; left: 4%; width: 42%; height: 16%; }
   .hero__project--aetherform { top: 60%; right: 3%; width: 38%; height: 14%; }
   .hero__project-info { font-size: 10px; gap: 5px; }
@@ -111,7 +122,6 @@
   .hero__actions { gap: 20px; margin-top: 18px; }
   .hero__primary-cta { min-height: 48px; padding-inline: 22px; }
   .hero__contact { font-size: 13px; }
-  .hero__glass { top: 62%; left: 42%; width: 56px; }
   .hero__copper { top: 75%; left: 51%; width: 18px; }
   .hero__orbit { top: 31%; height: 47%; left: -14%; width: 128%; }
   .hero__cross--one { top: 8%; left: auto; right: 8%; width: 16px; height: 16px; }
@@ -128,7 +138,4 @@
   .hero__title { font-size: 12vw; }
   .hero__primary-cta { padding-inline: 18px; gap: 14px; }
   .hero__actions { gap: 16px; }
-}
-@media (prefers-reduced-transparency: reduce) {
-  .hero__glass { background: #ccc; backdrop-filter: none; -webkit-backdrop-filter: none; }
 }

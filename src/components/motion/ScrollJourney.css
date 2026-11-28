@@ -1,6 +1,4 @@
 .hero__headline { translate: 0 var(--hero-scroll-title,0px); }
-.work__project-image { translate: 0 var(--work-media-y,0px); }
-.work__glass { translate: 0 var(--journey-glass-y,0px); }
 .about .about__artwork { translate: 0 calc(var(--about-enter-y,0px) + var(--journey-about-y,0px)); }
 .studio-footer__cta h2 { translate: 0 var(--finale-rise,0px); }
 .approach__layer { translate: 0 var(--process-layer-y,0px); }

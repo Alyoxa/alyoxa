@@ -18,31 +18,13 @@ export default function ScrollJourney() {
       if (!context.conditions?.motion) return;
       const desktop = Boolean(context.conditions.desktop);
       const hero = document.getElementById("home");
-      const work = document.getElementById("work");
       const about = document.getElementById("about");
       const contact = document.getElementById("contact");
       if (hero && desktop) gsap.fromTo(hero, { "--hero-scroll-title": "0px" }, {
         "--hero-scroll-title": "-52px", ease: "none",
         scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 1 },
       });
-      if (work) {
-        const cards = work.querySelectorAll<HTMLElement>(".work__project:not(.card-dialog__ghost)");
-        cards.forEach((card, index) => {
-          const distance = desktop ? (index === 1 ? 30 : 48) : 10;
-          gsap.fromTo(card, { "--work-scroll-y": `${distance}px` }, {
-            "--work-scroll-y": `${-distance}px`, ease: "none",
-            scrollTrigger: { trigger: work, start: "top bottom", end: "bottom top", scrub: .9 },
-          });
-          gsap.fromTo(card.querySelector(".work__project-image"), { "--work-media-y": desktop ? "-7px" : "-2px" }, {
-            "--work-media-y": desktop ? "7px" : "2px", ease: "none",
-            scrollTrigger: { trigger: work, start: "top bottom", end: "bottom top", scrub: 1.1 },
-          });
-        });
-        if (desktop) gsap.fromTo(work.querySelectorAll(".work__glass"), { "--journey-glass-y": "18px" }, {
-          "--journey-glass-y": "-30px", ease: "none",
-          scrollTrigger: { trigger: work, start: "top bottom", end: "bottom top", scrub: 1.2 },
-        });
-      }
+      // The Work section runs its own pinned spotlight (WorkAnimations.ts), so it has no depth pass here.
       if (about) gsap.fromTo(about.querySelector(".about__artwork"), { "--journey-about-y": desktop ? "28px" : "10px" }, {
         "--journey-about-y": desktop ? "-28px" : "-10px", ease: "none",
         scrollTrigger: { trigger: about, start: "top bottom", end: "bottom top", scrub: 1 },

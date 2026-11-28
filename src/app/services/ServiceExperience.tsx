@@ -4,6 +4,7 @@ import { useState } from "react";
 import { serviceDisciplines } from "@/lib/serviceDisciplines";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
 import "./service-experience.css";
+import AlyoxaMark from "@/components/ui/AlyoxaMark/AlyoxaMark";
 
 const studies = {
   brand: { label: "THE IDENTITY STUDY", name: "From a point of view to a world of your own.", notes: ["A clear position gives every expression a shared starting point.", "A recognisable identity, expressed across the places people meet you.", "Type and colour work together to make the everyday unmistakable.", "A connected system your team can carry into the next chapter."] },
@@ -62,7 +63,7 @@ function ServiceStudy({ service, index }: { service: typeof serviceDisciplines[n
   return <section className={`service-chapter service-study service-study--${id}`} id={id} aria-labelledby={`${id}-title`}>
     <div className="service-study__top"><span>0{index + 1} / THE DISCIPLINE</span><span>{study.label}</span></div>
     <div className="service-study__card">
-      <div className="service-study__progress" aria-hidden="true"><span /></div>
+      <div className="service-study__progress" aria-hidden="true"><span /></div><AlyoxaMark className="brand-seal brand-seal--top" />
       <div className="service-study__visual" data-focus={focus} data-live="false" aria-hidden="true"><div className="service-study__scene-label"><span><i />ALYOXA / EXPLORATIONS</span><span>0{index + 1}—04</span></div><div className="service-study__scene-depth"><div className="service-study__scene-pointer"><Scene/></div></div><div className="service-study__scene-bottom"><span>{study.name}</span><span>ILLUSTRATIVE STUDY</span></div></div>
       <div className="service-study__content"><p className="service-study__kicker">{service.title} / ALYOXA</p><h2 id={`${id}-title`}>{service.title}</h2><p className="service-study__phrase"><em>{service.phrase}</em></p><p className="service-study__description">{service.description}</p>
         <div className="service-study__capabilities"><h3>EXPLORE WHAT WE CAN CREATE <span aria-hidden="true">↙</span></h3><ul>{service.deliverables.map((item, itemIndex) => <li key={item}><button type="button" aria-pressed={focus === itemIndex} aria-controls={`${id}-study-note`} onClick={() => setFocus(itemIndex)}><span className="service-study__cap-number" aria-hidden="true">0{itemIndex + 1}</span><span>{item}</span><span className="service-study__cap-arrow" aria-hidden="true">↗</span></button></li>)}</ul></div>

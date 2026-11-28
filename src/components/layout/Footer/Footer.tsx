@@ -10,6 +10,7 @@ import { animateFooter } from "./FooterAnimations";
 import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
 import "./Footer.css";
+import SocialLinks from "@/components/ui/SocialLinks/SocialLinks";
 
 gsap.registerPlugin(useGSAP);
 
@@ -29,7 +30,7 @@ export default function Footer({ contactIndex = "06", showCta = true }: { contac
     <div className="studio-footer__bottom">
       <div className="studio-footer__main-row">
         <a className="studio-footer__email" href="mailto:hello@alyoxa.com">hello@alyoxa.com</a>
-        <nav className="studio-footer__nav" aria-label="Footer navigation"><Link href="/work">Work</Link><Link href="/services">Services</Link><Link href="/approach">Approach</Link><Link href="/about">About</Link></nav>
+        <SocialLinks className="studio-footer__socials" />
         <div className="studio-footer__phones" aria-label="Studio phone contacts">
           {[studioContact.pk,studioContact.uk].map(phone=><div className="studio-footer__phone" key={phone.code}><span className="studio-footer__country">{phone.code} <span>{phone.label} / WhatsApp</span></span><a className="studio-footer__number" href={phone.href} target="_blank" rel="noopener noreferrer" aria-label={`${phone.display}: chat with Alyoxa on WhatsApp in ${phone.label} (opens in a new tab)`}>{phone.display}</a></div>)}
         </div>

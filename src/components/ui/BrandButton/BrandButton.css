@@ -79,13 +79,7 @@
 .brand-button.brand-button:disabled { background: transparent; border-color: #ccc; color: #777; cursor: default; box-shadow: none; }
 .brand-button:disabled .brand-button__icon { background: #eee; color: #888; }
 .is-compact .island-nav__cta.brand-button { border-color: #ffffff40; }
-.island-panel .island-panel__start.brand-button.brand-button { display: flex; width: 100%; justify-content: space-between; }
-.work .work__filter { transition: background-color .25s,color .25s,border-color .25s,scale .25s var(--brand-ease,cubic-bezier(.22,1,.36,1)); }
-.work .work__filter:active { scale: .96; }
-.work .work__filter:focus-visible { outline-color: #9c6843; }
 @media (hover: hover) and (pointer: fine) {
-  .work .work__filter:hover { border-color: #b28a66; background: #f2e7dc; }
-  .work .work__filter--active:hover { border-color: #c89c73; background: #2b241e; }
   .studio-footer__top:hover, .island-nav__toggle:hover { background: #d5b18d; border-color: #b28a66; color: #111; }
   .case-study__close:hover > svg, .service-detail__close:hover > svg { background: #d5b18d; border-color: #b28a66; color: #111; }
   .case-study__next:hover .case-study__next-icon { background: #d5b18d; border-color: #b28a66; color: #111; }
@@ -107,6 +101,85 @@
   .brand-button:hover:not(:disabled) .brand-button__label-main { transform: none; }
   .brand-button:hover:not(:disabled) .brand-button__label-copy { transform: translateY(125%); }
   .brand-button.brand-button:active { scale: 1; }
-  .work .work__filter { transition: none; }
-  .work .work__filter:active { scale: 1; }
+}
+
+/* ------------------------------------------------------------------------------------------
+   Bronze sphere roll. The arrow chip is the hero's bronze sphere: on hover it rolls to the
+   far end of the pill, copper fills in behind it, and the label slides across. --brand-travel
+   and --brand-label-shift are measured per button in BrandButton.tsx, so any width works.
+   ------------------------------------------------------------------------------------------ */
+.brand-button.brand-button.brand-button {
+  --brand-bronze: radial-gradient(circle at 34% 26%, #fff1de 0, #e6b68a 18%, #b07445 40%, #6f3c1f 66%, #3a1d0f 84%, #a8714a 100%);
+  --brand-roll-duration: .9s;
+  --brand-roll-ease: cubic-bezier(.65, 0, .25, 1);
+  /* !important: GSAP writes an inline `translate: none` on buttons it has animated in; it moves them with `transform`, so this does not conflict. */
+  translate: var(--brand-mx, 0px) var(--brand-my, 0px) !important;
+  transition: color .5s, border-color .5s, box-shadow .65s, scale .18s var(--brand-ease), translate .7s cubic-bezier(.22, 1, .36, 1);
+}
+.brand-button[data-variant]:not([data-variant="text"]) .brand-button__icon {
+  background: var(--brand-bronze);
+  color: #fff;
+  box-shadow: inset -2px -3px 5px #2a120760, inset 1px 1px 2px #ffe9d280, 0 2px 6px #4a22102e;
+}
+.brand-button[data-variant]:not([data-variant="text"]) .brand-button__icon > svg { filter: drop-shadow(0 1px 1px #2a120780); }
+
+/* Pills: the roll itself. */
+.brand-button.brand-button[data-shape="pill"]:not([data-variant="text"])::before {
+  clip-path: inset(0 0 0 100% round 100px);
+  transition: clip-path var(--brand-roll-duration) var(--brand-roll-ease);
+}
+.brand-button[data-shape="pill"]:not([data-variant="text"]) .brand-button__icon,
+.brand-button[data-shape="pill"]:not([data-variant="text"]) .brand-button__label {
+  transition: transform var(--brand-roll-duration) var(--brand-roll-ease), color .5s, box-shadow .5s;
+}
+.brand-button[data-shape="pill"]:not([data-variant="text"]) .brand-button__label-main,
+.brand-button[data-shape="pill"]:not([data-variant="text"]) .brand-button__label-copy { transition: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .brand-button.brand-button[data-shape="pill"]:not([data-variant="text"]):hover:not(:disabled)::before { clip-path: inset(0 0 0 0 round 100px); }
+  .brand-button[data-shape="pill"]:not([data-variant="text"]):hover:not(:disabled) .brand-button__icon {
+    transform: translateX(var(--brand-travel, 0px));
+    background: var(--brand-bronze);
+    color: #fff;
+    border-color: transparent;
+  }
+  .brand-button[data-shape="pill"]:not([data-variant="text"]):hover:not(:disabled) .brand-button__label { transform: translateX(var(--brand-label-shift, 0px)); }
+  /* The label slides instead of rolling, so keep the main copy in place. */
+  .brand-button[data-shape="pill"]:not([data-variant="text"]):hover:not(:disabled) .brand-button__label-main { transform: none; }
+  .brand-button[data-shape="pill"]:not([data-variant="text"]):hover:not(:disabled) .brand-button__label-copy { transform: translateY(125%); }
+  .brand-button[data-variant]:not([data-variant="text"]):hover:not(:disabled) .brand-button__icon { background: var(--brand-bronze); color: #fff; }
+}
+/* Keyboard focus gets the same end state as hover. */
+.brand-button.brand-button[data-shape="pill"]:not([data-variant="text"]):focus-visible::before { clip-path: inset(0 0 0 0 round 100px); }
+.brand-button[data-shape="pill"]:not([data-variant="text"]):focus-visible .brand-button__icon { transform: translateX(var(--brand-travel, 0px)); background: var(--brand-bronze); color: #fff; }
+.brand-button[data-shape="pill"]:not([data-variant="text"]):focus-visible .brand-button__label { transform: translateX(var(--brand-label-shift, 0px)); }
+.brand-button[data-variant]:not([data-variant="text"]):active:not(:disabled) .brand-button__icon { background: var(--brand-bronze); color: #fff; }
+
+/* ------------------------------------------------------------------------------------------
+   Text links: a copper underline draws in, and the outlined arrow circle fills with copper.
+   ------------------------------------------------------------------------------------------ */
+.brand-button[data-variant="text"] .brand-button__label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #b0825d;
+  scale: 0 1;
+  transform-origin: 100% 50%;
+  transition: scale .7s cubic-bezier(.65, 0, .25, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .brand-button[data-variant="text"]:hover .brand-button__label::after { scale: 1 1; transform-origin: 0 50%; }
+  .brand-button[data-variant="text"]:hover:not(:disabled) .brand-button__icon { background: #d5b18d; border-color: #c3976f; color: #111; }
+}
+.brand-button[data-variant="text"]:focus-visible .brand-button__label::after { scale: 1 1; transform-origin: 0 50%; }
+.brand-button[data-variant="text"]:focus-visible .brand-button__icon { background: #d5b18d; border-color: #c3976f; color: #111; }
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-button.brand-button.brand-button { translate: none !important; }
+  .brand-button.brand-button[data-shape="pill"]::before, .brand-button .brand-button__label, .brand-button .brand-button__label::after { transition: none; }
+  /* No travel: the sphere and label stay put; hover still changes colour. */
+  .brand-button[data-shape="pill"] .brand-button__icon, .brand-button[data-shape="pill"] .brand-button__label { transform: none !important; }
 }

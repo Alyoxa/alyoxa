@@ -6,7 +6,7 @@
 .approach__eyebrow > span { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 .approach__heading { margin: 0; padding-left: 12px; font-size: clamp(52px,4.55vw,88px); font-weight: 400; line-height: .89; letter-spacing: -.065em; text-transform: uppercase; }
 .approach__heading > span { display: block; }
-.approach__heading > em { display: block; width: max-content; margin-left: .55em; font-family: Georgia,'Times New Roman',serif; font-weight: 400; font-size: 1.08em; line-height: 1.03; letter-spacing: -.075em; }
+.approach__heading > em { display: block; width: max-content; margin-left: .55em; font-family: inherit; font-style: italic; font-weight: 400; font-size: 1em; line-height: 1.03; letter-spacing: -.035em; }
 .approach__description { align-self: start; margin-top: 56px; padding: 0 0 0 clamp(28px,2.8vw,54px); border-left: 1px solid #222; }
 .approach__description p { max-width: 490px; margin: 0 0 22px; font-size: clamp(18px,1.32vw,25px); line-height: 1.35; letter-spacing: -.02em; }
 .approach__description > span { font: 10px/1.5 monospace; letter-spacing: .08em; color: #777; }
@@ -23,7 +23,7 @@
 .approach__step--strategy { top: 2%; right: 0; width: 24%; }
 .approach__step--design { top: 68%; right: 0; width: 24%; }
 .approach__step--growth { top: 73%; left: 6.5%; }
-.approach__number { font: italic 30px/1 Georgia,'Times New Roman',serif; letter-spacing: -.06em; }
+.approach__number { font: italic 30px/1 var(--font-satoshi),Arial,sans-serif; letter-spacing: -.06em; }
 .approach__node { position: absolute; top: 31px; left: -29px; width: 15px; height: 15px; border: 1.5px solid #111; border-radius: 50%; background: #fff; }
 .approach__step h3 { margin: 5px 0 15px; font: 700 clamp(12px,.97vw,18px)/1.35 monospace; letter-spacing: .09em; text-transform: uppercase; }
 .approach__step-copy > p { max-width: 280px; margin: 0; font-size: clamp(15px,.99vw,19px); line-height: 1.35; letter-spacing: -.015em; }

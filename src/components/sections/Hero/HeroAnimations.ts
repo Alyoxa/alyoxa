@@ -81,8 +81,7 @@ export function animateHero(root: HTMLElement) {
         .from(card.querySelector(".hero__project-info"), { opacity: 0, y: 12, duration: .65 }, 1.75 + index * .12);
     });
     if (mask) intro.from(mask, { opacity: 0, duration: .5 }, 1.65);
-    intro.from(q(".hero__glass"), { opacity: 0, scale: .75, duration: 1.1 }, 1)
-      .from(q(".hero__copper"), { opacity: 0, scale: .3, duration: 1.1, ease: "back.out(1.6)" }, 1.1)
+    intro.from(q(".hero__copper"), { opacity: 0, scale: .3, duration: 1.1, ease: "back.out(1.6)" }, 1.1)
       .from(q(".hero__description"), { opacity: 0, y: 18, duration: .85 }, 1)
       .from(q(".hero__actions > *"), { opacity: 0, y: 16, duration: .75, stagger: .12 }, 1.2)
       .from(q(".hero__bottom > *"), { opacity: 0, y: 12, duration: .8, stagger: .08 }, 1.45);
@@ -115,13 +114,72 @@ export function animateHero(root: HTMLElement) {
     window.addEventListener(INTRO_DONE, updateAmbient);
     updateAmbient();
 
+    // The copper sphere travels the orbit: behind the cards on the upper arc, in front on the lower arc.
+    let removeSphere = () => {};
+    const orbitPath = root.querySelector<SVGPathElement>(".hero__orbit-base");
+    const orbitSvg = orbitPath?.ownerSVGElement;
+    const copperOrbit = root.querySelector<HTMLElement>(".hero__copper-orbit");
+    const copper = copperOrbit?.querySelector<HTMLElement>(".hero__copper");
+    const composition = root.querySelector<HTMLElement>(".hero__composition");
+    if (orbitPath && orbitSvg && copperOrbit && copper && composition) {
+      const length = orbitPath.getTotalLength();
+      const box = orbitPath.getBBox();
+      // Start at the orbit's lowest point, close to where the sphere used to rest.
+      let progress = 0, lowest = -Infinity;
+      for (let i = 0; i < 240; i++) {
+        const p = orbitPath.getPointAtLength((length * i) / 240);
+        if (p.y > lowest) { lowest = p.y; progress = i / 240; }
+      }
+      const sphereMotion = { speed: 0 };
+      intro.to(sphereMotion, { speed: 1, duration: 3, ease: "power1.in" }, 1.8);
+      // The orbit SVG and the composition move together, so their mapping only changes on resize.
+      const map = { ox: 0, oy: 0, sx: 1, sy: 1, half: 0 };
+      const measure = () => {
+        const s = orbitSvg.getBoundingClientRect(), c = composition.getBoundingClientRect(), vb = orbitSvg.viewBox.baseVal;
+        map.ox = s.left - c.left - vb.x * (s.width / vb.width);
+        map.oy = s.top - c.top - vb.y * (s.height / vb.height);
+        map.sx = s.width / vb.width;
+        map.sy = s.height / vb.height;
+        map.half = copper.offsetWidth / 2;
+        copper.style.margin = `${-map.half}px 0 0 ${-map.half}px`; // centre the sphere on the wrapper's origin
+      };
+      let front: boolean | null = null;
+      const place = () => {
+        const p = orbitPath.getPointAtLength(length * progress);
+        const near = (p.y - box.y) / box.height; // 0 = far side (top), 1 = near side (bottom)
+        copperOrbit.style.transform = `translate3d(${(map.ox + p.x * map.sx).toFixed(1)}px, ${(map.oy + p.y * map.sy).toFixed(1)}px, 0) scale(${(.72 + .38 * near).toFixed(3)})`;
+        copperOrbit.style.setProperty("--shade", ((1 - near) * .4).toFixed(3));
+        const isFront = near > .42;
+        if (isFront !== front) { front = isFront; copperOrbit.style.zIndex = isFront ? "8" : "2"; }
+      };
+      copperOrbit.classList.add("is-orbiting");
+      measure();
+      place();
+      const resize = new ResizeObserver(() => { measure(); place(); });
+      resize.observe(composition);
+      const tick = (_time: number, deltaMs: number) => {
+        if (!inView || document.hidden || sphereMotion.speed === 0) return;
+        progress = (progress + (Math.min(deltaMs / 1000, .05) * sphereMotion.speed) / 46) % 1; // one lap ≈ 46s
+        place();
+      };
+      gsap.ticker.add(tick);
+      removeSphere = () => {
+        gsap.ticker.remove(tick);
+        resize.disconnect();
+        copperOrbit.classList.remove("is-orbiting");
+        copperOrbit.style.transform = "";
+        copperOrbit.style.zIndex = "";
+        copperOrbit.style.removeProperty("--shade");
+        copper.style.margin = "";
+      };
+    }
+
     q(".hero__project-media > img").forEach((image: HTMLElement, index: number) => {
       gsap.fromTo(image, { yPercent: -2 }, {
         yPercent: index === 0 ? 4 : 7, ease: "none",
         scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: .9 },
       });
     });
-    gsap.to(q(".hero__glass"), { y: -24, ease: "none", scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: 1 } });
     const removeListeners: (() => void)[] = [];
     if (context.conditions?.pointer) {
       cards.forEach((card) => {
@@ -157,6 +215,7 @@ export function animateHero(root: HTMLElement) {
       document.removeEventListener("visibilitychange", updateAmbient);
       root.removeEventListener("focusin", revealFocused);
       removeListeners.forEach((remove) => remove());
+      removeSphere();
     };
   });
   root.removeAttribute("data-motion-pending");

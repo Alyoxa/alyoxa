@@ -9,7 +9,7 @@
  color: #161616;
 }
 .inner-page-heading.inner-page-heading em {
- font-family: Georgia,'Times New Roman',serif;
+ font-family: inherit; font-style: italic;
  font-weight: 400;
  font-style: italic;
  color: #987050;

@@ -9,6 +9,7 @@ import { LuArrowUpRight, LuArrowDown } from "react-icons/lu";
 import { animateHero } from "./HeroAnimations";
 import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
+import HeroRibbons from "./HeroRibbons";
 import "./Hero.css";
 
 gsap.registerPlugin(useGSAP);
@@ -52,6 +53,7 @@ export default function Hero() {
                 </div>
 
                 <div className="hero__composition">
+                    <HeroRibbons />
                     <div className="hero__decorations" aria-hidden="true">
                         <svg className="hero__orbit" viewBox="0 0 1600 700" preserveAspectRatio="none" fill="none">
                             <path
@@ -91,8 +93,8 @@ export default function Hero() {
                     {/* The white copy is clipped to the same geometric outline as the LACUNA artwork. */}
                     <div className="hero__headline-mask" aria-hidden="true"><Headline overlay /></div>
 
-                    <span className="hero__glass" aria-hidden="true" />
-                    <span className="hero__copper" aria-hidden="true" />
+                    {/* The wrapper carries the orbit position; GSAP's intro owns the sphere's own transform. */}
+                    <span className="hero__copper-orbit" aria-hidden="true"><span className="hero__copper" /></span>
 
                     <div className="hero__content">
                         <p className="hero__description">Distinctive by design.<br />We turn ambitious ideas into brands and digital experiences people <em>feel.</em></p>

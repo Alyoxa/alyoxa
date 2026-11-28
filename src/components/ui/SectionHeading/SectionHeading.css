@@ -8,7 +8,8 @@
   font-weight: 400;
   font-style: normal;
   line-height: .96;
-  letter-spacing: -.06em;
+  /* Caps need looser tracking than lowercase or letters collide (WORKS, RELATIONSHIPS). */
+  letter-spacing: -.035em;
   text-transform: uppercase;
   color: #080808;
 }
@@ -29,7 +30,7 @@
 .section-heading.section-heading > .section-heading__line:nth-child(2) { margin-left: .18em; }
 .section-heading.section-heading > .section-heading__line--accent {
   margin-left: .06em;
-  font-style: oblique 12deg;
+  font-style: italic; /* Satoshi has no italic face; browsers synthesize italic reliably, oblique <angle> not. */
 }
 @media (max-width: 800px) {
   .section-heading.section-heading { font-size: clamp(30px, 9.5vw, 62px); }

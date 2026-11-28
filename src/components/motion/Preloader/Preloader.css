@@ -1,14 +1,23 @@
 html { scrollbar-gutter: stable; }
 html[data-alyoxa-intro="pending"], html[data-alyoxa-intro="opening"] { overflow: hidden; }
-.brand-preloader { display: none; position: fixed; z-index: 10000; inset: 0; width: 100%; height: 100%; color: #111; }
+.brand-preloader { display: none; position: fixed; z-index: 10000; inset: 0; width: 100%; height: 100%; color: #f3e6d8; }
 html[data-alyoxa-intro="pending"] .brand-preloader,
 html[data-alyoxa-intro="opening"] .brand-preloader { display: block; }
 .brand-preloader__cover { position: absolute; inset: 0; width: 100%; height: 100%; }
-.brand-preloader__mark { position: absolute; top: 50%; left: 50%; width: clamp(88px,8vw,112px); height: auto; overflow: visible; opacity: 0; translate: -50% -50%; }
-.brand-preloader__word { position: absolute; top: calc(50% + 70px); left: 50%; translate: -50% 0; font-size: 12px; font-weight: 500; letter-spacing: .42em; padding-left: .42em; }
-.brand-preloader__line { position: absolute; top: calc(50% + 108px); left: calc(50% - 28px); width: 56px; height: 1px; background: #b6a18c; }
-.brand-preloader__skip { position: absolute; right: clamp(20px,4.4vw,84px); bottom: max(24px,env(safe-area-inset-bottom)); min-height: 44px; padding: 8px 0 8px 16px; border: 0; background: transparent; color: #786a5c; font: inherit; font-size: 11px; letter-spacing: .06em; cursor: pointer; }
-.brand-preloader__skip:hover { color: #111; }
-.brand-preloader__skip:focus-visible { outline: 2px solid #b6a18c; outline-offset: 5px; }
+.brand-preloader__rim { filter: drop-shadow(0 0 6px #e0a070aa); }
+.brand-preloader__grain { position: absolute; inset: 0; opacity: .07; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); mix-blend-mode: overlay; }
+html[data-alyoxa-intro="opening"] .brand-preloader__grain { opacity: 0; transition: opacity .5s; }
+.brand-preloader__mark { position: absolute; top: 50%; left: 50%; width: clamp(92px,8.4vw,124px); height: auto; overflow: visible; opacity: 0; translate: -50% -50%; filter: drop-shadow(0 14px 34px #c58c5c40); }
+.brand-preloader__word { position: absolute; top: calc(50% + clamp(70px,6vw,90px)); left: 50%; display: flex; overflow: hidden; translate: -50% 0; font-size: 12px; font-weight: 500; letter-spacing: .5em; padding: 2px 0 2px .5em; }
+.brand-preloader__letter { display: inline-block; }
+.brand-preloader__line { position: absolute; top: calc(50% + clamp(106px,8.6vw,128px)); left: calc(50% - 28px); width: 56px; height: 1px; background: linear-gradient(90deg, #0000, #d9a77c, #0000); }
+.brand-preloader__meta { position: absolute; left: clamp(20px,4.4vw,84px); bottom: max(24px,env(safe-area-inset-bottom)); display: grid; gap: 10px; }
+.brand-preloader__count { display: flex; align-items: flex-start; font-size: clamp(44px,6vw,104px); font-weight: 300; line-height: .82; letter-spacing: -.04em; font-variant-numeric: tabular-nums; color: #f3e6d8; }
+.brand-preloader__count sup { margin: .1em 0 0 .12em; font-size: .22em; letter-spacing: 0; color: #d9a77c; }
+.brand-preloader__tagline { font-size: 10px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: #9d8a78; }
+.brand-preloader__skip { position: absolute; right: clamp(20px,4.4vw,84px); bottom: max(24px,env(safe-area-inset-bottom)); min-height: 44px; padding: 8px 0 8px 16px; border: 0; background: transparent; color: #9d8a78; font: inherit; font-size: 11px; letter-spacing: .06em; cursor: pointer; transition: color .3s; }
+.brand-preloader__skip:hover { color: #f3e6d8; }
+.brand-preloader__skip:focus-visible { outline: 2px solid #d9a77c; outline-offset: 5px; }
 .brand-preloader__status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 700px) { .brand-preloader__tagline { font-size: 9px; letter-spacing: .22em; } }
 @media (prefers-reduced-motion: reduce) { .brand-preloader { display: none !important; } html[data-alyoxa-intro] { overflow: auto; } }
