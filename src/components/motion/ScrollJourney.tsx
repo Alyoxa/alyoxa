@@ -4,12 +4,13 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ScrollJourney.css";
+import { deferMotion } from "@/components/motion/deferredMotion";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 /** A shared depth pass. Custom properties avoid fighting the section entrances. */
 export default function ScrollJourney() {
-  useGSAP(() => {
+  useGSAP(() => deferMotion(() => {
     const media = gsap.matchMedia();
     media.add({
       motion: "(prefers-reduced-motion: no-preference)",
@@ -64,6 +65,6 @@ export default function ScrollJourney() {
       inputEvents.forEach((event) => window.removeEventListener(event, cancelAnchor));
       media.revert();
     };
-  });
+  }));
   return null;
 }

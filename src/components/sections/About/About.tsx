@@ -9,6 +9,7 @@ import "./About.css";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
+import { deferMotion } from "@/components/motion/deferredMotion";
 
 gsap.registerPlugin(useGSAP);
 
@@ -34,7 +35,7 @@ function PrincipleIcon({ kind }: { kind: string }) {
 export default function About() {
   const rootRef = useRef<HTMLElement>(null);
   useGSAP(() => {
-    if (rootRef.current) return animateAbout(rootRef.current);
+    if (rootRef.current) { const root = rootRef.current; return deferMotion(() => animateAbout(root)); }
   }, { scope: rootRef });
 
   return <section data-motion-pending ref={rootRef} className="about" id="about" aria-labelledby="about-heading">

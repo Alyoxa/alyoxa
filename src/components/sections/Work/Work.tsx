@@ -13,6 +13,7 @@ import { workProjects } from "@/app/work/projects";
 import { animateWork } from "./WorkAnimations";
 import "./Work.css";
 import AlyoxaMark from "@/components/ui/AlyoxaMark/AlyoxaMark";
+import { deferMotion } from "@/components/motion/deferredMotion";
 
 gsap.registerPlugin(useGSAP);
 
@@ -48,7 +49,7 @@ export default function Work() {
   };
 
   useGSAP(() => {
-    if (workRef.current) return animateWork(workRef.current, { onActive: setActive, onOpen: open });
+    if (workRef.current) { const root = workRef.current; return deferMotion(() => animateWork(root, { onActive: setActive, onOpen: open })); }
   }, { scope: workRef });
 
   const last = featured.length - 1;

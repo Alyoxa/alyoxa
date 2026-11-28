@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
 import { seoRouteData as pages, insightPosts } from "./seo-route-data.mjs";
+import { studioContact } from "../src/lib/studioContact.ts";
 const base=process.env.SEO_TEST_BASE_URL||"http://127.0.0.1:3107";
 const preview=process.env.SEO_EXPECT_NOINDEX==="true";
 const origin="https://alyoxa.com";
@@ -33,7 +34,7 @@ for(const [path,page] of Object.entries(pages)){
  assert.equal(nodes.filter(node=>node["@type"]==="Organization").length,1);
  assert.equal(nodes.filter(node=>node["@type"]==="WebSite").length,1);
  const organization=nodes.find(node=>node["@type"]==="Organization");
- assert.deepEqual(organization.sameAs,["https://www.instagram.com/aka_alyoxa/"]);assert.equal(organization.email,"hello@alyoxa.com");assert.equal(organization.address,undefined);assert.equal(organization.aggregateRating,undefined);
+ assert.deepEqual(organization.sameAs,studioContact.socials.map(social=>social.href));assert.equal(organization.email,"hello@alyoxa.com");assert.equal(organization.address,undefined);assert.equal(organization.aggregateRating,undefined);
  assert.equal(new Set(nodes.map(node=>node["@id"])).size,nodes.length,"No duplicate entity IDs");
  assert(!nodes.some(node=>["Review","AggregateRating","LocalBusiness"].includes(node["@type"])),"No unverified reviews or offices");
  if(path!=="/"){const breadcrumb=nodes.find(node=>node["@type"]==="BreadcrumbList");assert.equal(breadcrumb.itemListElement.at(-1).item,canonical);}

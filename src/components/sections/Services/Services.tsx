@@ -11,6 +11,7 @@ import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
 import { useCardDialog } from "@/components/motion/useCardDialog";
 import AlyoxaMark from "@/components/ui/AlyoxaMark/AlyoxaMark";
+import { deferMotion } from "@/components/motion/deferredMotion";
 
 gsap.registerPlugin(useGSAP);
 
@@ -118,7 +119,7 @@ export default function Services() {
   const [sourceCard, setSourceCard] = useState<HTMLElement | null>(null);
 
   useGSAP(() => {
-    if (sectionRef.current) return animateServices(sectionRef.current);
+    if (sectionRef.current) { const root = sectionRef.current; return deferMotion(() => animateServices(root)); }
   }, { scope: sectionRef });
 
   return <section data-motion-pending ref={sectionRef} className="services" id="services" aria-labelledby="services-heading">

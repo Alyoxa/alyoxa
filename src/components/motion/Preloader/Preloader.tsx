@@ -41,7 +41,7 @@ export default function Preloader() {
     const core = root.querySelector<SVGCircleElement>(".brand-preloader__portal-core")!;
     const paths = q(".brand-preloader__outline") as unknown as SVGPathElement[];
     const sparks = q(".brand-preloader__spark") as unknown as SVGCircleElement[];
-    const counter = root.querySelector<HTMLElement>(".brand-preloader__count-value")!;
+    const digitStrips = Array.from(root.querySelectorAll<HTMLElement>(".brand-preloader__digit-strip"));
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     let finished = false;
     let drawn = false;
@@ -96,11 +96,12 @@ export default function Preloader() {
       spark.setAttribute("cy", String(point.y));
     });
     const count = { v: 0 };
-    const showCount = () => { counter.textContent = String(Math.round(count.v)).padStart(3, "0"); };
+    // Digits roll by transform: the text never repaints, so the first paint stays the page's largest content.
+    const showCount = () => { String(Math.round(count.v)).padStart(3, "0").split("").forEach((digit, i) => { if (digitStrips[i]) digitStrips[i].style.transform = `translateY(${-Number(digit)}em)`; }); };
 
     const drawing = gsap.timeline({ onComplete: () => { drawn = true; startExit(); } });
     drawing.to(count, { v: 86, duration: 2.1, ease: "power1.inOut", onUpdate: showCount }, 0)
-      .from(q(".brand-preloader__meta > *"), { opacity: 0, y: 12, duration: .8, stagger: .08, ease: "power3.out" }, .05)
+      // The counter is painted with the first frame (no fade-in): it is the page's largest early content.
       .to(sparks, { opacity: 1, duration: .2 }, .1)
       .to(paths, { strokeDashoffset: 0, duration: 1.15, stagger: .06, ease: "power2.inOut" }, .1)
       .to(tip, { p: 1, duration: 1.15, ease: "power2.inOut", onUpdate: placeSparks }, .16)
@@ -206,7 +207,7 @@ export default function Preloader() {
     <span className="brand-preloader__word" aria-hidden="true">{"ALYOXA".split("").map((letter, index) => <span key={index} className="brand-preloader__letter">{letter}</span>)}</span>
     <span className="brand-preloader__line" aria-hidden="true" />
     <div className="brand-preloader__meta" aria-hidden="true">
-      <span className="brand-preloader__count"><span className="brand-preloader__count-value">000</span><sup>%</sup></span>
+      <span className="brand-preloader__count"><span className="brand-preloader__count-value">{[0, 1, 2].map((column) => <span key={column} className="brand-preloader__digit"><span className="brand-preloader__digit-strip">{"0123456789".split("").map((digit) => <span key={digit}>{digit}</span>)}</span></span>)}</span><sup>%</sup></span>
       <span className="brand-preloader__tagline">Creative Technology Studio</span>
     </div>
     <button className="brand-preloader__skip" type="button" onClick={() => skipRef.current()}>Skip intro</button>

@@ -11,13 +11,14 @@ import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
 import "./Footer.css";
 import SocialLinks from "@/components/ui/SocialLinks/SocialLinks";
+import { deferMotion } from "@/components/motion/deferredMotion";
 
 gsap.registerPlugin(useGSAP);
 
 export default function Footer({ contactIndex = "06", showCta = true }: { contactIndex?: string; showCta?: boolean }) {
   const rootRef = useRef<HTMLElement>(null);
   useGSAP(() => {
-    if (rootRef.current) return animateFooter(rootRef.current);
+    if (rootRef.current) { const root = rootRef.current; return deferMotion(() => animateFooter(root)); }
   }, { scope: rootRef });
 
   return <footer data-motion-pending ref={rootRef} className="studio-footer" id="contact" aria-label="Alyoxa contact and footer">

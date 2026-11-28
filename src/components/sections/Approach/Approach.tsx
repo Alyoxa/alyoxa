@@ -11,6 +11,7 @@ import "./ApproachPanels.css";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import SectionEyebrow from "@/components/ui/SectionEyebrow/SectionEyebrow";
 import BrandButton from "@/components/ui/BrandButton/BrandButton";
+import { deferMotion } from "@/components/motion/deferredMotion";
 
 gsap.registerPlugin(useGSAP);
 
@@ -55,7 +56,7 @@ function ProcessBrandMark() {
 export default function Approach() {
   const rootRef = useRef<HTMLElement>(null);
   useGSAP(() => {
-    if (rootRef.current) return animateApproach(rootRef.current);
+    if (rootRef.current) { const root = rootRef.current; return deferMotion(() => animateApproach(root)); }
   }, { scope: rootRef });
 
   return <section data-motion-pending ref={rootRef} className="approach approach--panels" id="approach" aria-labelledby="approach-heading">

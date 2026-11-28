@@ -126,9 +126,9 @@ export function animateHero(root: HTMLElement) {
       const box = orbitPath.getBBox();
       // Start at the orbit's lowest point, close to where the sphere used to rest.
       let progress = 0, lowest = -Infinity;
-      for (let i = 0; i < 240; i++) {
-        const p = orbitPath.getPointAtLength((length * i) / 240);
-        if (p.y > lowest) { lowest = p.y; progress = i / 240; }
+      for (let i = 0; i < 48; i++) {
+        const p = orbitPath.getPointAtLength((length * i) / 48);
+        if (p.y > lowest) { lowest = p.y; progress = i / 48; }
       }
       const sphereMotion = { speed: 0 };
       intro.to(sphereMotion, { speed: 1, duration: 3, ease: "power1.in" }, 1.8);
